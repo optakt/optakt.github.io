@@ -218,7 +218,28 @@ They should not be used blindly for all tests, however. In cases where the teste
 
 ### Case Study: The Flow DPS Mapper
 
-TODO: Example of how we made the Flow DPS mapper testable.
+Sometimes, a core piece of software might seem impossible to test. That was the case for the mapper component in Flow DPS at some point, where its main function consisted of a 453-lines-long loop which orchestrated the use of all the other components of the application.
+
+??? example "mapper_old.go"
+    ```go
+{!mapper_old.md!}
+    ```
+
+As it was, this code was untestable. Covering each possible case from this huge piece of logic would have required immense, complex, unreadable tests, that would break whenever a piece of this logic would change, and this would require a huge amount of maintenance effort.
+
+To solve that massive problem, we refactored our original mapper into a [finite-state machine](https://en.wikipedia.org/wiki/Finite-state_machine) which replicates the same computation logic by applying transitions to a state.
+
+??? example "mapper_new.go"
+    ```go
+{!mapper_new.md!}
+    ```
+
+This refactoring effort allowed us to write simple and concise tests that call a transition function upon the state machine and make assertions upon the resulting state.
+
+??? example "mapper_new_internal_test.go"
+    ```go
+{!mapper_new_internal_test.md!}
+    ```
 
 ## Integration Tests
 

@@ -18,8 +18,14 @@ theme:
 plugins:
   - markdownextradata
   - search
+  - exclude:
+      glob:
+        - include/*.md
 
 markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - markdown_include.include:
+      base_path: content/include/
+      encoding: utf-8
