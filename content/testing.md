@@ -70,6 +70,36 @@ Using those mocks is as simple as instantiating a baseline version of the mock a
 
 ### Pseudorandom Generic Values
 
+When using test data for unit tests, it is always a good idea to use random generated data as the inputs. This avoids the bias where a test passes because it is given a valid set of inputs while some other inputs might have highlighted a flaw in the logic, by using an _unconstrained_ data set.
+
+In order for the tests to be repeatable and for results to be consistent though, the given inputs should not be completely random, but instead they should be pseudorandom, with the same initial seed, to ensure the same sequence of "random" tests.
+
+Here is an example of such a value being generated.
+
+```go
+func GenericAddresses(number int) []flow.Address {
+	// Ensure consistent deterministic results.
+	random := rand.New(rand.NewSource(5))
+
+	var addresses []flow.Address
+	for i := 0; i < number; i++ {
+		var address flow.Address
+		binary.BigEndian.PutUint64(address[0:], random.Uint64())
+
+		addresses = append(addresses, address)
+	}
+
+	return addresses
+}
+
+func GenericAddress(index int) flow.Address {
+	return GenericAddresses(index + 1)[index]
+}
+```
+
+!!! warning
+    While randomly generating valid inputs makes sense, randomly generating invalid inputs does not. In the case of invalid inputs, it is much better to have an exhaustive list of all types of cases that are expected to be invalid and always test each one of them.
+
 ### Parallelization
 
 ### Standard `testing` Package

@@ -18,3 +18,8 @@ theme:
 plugins:
   - markdownextradata
   - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
