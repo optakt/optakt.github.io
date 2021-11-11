@@ -1,0 +1,19 @@
+copyright: "Copyright &copy; 2021 Optakt"
+docs_dir: 'content'
+
+nav:
+    - 'Introduction': 'index.md'
+    - 'Team Process': 'process.md'
+    - 'Projects': 'projects.md'
+    - 'Design Principles': 'design.md'
+    - 'Testing Guide': 'testing.md'
+    - 'Style Guidelines':
+        - 'Go': 'style/go.md'
+        - 'Markdown': 'style/markdown.md'
+
+theme:
+  name: material
+
+plugins:
+  - markdownextradata
+  - search
