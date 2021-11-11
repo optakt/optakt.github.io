@@ -98,14 +98,123 @@ func GenericAddress(index int) flow.Address {
 ```
 
 !!! warning
+
     While randomly generating valid inputs makes sense, randomly generating invalid inputs does not. In the case of invalid inputs, it is much better to have an exhaustive list of all types of cases that are expected to be invalid and always test each one of them.
 
 ### Parallelization
 
+Since the version `1.7` of Go, tests can be run in parallel. This can be done by calling [`t.Parallel`](https://pkg.go.dev/testing#T.Parallel) in each subtest. Calling this function signals that the test is to be run in parallel with (and only with) other parallel tests, and the amount of tests running in parallel is limited by the value of [`runtime.GOMAXPROCS`](https://pkg.go.dev/runtime#GOMAXPROCS). 
+
+There are multiple advantages to parallelizing tests:
+
+* It ensures that regardless of the order in which inputs are given, components behave as expected.
+* It maximizes performance, which in turns results in a faster CI and a faster workflow for everyone.
+* By making tests run faster, it allows you to write more tests and therefore produce more actionable data to find bugs as well as improve tests cases and coverage.
+* It makes it possible to ensure that the components you test are concurrency-safe
+
+!!! danger "Parallelizing table-driven tests"
+
+    When it comes to table-driven tests, a common caveat developers fall into is to call `t.Parallel` in their subtest without capturing the loop variable with their test case.
+
+    Here is an example of how it should be done:
+
+    ```go
+    func TestParseCadenceArgument(t *testing.T) {
+        tests := []struct {
+            name     string
+            param    string
+            wantArg  cadence.Value
+            checkErr assert.ErrorAssertionFunc
+        }{
+            {
+                name:     "parse valid boolean",
+                param:    "Bool(true)",
+                wantArg:  cadence.Bool(true),
+                checkErr: assert.NoError,
+            },
+            {
+                name:     "parse invalid boolean",
+                param:    "Bool(horse)",
+                checkErr: assert.Error,
+            },
+            {
+                name:     "parse valid normal integer",
+                param:    "Int16(1337)",
+                wantArg:  cadence.Int16(1337),
+                checkErr: assert.NoError,
+            },
+        }
+    
+        for _, test := range tests {
+            test := test // It is essential to capture the loop variable, or each parallel test will run with the inputs of the last test from the table.
+            t.Run(test.name, func(t *testing.T) {
+                t.Parallel()
+    
+                gotArg, err := ParseCadenceArgument(test.param)
+                test.checkErr(t, err)
+    
+                if err == nil {
+                    assert.Equal(t, test.wantArg, gotArg)
+                }
+            })
+        }
+    }
+    ```
+
 ### Standard `testing` Package
 
-TODO: Explain subtest and structure of nested tests.
-TODO: Explain when to use subtests vs when to use table-driven tests.
+The standard [`testing`](https://pkg.go.dev/testing) package is very powerful, and does not require additional frameworks to be used efficiently. The only exception we make to that are the `stretchr/testify/assert` and `stretchr/testify/require` packages which we use only for convenience, as they expose assertion functions that produce consistent outputs and make tests easy to understand.
+
+#### Subtests and Sub-benchmarks
+
+The `testing` package exposes a `Run` method on the `T` type which makes it possible to nest tests within tests. This can be very useful, as it enables creating a hierarchical structure within a test.
+
+??? example "index_internal_test.go"
+
+    ```go
+    func TestIndex(t *testing.T) {
+        // ...
+        t.Run("collections", func(t *testing.T) {
+            t.Parallel()
+    
+            collections := mocks.GenericCollections(4)
+    
+            reader, writer, db := setupIndex(t)
+            defer db.Close()
+    
+            assert.NoError(t, writer.Collections(mocks.GenericHeight, collections))
+            // Close the writer to make it commit its transactions.
+            require.NoError(t, writer.Close())
+    
+            // NOTE: The following subtests should NOT be run in parallel, because of the deferral
+            // to close the database above.
+            t.Run("retrieve collection by ID", func(t *testing.T) {
+                got, err := reader.Collection(collections[0].ID())
+    
+                require.NoError(t, err)
+                assert.Equal(t, collections[0], got)
+            })
+    
+            t.Run("retrieve collections by height", func(t *testing.T) {
+                got, err := reader.CollectionsByHeight(mocks.GenericHeight)
+    
+                require.NoError(t, err)
+                assert.ElementsMatch(t, mocks.GenericCollectionIDs(4), got)
+            })
+    
+            t.Run("retrieve transactions from collection", func(t *testing.T) {
+                // For now this index is not used.
+            })
+        })
+        // ...
+    }
+    ```
+
+#### Table-Driven Tests
+
+It makes a lot of sense to use subtests when testing the behavior of complex components, but it is better to use [table-driven tests](https://dave.cheney.net/2019/05/07/prefer-table-driven-tests) when testing a simple function with a given output for a given input, and that there are many cases to cover. For such cases, table-driven tests massively improve clarity and readability.
+
+They should not be used blindly for all tests, however. In cases where the tested component is complex and that testing its methods cannot be simplified to a common setup, call to a function and assertion of the output, trying to use table-driven tests at all costs might lead to messy code, where the subtest which runs the test case is full of conditions to try to handle each separate setup. This is usually a sign that using simple tests and subtests would be a better approach.
 
 ### Case Study: The Flow DPS Mapper
 
