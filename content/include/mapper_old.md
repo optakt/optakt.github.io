@@ -1,5 +1,5 @@
     package mapper
-    
+
     import (
         "bytes"
         "context"
@@ -8,37 +8,37 @@
         "os"
         "sort"
         "sync"
-    
+
         "github.com/gammazero/deque"
         "github.com/rs/zerolog"
-    
+
         "github.com/onflow/flow-go/ledger"
         "github.com/onflow/flow-go/ledger/complete/mtrie/flattener"
         "github.com/onflow/flow-go/ledger/complete/mtrie/node"
         "github.com/onflow/flow-go/ledger/complete/mtrie/trie"
         "github.com/onflow/flow-go/ledger/complete/wal"
         "github.com/onflow/flow-go/model/flow"
-    
+
         "github.com/optakt/flow-dps/models/dps"
         "github.com/optakt/flow-dps/models/index"
     )
-    
+
     type Mapper struct {
         log zerolog.Logger
         cfg Config
-    
+
         chain Chain
         feed  Feeder
         index index.Writer
-    
+
         wg   *sync.WaitGroup
         stop chan struct{}
     }
-    
+
     // New creates a new mapper that uses chain data to map trie updates to blocks
     // and then passes on the details to the indexer for indexing.
     func New(log zerolog.Logger, chain Chain, feed Feeder, index index.Writer, options ...func(*Config)) (*Mapper, error) {
-    
+
         // We don't use a checkpoint by default. The options can set one, in which
         // case we will add the checkpoint as a finalized state commitment in our
         // trie registry.
@@ -49,7 +49,7 @@
         for _, option := range options {
             option(&cfg)
         }
-    
+
         // Check if the checkpoint file exists.
         if cfg.CheckpointFile != "" {
             stat, err := os.Stat(cfg.CheckpointFile)
@@ -60,7 +60,7 @@
                 return nil, fmt.Errorf("invalid checkpoint file: directory")
             }
         }
-    
+
         i := Mapper{
             log:   log,
             chain: chain,
@@ -70,10 +70,10 @@
             wg:    &sync.WaitGroup{},
             stop:  make(chan struct{}),
         }
-    
+
         return &i, nil
     }
-    
+
     func (m *Mapper) Stop(ctx context.Context) error {
         close(m.stop)
         done := make(chan struct{})
@@ -88,21 +88,21 @@
             return nil
         }
     }
-    
+
     // NOTE: We might want to move height and tree (checkpoint) to parameters of the
     // run function; that would make it quite easy to resume from an arbitrary
     // point in the LedgerWAL and get rid of the related struct fields.
-    
+
     func (m *Mapper) Run() error {
         m.wg.Add(1)
         defer m.wg.Done()
-    
+
         // We start trying to map at the root height.
         height, err := m.chain.Root()
         if err != nil {
             return fmt.Errorf("could not get root height: %w", err)
         }
-    
+
         // We always initialize an empty state trie to refer to the first step
         // before the checkpoint. If there is no checkpoint, then the step after the
         // checkpoint will also just be the empty trie. Otherwise, the second trie
@@ -131,9 +131,9 @@
             tree = trees[0]
             m.log.Info().Msg("checkpoint rebuild finished")
         }
-    
+
         m.log.Info().Msg("path collection started")
-    
+
         // We have to index all of the paths from the checkpoint; otherwise, we will
         // miss every single one of the bootstrapped registers.
         paths := make([]ledger.Path, 0, len(tree.AllPayloads()))
@@ -156,22 +156,22 @@
                 queue.PushBack(node.RightChild())
             }
         }
-    
+
         m.log.Info().Int("paths", len(paths)).Msg("path collection finished")
-    
+
         m.log.Info().Msg("path sorting started")
-    
+
         sort.Slice(paths, func(i int, j int) bool {
             return bytes.Compare(paths[i][:], paths[j][:]) < 0
         })
-    
+
         m.log.Info().Msg("path sorting finished")
-    
+
         // When trying to go from one finalized block to the next, we keep a list
         // of intermediary tries until the full set of transitions have been
         // identified. We keep track of these transitions as steps in this map.
         steps := make(map[flow.StateCommitment]*Step)
-    
+
         // We start at an "imaginary" step that refers to an empty trie, has no
         // paths and no previous commit. We consider this step already done, so it
         // will never be indexed; it's merely used as the sentinel value for
@@ -183,7 +183,7 @@
             Paths:  nil,
             Tree:   empty,
         }
-    
+
         // We then add a second step that refers to the first step that is already
         // done, which uses the commit of the initial state trie after the
         // checkpoint has been loaded, and contains all of the paths found in the
@@ -195,15 +195,15 @@
             Paths:  paths,
             Tree:   tree,
         }
-    
+
         // This is how we let the indexing loop know that the first "imaginary" step
         // was already indexed. The `commitPrev` value is used as a sentinel value
         // for when to stop going backwards through the steps when indexing a block.
         // This means the value is always set to the last already indexed step.
         commitPrev := emptyCommit
-    
+
         m.log.Info().Msg("state indexing started")
-    
+
         // Next, we launch into the loop that is responsible for mapping all
         // incoming trie updates to a block. The loop itself has no concept of what
         // the next state commitment is that we should look at. It will simply try
@@ -221,11 +221,11 @@
             default:
                 // keep going
             }
-    
+
             log := m.log.With().
                 Uint64("height", height).
                 Hex("commit_prev", commitPrev[:]).Logger()
-    
+
             // As a first step, we retrieve the state commitment of the finalized
             // block at the current height; we start at the root height and then
             // increase it each time we are done indexing a block. Once an applied
@@ -233,7 +233,7 @@
             // `commitNext`, we have reached the end state of the next finalized
             // block and can index all steps in-between for that block height.
             commitNext, err := m.chain.Commit(height)
-    
+
             // If the retrieval times out, it's possible that we are on a live chain
             // and the next block has not been finalized yet. We should thus simply
             // retry until we have a new block.
@@ -241,7 +241,7 @@
                 log.Warn().Msg("commit retrieval timed out, retrying")
                 continue Outer
             }
-    
+
             // If we have reached the end of the finalized blocks, we are probably
             // on a historical chain and there are no more finalized blocks for the
             // related spork. We can exit without error.
@@ -249,14 +249,14 @@
                 log.Debug().Msg("reached end of finalized chain")
                 break Outer
             }
-    
+
             // Any other error should not happen and should crash explicitly.
             if err != nil {
                 return fmt.Errorf("could not retrieve next commit (height: %d): %w", height, err)
             }
-    
+
             log = log.With().Hex("commit_next", commitNext[:]).Logger()
-    
+
         Inner:
             for {
                 // We want to check in this tight loop if we want to quit, just in case
@@ -267,7 +267,7 @@
                 default:
                     // keep going
                 }
-    
+
                 // When we have the state commitment of the next finalized block, we
                 // check to see if we find a trie for it in our steps. If we do, it
                 // means that we have steps from the last finalized block to the
@@ -277,39 +277,39 @@
                 if ok {
                     break Inner
                 }
-    
+
                 // If we don't find a trie for the current state commitment, we need
                 // to keep applying trie updates to state tries until one of them
                 // does have the correct commit. We simply feed the next trie update
                 // here.
                 update, err := m.feed.Update()
-    
+
                 // Once more, we might be on a live spork and the next delta might not
                 // be available yet. In that case, keep trying.
                 if errors.Is(err, dps.ErrTimeout) {
                     log.Warn().Msg("delta retrieval timed out, retrying")
                     continue Inner
                 }
-    
+
                 // Similarly, if no more deltas are available, we reached the end of
                 // the WAL and we are done reconstructing the execution state.
                 if errors.Is(err, dps.ErrFinished) {
                     log.Debug().Msg("reached end of delta log")
                     break Outer
                 }
-    
+
                 // Other errors should fail execution as they should not happen.
                 if err != nil {
                     return fmt.Errorf("could not retrieve next delta: %w", err)
                 }
-    
+
                 // NOTE: We used to require a copy of the `RootHash` here, when it
                 // was still a byte slice, as the underlying slice was being reused.
                 // It was changed to a value type that is always copied now.
                 commitBefore := flow.StateCommitment(update.RootHash)
-    
+
                 log := log.With().Hex("commit_before", commitBefore[:]).Logger()
-    
+
                 // Once we have our new update and know which trie it should be
                 // applied to, we check to see if we have such a trie in our current
                 // steps. If not, we can simply skip it; this can happen, for
@@ -320,7 +320,7 @@
                     log.Debug().Msg("skipping trie update without matching trie")
                     continue Inner
                 }
-    
+
                 // We de-duplicate the paths and payloads here. This replicates some
                 // code that is part of the execution node and has moved between
                 // different layers of the architecture. We keep it to be safe for
@@ -346,7 +346,7 @@
                 for _, path := range paths {
                     payloads = append(payloads, *lookup[path])
                 }
-    
+
                 // We can now apply the trie update to the state trie as it was at
                 // the previous step. This is where the trie code will deep-copy the
                 // payloads.
@@ -358,7 +358,7 @@
                 if err != nil {
                     return fmt.Errorf("could not update trie: %w", err)
                 }
-    
+
                 // We then store the new trie along with the state commitment of its
                 // parent and the paths that were changed. This will make it
                 // available for subsequent trie updates to be applied to it, and it
@@ -372,10 +372,10 @@
                     Tree:   tree,
                 }
                 steps[commitAfter] = step
-    
+
                 log.Debug().Hex("commit_after", commitAfter[:]).Msg("trie update applied")
             }
-    
+
             // At this point we have identified a step that has lead to the state
             // commitment of the finalized block at the current height. We can
             // retrieve some additional indexing data, such as the block header and
@@ -397,10 +397,10 @@
                 return fmt.Errorf("could not retrieve collections: %w (height: %d)", err, height)
             }
             blockID := header.ID()
-    
+
             // TODO: Refactor the mapper in https://github.com/optakt/flow-dps/issues/128
             // and replace naive if statements around indexing.
-    
+
             // We then index the data for the finalized block at the current height.
             if m.cfg.IndexHeaders {
                 err = m.index.Header(height, header)
@@ -432,7 +432,7 @@
                     return fmt.Errorf("could not index transactions: %w", err)
                 }
             }
-    
+
             // In order to index the payloads, we step back from the state
             // commitment of the finalized block at the current height to the state
             // commitment of the last finalized block that was indexed. For each
@@ -446,7 +446,7 @@
             commit := commitNext
             updated := make(map[ledger.Path]struct{})
             for commit != commitPrev {
-    
+
                 // In the first part, we get the step we are currently at and filter
                 // out any paths that have already been updated.
                 step := steps[commit]
@@ -459,12 +459,12 @@
                     paths = append(paths, path)
                     updated[path] = struct{}{}
                 }
-    
+
                 if !m.cfg.IndexPayloads {
                     commit = step.Commit
                     continue
                 }
-    
+
                 // We then divide the remaining paths into chunks of 1000. For each
                 // batch, we retrieve the payloads from the state trie as it was at
                 // the end of this block and index them.
@@ -481,7 +481,7 @@
                     default:
                         // keep going
                     }
-    
+
                     end := start + n
                     if end > len(paths) {
                         end = len(paths)
@@ -492,18 +492,18 @@
                     if err != nil {
                         return fmt.Errorf("could not index payloads: %w", err)
                     }
-    
+
                     count++
-    
+
                     log.Debug().Int("batch", count).Int("start", start).Int("end", end).Msg("path batch indexed")
                 }
-    
+
                 // Finally, we forward the commit to the previous trie update and
                 // repeat until we have stepped all the way back to the last indexed
                 // commit.
                 commit = step.Commit
             }
-    
+
             // At this point, we can delete any trie that does not correspond to
             // the state that we have just reached. This will allow the garbage
             // collector to free up any payload that has been changed and which is
@@ -514,7 +514,7 @@
                     delete(steps, key)
                 }
             }
-    
+
             // Last but not least, we take care of properly indexing the height of
             // the first indexed block and the height of the last indexed block.
             once.Do(func() { err = m.index.First(height) })
@@ -525,25 +525,25 @@
             if err != nil {
                 return fmt.Errorf("could not index last height: %w", err)
             }
-    
+
             // We have now successfully indexed all state trie changes and other
             // data at the current height. We set the last indexed step to the last
             // step from our current height, and then increase the height to start
             // the indexing of the next block.
             commitPrev = commitNext
             height++
-    
+
             log.Info().
                 Hex("block", blockID[:]).
                 Int("num_changes", len(updated)).
                 Int("num_events", len(events)).
                 Msg("block data indexed")
         }
-    
+
         m.log.Info().Msg("state indexing finished")
-    
+
         step := steps[commitPrev]
         m.cfg.PostProcessing(step.Tree)
-    
+
         return nil
     }

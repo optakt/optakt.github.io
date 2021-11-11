@@ -23,15 +23,15 @@
                 checkErr: assert.NoError,
             },
         }
-    
+
         for _, test := range tests {
             test := test // It is essential to capture the loop variable, or each parallel test will run with the inputs of the last test from the table.
             t.Run(test.name, func(t *testing.T) {
                 t.Parallel()
-    
+
                 gotArg, err := ParseCadenceArgument(test.param)
                 test.checkErr(t, err)
-    
+
                 if err == nil {
                     assert.Equal(t, test.wantArg, gotArg)
                 }
