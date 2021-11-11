@@ -12,13 +12,13 @@ This section outlines a few of the rules we try to follow when it comes to Go un
 
 Unit tests should have consistent names. The best way to go about it is to follow the [official guidelines of the Go `testing` package](https://pkg.go.dev/testing#hdr-Examples), which states that:
 
-> The naming convention to declare examples for the package, a function `F`, a type `T` and method `M` on type `T` are:
+> The naming convention to declare tests for the package, a function `F`, a type `T` and method `M` on type `T` are:
 > 
 > ```go
->   func Example() { ... }
->   func ExampleF() { ... }
->   func ExampleT() { ... }
->   func ExampleT_M() { ... }
+>   func Test() { ... }
+>   func TestF() { ... }
+>   func TestT() { ... }
+>   func TestT_M() { ... }
 > ```
 
 When it comes to subtests, the names of individual subtests should be lowercased and concise. The tests usually start with a subtest called `nominal case` which verifies that the tested component behaves as expected in a baseline situation, where no failures occur and no edge cases are handled.
@@ -128,9 +128,31 @@ This refactoring effort allowed us to write simple and concise tests that call a
 
 ## Integration Tests
 
-TODO: Explain build tag usage to prevent integration tests from being run at all times.
-TODO: Explain how we write integration tests.
+Integration tests are essential to ensure that components work together as expected. Those tests are usually much heavier and slower than unit tests, since they use real components instead of simple mocks, and often might run filesystem or network operations, wait for things to happen, or even run heavy computational tasks.
 
-## Benchmarks & Examples
+Those tests should always be specified in a separate test package and never run internally within the tested package.
 
-TODO: Explain how projects/packages that are meant to be used as libraries should ideally provide benchmarks and examples on top of proper documentation.
+### Build Tag
+
+Because those tests are inherently slower than unit tests, they are placed in specific files that are suffixed with `_integration_test.go` and those files start with a build tag directive which prevents them from running unless the `go test` command is called with the `integration` tag.
+
+Both syntaxes should be specified, the `<go1.17` one which is `+build <tag>` as well as the `>=go1.17` one which is `go:build <tag>`. The former will be dropped when we feel like it is no longer relevant to support go 1.16 and prior.
+
+```go
+//go:build integration
+// +build integration
+
+package dps_test
+```
+
+## Examples
+
+In Go, good package documentation includes not only comments for each public type and method, but also runnable examples and benchmarks in some cases. Godoc allows defining  examples which are verified by running them as tests and can be manually launched by readers of the documentation on the package's Godoc webpage.
+
+As for typical tests, examples are functions that reside in a package's `_test.go` files. Unlike normal test functions, though, example functions take no arguments and begin with the word `Example` instead of `Test`.
+
+In order to specify what is the expected output of a given example, a comment has to be written at the end of the `Example` function, in the form of `// Output: <expected output>`. If this is missing, examples will not be executed and therefore not included in the documentation.
+
+## Benchmarks
+
+When a package exposes a performance-critical piece of code, it should be benchmarked, and benchmark tests must be available for anyone to reproduce the benchmark using their hardware. Writing benchmark results in a markdown file without providing a way to reproduce them is irrelevant.
