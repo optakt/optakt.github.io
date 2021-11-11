@@ -33,6 +33,9 @@ theme:
         icon: material/weather-night
         name: Switch to light mode
 
+extra_css:
+  - stylesheets/wide.css
+
 plugins:
   - markdownextradata
   - search
