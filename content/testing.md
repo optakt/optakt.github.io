@@ -13,7 +13,7 @@ This section outlines a few of the rules we try to follow when it comes to Go un
 Unit tests should have consistent names. The best way to go about it is to follow the [official guidelines of the Go `testing` package](https://pkg.go.dev/testing#hdr-Examples), which states that:
 
 > The naming convention to declare tests for the package, a function `F`, a type `T` and method `M` on type `T` are:
-> 
+>
 > ```go
 >   func Test() { ... }
 >   func TestF() { ... }
@@ -59,7 +59,7 @@ Here is an example of such a value being generated.
 
 ### Parallelization
 
-Since the version `1.7` of Go, tests can be run in parallel. This can be done by calling [`t.Parallel`](https://pkg.go.dev/testing#T.Parallel) in each subtest. Calling this function signals that the test is to be run in parallel with (and only with) other parallel tests, and the amount of tests running in parallel is limited by the value of [`runtime.GOMAXPROCS`](https://pkg.go.dev/runtime#GOMAXPROCS). 
+Since the version `1.7` of Go, tests can be run in parallel. This can be done by calling [`t.Parallel`](https://pkg.go.dev/testing#T.Parallel) in each subtest. Calling this function signals that the test is to be run in parallel with (and only with) other parallel tests, and the amount of tests running in parallel is limited by the value of [`runtime.GOMAXPROCS`](https://pkg.go.dev/runtime#GOMAXPROCS).
 
 There are multiple advantages to parallelizing tests:
 
