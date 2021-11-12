@@ -47,13 +47,17 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
   
     
     <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -99,6 +103,28 @@
         </div>
       </div>
     </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+      </form>
     
     
     
@@ -413,14 +439,16 @@
                 
                 
                 <h1 id="team-process">Team Process</h1>
-<p>TODO: Explain why we prefer to keep minimal processes.</p>
+<p>Since we like to describe ourselves as a <em>tactical</em> team of engineers, we try to keep our processes as minimal as possible.</p>
 <h2 id="meetings">Meetings</h2>
-<p>TODO: Explain 10am meeting.
-TODO: Explain backlog refinement.</p>
+<p>The only recurring meeting that we maintain at the moment is the daily standup meeting, where the whole team meets to discuss what they did within the last day, what their blockers are and what they plan on doing during the next day.</p>
+<p>When the needs arise, the team can also decide to organize a backlog refinement to go through the issues of a project, prioritize them, refine them, remove outdated ones and create missing ones.</p>
 <h2 id="communication">Communication</h2>
-<p>TODO: Explain GH Issues/PR communication.
-TODO: Explain Slack communication.
-TODO: Explain that any technical idea/proposal should result in an issue.</p>
+<p>There are currently two channels of communication, each with its specific purpose.</p>
+<ul>
+<li>GitHub Issues and Pull Requests should contain all discussions about design where we want to reach a decision. This makes those discussions searchable and directly a part of the repository itself.</li>
+<li>All other written communication should be on Slack, where each project has a dedicated channel, and there is a general channel for matters related to Optakt itself.</li>
+</ul>
                 
               
               
