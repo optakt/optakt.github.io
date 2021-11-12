@@ -14,7 +14,29 @@ nav:
 
 theme:
   name: material
+  palette:
+    - scheme: default
+      media: "(prefers-color-scheme: light)"
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      media: "(prefers-color-scheme: dark)"
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
 
 plugins:
   - markdownextradata
   - search
+  - exclude:
+      glob:
+        - include/*.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - markdown_include.include:
+      base_path: content/include/
+      encoding: utf-8

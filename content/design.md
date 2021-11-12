@@ -1,12 +1,16 @@
 # Design Principles
 
-TODO: Explain why those design principles are important to us and why we value engineers who care about designing software in well-thought-out ways.
+The design principles mentioned in this document are at the core of the software we create at Optakt, as they provide helpful guidelines for engineers to build software in well-thought-out ways.
+They provide means to build complex software effectively so that it is testable, maintainable, expandable and clear.
 
 ## SOLID
 
-TODO: Link to <https://dave.cheney.net/2016/08/20/solid-go-design>
-TODO: When we have a blog post on the subject, link it here.
+The [SOLID](https://en.wikipedia.org/wiki/SOLID) acronym represents five design principles:
 
-## Clean Code
+* Single-responsibility principle
+* Open-closed principle
+* Liskov Substitution principle
+* Interface segregation principle
+* Dependency inversion principle
 
-TODO: Link to <https://dave.cheney.net/2019/07/09/clear-is-better-than-clever>
+Go is a perfect language for integrating all of those principles within your software design, and this is best explained by Dave Cheney in [his article on the matter](https://dave.cheney.net/2016/08/20/solid-go-design).
