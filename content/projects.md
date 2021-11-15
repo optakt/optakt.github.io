@@ -1,6 +1,6 @@
 # Projects
 
-This document describes the organization and workflow for Optakt projects, and acts as a centralized table of contents of project documentation.
+This document describes the organization and workflow for Optakt projects, and acts as a centralized table of contents for project documentation.
 
 ## Organization
 
@@ -8,12 +8,12 @@ Any Optakt project should have at least the following:
 
 * Continuous Integration (CI) using [GitHub Actions](https://github.com/features/actions)
 * Automatic Releases when a tag is pushed (using [`goreleaser`](https://github.com/goreleaser/goreleaser) and a GitHub Action)
-* A Pull Request (PR) template that guides contributors into knowing what are the requirements for a successful PR
+* A Pull Request (PR) template that guides contributors into the requirements for a successful PR
 * Proper documentation
     * License at the root of the repository
     * README that describes the project, links to Godoc, shows build status and clearly enumerates the project dependencies
-    * Each binary and API within the project should have their own dedicated documentation
-        * For binary, document purpose, flags and give example uses
+    * Each executable and API within the project should have their own dedicated documentation
+        * For executable, document purpose, flags and give example uses
         * For APIs, document purpose and describe endpoints with expected inputs and outputs
     * Document on getting started/contributing
     * Architecture document
