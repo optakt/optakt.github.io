@@ -50,6 +50,8 @@ markdown_extensions:
   - pymdownx.caret
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
   - attr_list
   - md_in_html
   - pymdownx.tabbed:

@@ -161,23 +161,23 @@ const (
 
 There are various options for declaring errors:
 
-* [`errors.New`] for errors with simple static strings
-* [`fmt.Errorf`] for formatted error strings
+* [errors.New] for errors with simple static strings
+* [fmt.Errorf] for formatted error strings
 * Custom types that implement an `Error()` method
-* Wrapped errors using [`"pkg/errors".Wrap`]
+* Wrapped errors using ["pkg/errors".Wrap]
 
 When returning errors, consider the following to determine the best choice:
 
-* Is this a simple error that needs no extra information? If so, [`errors.New`] should suffice.
+* Is this a simple error that needs no extra information? If so, [errors.New] should suffice.
 * Do the clients need to detect and handle this error? If so, you should use a custom type, and implement the `Error()` method.
 * Are you propagating an error returned by a downstream function? If so, check the [section on error wrapping](#error-wrapping).
-* Otherwise, [`fmt.Errorf`] is okay.
+* Otherwise, [fmt.Errorf] is okay.
 
-  [`errors.New`]: https://golang.org/pkg/errors/#New
-  [`fmt.Errorf`]: https://golang.org/pkg/fmt/#Errorf
-  [`"pkg/errors".Wrap`]: https://godoc.org/github.com/pkg/errors#Wrap
+  [errors.New]: https://golang.org/pkg/errors/#New
+  [fmt.Errorf]: https://golang.org/pkg/fmt/#Errorf
+  ["pkg/errors".Wrap]: https://godoc.org/github.com/pkg/errors#Wrap
 
-If the client needs to detect a specific error case, a sentinel error should be created using [`errors.New`].
+If the client needs to detect a specific error case, a sentinel error should be created using [errors.New].
 
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -325,14 +325,14 @@ if err != nil {
 There are three main options for propagating errors if a call fails:
 
 * Return the original error if there is no additional context to add and you want to maintain the original error type.
-* Add context using [`"pkg/errors".Wrap`] so that the error message provides more context and [`"pkg/errors".Cause`] can be used to extract the original error.
-* Use [`fmt.Errorf`] if the callers do not need to detect or handle that specific error case.
+* Add context using ["pkg/errors".Wrap] so that the error message provides more context and ["pkg/errors".Cause] can be used to extract the original error.
+* Use [fmt.Errorf] if the callers do not need to detect or handle that specific error case.
 
 It is recommended to add context where possible so that instead of a vague error such as "connection refused", you get more useful errors such as "call service foo: connection refused".
 
 See also [Don't just check errors, handle them gracefully].
 
-[`"pkg/errors".Cause`]: https://godoc.org/github.com/pkg/errors#Cause
+["pkg/errors".Cause]: https://godoc.org/github.com/pkg/errors#Cause
 [Don't just check errors, handle them gracefully]: https://dave.cheney.net/2016/04/27/dont-just-check-errors-handle-them-gracefully
 
 ### Handle Type Assertion Failures
@@ -546,11 +546,11 @@ Considering the above, some situations in which `init()` may be preferable or ne
 
 ### Exit in Main
 
-Go programs use [`os.Exit`] or [`log.Fatal*`] to exit immediately.
+Go programs use [os.Exit] or [log.Fatal*] to exit immediately.
 (Panicking is not a good way to exit programs, please don't panic.)
 
-[`os.Exit`]: https://golang.org/pkg/os/#Exit
-[`log.Fatal*`]: https://golang.org/pkg/log/#Fatal
+[os.Exit]: https://golang.org/pkg/os/#Exit
+[log.Fatal*]: https://golang.org/pkg/log/#Fatal
 
 Call one of `os.Exit` or `log.Fatal*` **only in `main()`**.
 All other functions should return errors to signal failure.
@@ -1292,9 +1292,9 @@ func printInfo(name string, region Region, status Status)
 #### Use Field Names to Initialize Structs
 
 You should almost always specify field names when initializing structs.
-This is enforced by [`go vet`].
+This is enforced by [go vet].
 
-[`go vet`]: https://golang.org/cmd/vet/
+[go vet]: https://golang.org/cmd/vet/
 
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
