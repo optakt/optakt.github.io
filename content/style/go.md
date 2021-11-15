@@ -177,7 +177,7 @@ When returning errors, consider the following to determine the best choice:
   [`fmt.Errorf`]: https://golang.org/pkg/fmt/#Errorf
   [`"pkg/errors".Wrap`]: https://godoc.org/github.com/pkg/errors#Wrap
 
-If the client needs to detect the error, and you have created a simple error using [`errors.New`], use a var for the error.
+If the client needs to detect a specific error case, a sentinel error should be created using [`errors.New`].
 
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -194,7 +194,8 @@ func Open() error {
 // package bar
 
 func use() {
-  if err := foo.Open(); err != nil {
+  err := foo.Open()
+  if err != nil {
     if err.Error() == "could not open" {
       // handle
     } else {
@@ -217,7 +218,8 @@ func Open() error {
 
 // package bar
 
-if err := foo.Open(); err != nil {
+err := foo.Open()
+if err != nil {
   if errors.Is(err, foo.ErrCouldNotOpen) {
     // handle
   } else {
@@ -242,7 +244,8 @@ func open(file string) error {
 }
 
 func use() {
-  if err := open("testfile.txt"); err != nil {
+  err := open("testfile.txt")
+  if err != nil {
     if strings.Contains(err.Error(), "not found") {
       // handle
     } else {
@@ -268,7 +271,8 @@ func open(file string) error {
 }
 
 func use() {
-  if err := open("testfile.txt"); err != nil {
+  err := open("testfile.txt")
+  if err != nil {
     if _, ok := err.(errNotFound); ok {
       // handle
     } else {
@@ -281,7 +285,8 @@ func use() {
 </td></tr>
 </tbody></table>
 
-Be careful with exporting custom error types directly since they become part of the public API of the package. It is preferable to expose matcher functions to check the error instead.
+Be careful with exporting custom error types directly since they become part of the public API of the package.
+It is preferable to expose matcher functions to check the error instead.
 
 ```go
 // package foo
@@ -305,7 +310,8 @@ func Open(file string) error {
 
 // package bar
 
-if err := foo.Open("foo"); err != nil {
+err := foo.Open("foo")
+if err != nil {
   if foo.IsNotFoundError(err) {
     // handle
   } else {
@@ -331,7 +337,8 @@ See also [Don't just check errors, handle them gracefully].
 
 ### Handle Type Assertion Failures
 
-The single return value form of a [type assertion] will panic on an incorrect type. Therefore, always use the "comma ok" idiom.
+The single return value form of a [type assertion] will panic on an incorrect type.
+Therefore, always use the "comma ok" idiom.
 
 [type assertion]: https://golang.org/ref/spec#Type_assertions
 
@@ -434,10 +441,11 @@ func TestSigner(t *testing.T) {
 
 ### Avoid `init()`
 
-Avoid `init()` where possible. When `init()` is unavoidable or desirable, code should attempt to:
+Avoid `init()` where possible.
+When `init()` is unavoidable or desirable, code should attempt to:
 
 1. Be completely deterministic, regardless of program environment or invocation.
-2. Avoid depending on the ordering or side-effects of other `init()` functions.
+2. Avoid depending on the ordering or side effects of other `init()` functions.
    While `init()` ordering is well-known, code can change, and thus relationships between `init()` functions can make code brittle and error-prone.
 3. Avoid accessing or manipulating global or environment state, such as machine information, environment variables, working directory, program arguments/inputs, etc.
 4. Avoid I/O, including both filesystem, network, and system calls.
@@ -538,12 +546,14 @@ Considering the above, some situations in which `init()` may be preferable or ne
 
 ### Exit in Main
 
-Go programs use [`os.Exit`] or [`log.Fatal*`] to exit immediately. (Panicking is not a good way to exit programs, please don't panic.)
+Go programs use [`os.Exit`] or [`log.Fatal*`] to exit immediately.
+(Panicking is not a good way to exit programs, please don't panic.)
 
 [`os.Exit`]: https://golang.org/pkg/os/#Exit
 [`log.Fatal*`]: https://golang.org/pkg/log/#Fatal
 
-Call one of `os.Exit` or `log.Fatal*` **only in `main()`**. All other functions should return errors to signal failure.
+Call one of `os.Exit` or `log.Fatal*` **only in `main()`**.
+All other functions should return errors to signal failure.
 
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -654,7 +664,8 @@ func main() {
 package main
 
 func main() {
-  if err := run(); err != nil {
+  err := run()
+  if err != nil {
     log.Fatal(err)
   }
 }
@@ -729,7 +740,8 @@ BenchmarkStrconv-4    64.2 ns/op    1 allocs/op
 
 ### Avoid string-to-byte conversion
 
-Do not create byte slices from a fixed string repeatedly. Instead, perform the conversion once and capture the result.
+Do not create byte slices from a fixed string repeatedly.
+Instead, perform the conversion once and capture the result.
 
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -1017,7 +1029,8 @@ Reduce the amount of code that is nested multiple levels.
 for _, v := range data {
   if v.F1 == 1 {
     v = process(v)
-    if err := v.Call(); err == nil {
+    err := v.Call()
+    if err == nil {
       v.Send()
     } else {
       return err
@@ -1038,7 +1051,8 @@ for _, v := range data {
   }
 
   v = process(v)
-  if err := v.Call(); err != nil {
+  err := v.Call()
+  if err != nil {
     return err
   }
   v.Send()
@@ -1080,7 +1094,8 @@ if b {
 
 ### Top-level Variable Declarations
 
-At the top level, use the standard `var` keyword. Do not specify the type, unless it is not the same type as the expression.
+At the top level, use the standard `var` keyword.
+Do not specify the type, unless it is not the same type as the expression.
 
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -1180,7 +1195,8 @@ func f(list []int) {
 
 ### Reduce Scope of Variables
 
-Where possible, reduce scope of variables. Do not reduce the scope if it conflicts with [Reduce Nesting](#reduce-nesting).
+Where possible, reduce scope of variables.
+Do not reduce the scope if it conflicts with [Reduce Nesting](#reduce-nesting).
 
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
@@ -1188,32 +1204,8 @@ Where possible, reduce scope of variables. Do not reduce the scope if it conflic
 <tr><td>
 
 ```go
-err := ioutil.WriteFile(name, data, 0644)
-if err != nil {
- return err
-}
-```
-
-</td><td>
-
-```go
-if err := ioutil.WriteFile(name, data, 0644); err != nil {
- return err
-}
-```
-
-</td></tr>
-</tbody></table>
-
-If you need a result of a function call outside the `if` statement, then you should not try to reduce the scope.
-
-<table>
-<thead><tr><th>Bad</th><th>Good</th></tr></thead>
-<tbody>
-<tr><td>
-
-```go
-if data, err := ioutil.ReadFile(name); err == nil {
+data, err := ioutil.ReadFile(name)
+if err == nil {
   err = cfg.Decode(data)
   if err != nil {
     return err
@@ -1234,7 +1226,8 @@ if err != nil {
    return err
 }
 
-if err := cfg.Decode(data); err != nil {
+err = cfg.Decode(data)
+if err != nil {
   return err
 }
 

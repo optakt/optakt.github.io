@@ -7,12 +7,14 @@
 * Documents should start with a level one heading and should ideally be the same as the file name.
 * For long files that are not served within this repository, it is best to have a table of contents at the end of the introduction of the level one heading section.
 * Keep extra newlines between paragraphs and sections to make the source easier to read.
-* Always specify the language for code blocks so that neither the syntax highlighter nor the text editor must guess. If no specific type makes sense, just use `text`.
+* Always specify the language for code blocks so that neither the syntax highlighter nor the text editor must guess.
+  If no specific type makes sense, just use `text`.
 * Use informative link titles. For example, instead of naming your links "link" or "here", wrap part of the sentence that is meant to be linked as a title.
 * Do not use gendered pronouns when talking about users/consumers/whatever but always `they/their` instead.
 * Do not use the future tense but use present simple for expressing general truths instead.
 * Use active voice when there is no specific need to use passive.
-* Abbreviations and acronyms should be spelled out the first time they appear in any technical document with the shortened form appearing in parentheses immediately after the term. The abbreviation or acronym can then be used throughout the document.
+* Abbreviations and acronyms should be spelled out the first time they appear in any technical document with the shortened form appearing in parentheses immediately after the term.
+  The abbreviation or acronym can then be used throughout the document.
 * Avoid ambiguous and abstract language (i.e. really, quite, very), imprecise or subjective terms (i.e. fast, slow, tall, small) and words that have no precise meaning (i.e. bit, thing, stuff).
 * Avoid contractions (i.e. don't, you'll, etc.) as they are meant for informal contexts.
 * Avoid generalized statements, because they are difficult to substantiate and too broad to be supported.
