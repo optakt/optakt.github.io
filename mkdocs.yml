@@ -19,14 +19,18 @@ theme:
     - toc.integrate
   palette:
     - scheme: default
+      primary: white
+      accent: indigo
       media: "(prefers-color-scheme: light)"
       toggle:
-        icon: material/toggle-switch-off-outline
+        icon: material/weather-sunny
         name: Switch to dark mode
     - scheme: slate
+      primary: white
+      accent: indigo
       media: "(prefers-color-scheme: dark)"
       toggle:
-        icon: material/toggle-switch
+        icon: material/weather-night
         name: Switch to light mode
 
 plugins:
