@@ -567,17 +567,17 @@ func main() {
 }
 
 func readFile(path string) string {
-  f, err := os.Open(path)
+  file, err := os.Open(path)
   if err != nil {
     log.Fatal(err)
   }
 
-  b, err := ioutil.ReadAll(f)
+  payload, err := ioutil.ReadAll(file)
   if err != nil {
     log.Fatal(err)
   }
 
-  return string(b)
+  return string(payload)
 }
 ```
 
@@ -593,17 +593,17 @@ func main() {
 }
 
 func readFile(path string) (string, error) {
-  f, err := os.Open(path)
+  file, err := os.Open(path)
   if err != nil {
     return "", err
   }
 
-  b, err := ioutil.ReadAll(f)
+  payload, err := ioutil.ReadAll(file)
   if err != nil {
     return "", err
   }
 
-  return string(b), nil
+  return string(payload), nil
 }
 ```
 
@@ -640,16 +640,16 @@ func main() {
   }
   name := args[0]
 
-  f, err := os.Open(name)
+  file, err := os.Open(name)
   if err != nil {
     log.Fatal(err)
   }
-  defer f.Close()
+  defer file.Close()
 
   // If we call log.Fatal after this line,
-  // f.Close will not be called.
+  // file.Close will not be called.
 
-  b, err := ioutil.ReadAll(f)
+  payload, err := ioutil.ReadAll(file)
   if err != nil {
     log.Fatal(err)
   }
@@ -677,13 +677,13 @@ func run() error {
   }
   name := args[0]
 
-  f, err := os.Open(name)
+  file, err := os.Open(name)
   if err != nil {
     return err
   }
-  defer f.Close()
+  defer file.Close()
 
-  b, err := ioutil.ReadAll(f)
+  payload, err := ioutil.ReadAll(file)
   if err != nil {
     return err
   }
@@ -1131,7 +1131,7 @@ func (myError) Error() string { return "error" }
 func F() myError { return myError{} }
 
 var _e error = F()
-// F returns an object of type myError but we want error.
+// F returns an object of type myError, but we want error.
 ```
 
 ### Local Variable Declarations
