@@ -36,6 +36,8 @@
     
     
     
+      <link rel="stylesheet" href="../../stylesheets/wide.css">
+    
     
       
 
@@ -336,9 +338,55 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Markdown
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Markdown
       </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    General
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#specific-to-this-repository" class="md-nav__link">
+    Specific to this Repository
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#external-resources" class="md-nav__link">
+    External Resources
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -365,8 +413,37 @@
                 
                 
                 <h1 id="markdown-style-guidelines">Markdown Style Guidelines</h1>
-<p>TODO: Write a documentation style guide to ensure consistent documentation.
-TODO: Note specifically for this repository about markdown admonitions</p>
+<h2 id="general">General</h2>
+<ul>
+<li>Section titles should follow the <a href="https://en.wikipedia.org/wiki/Title_case#Chicago_Manual_of_Style">Chicago Title Capitalization</a> standard.</li>
+<li>Lists should use the <code>*</code> character rather than the <code>-</code> character.</li>
+<li>Documents should start with a level one heading and should ideally be the same as the file name.</li>
+<li>For long files that are not served within this repository, it is best to have a table of contents at the end of the introduction of the level one heading section.</li>
+<li>Keep extra newlines between paragraphs and sections to make the source easier to read.</li>
+<li>Always specify the language for code blocks so that neither the syntax highlighter nor the text editor must guess.
+  If no specific type makes sense, just use <code>text</code>.</li>
+<li>Use informative link titles. For example, instead of naming your links "link" or "here", wrap part of the sentence that is meant to be linked as a title.</li>
+<li>Do not use gendered pronouns when talking about users/consumers/whatever but always <code>they/their</code> instead.</li>
+<li>Do not use the future tense but use present simple for expressing general truths instead.</li>
+<li>Use active voice when there is no specific need to use passive.</li>
+<li>Abbreviations and acronyms should be spelled out the first time they appear in any technical document with the shortened form appearing in parentheses immediately after the term.
+  The abbreviation or acronym can then be used throughout the document.</li>
+<li>Avoid ambiguous and abstract language (i.e. really, quite, very), imprecise or subjective terms (i.e. fast, slow, tall, small) and words that have no precise meaning (i.e. bit, thing, stuff).</li>
+<li>Avoid contractions (i.e. don't, you'll, etc.) as they are meant for informal contexts.</li>
+<li>Avoid generalized statements, because they are difficult to substantiate and too broad to be supported.</li>
+<li>Paragraphs that include multiple sentences should have the sentences on separate lines, so that updating one sentence results in a clear diff where one line changes.</li>
+</ul>
+<h2 id="specific-to-this-repository">Specific to this Repository</h2>
+<p>In this repository, Markdown is extended by some mkdocs plugins which allow you to include external files within a markdown files, and to insert admonitions.</p>
+<p><a href="https://squidfunk.github.io/mkdocs-material/reference/admonitions/#usage">Admonitions</a> are a way to include side content into a page without significantly interrupting the document flow.
+There are different types of admonitions, and they allow for the inclusion and nesting of arbitrary content.</p>
+<p>Including external files can be done by writing the name of a file present in the <code>include</code> directory surrounded by <code>{</code>/<code>}</code> and exclamation marks on an empty line.</p>
+<h2 id="external-resources">External Resources</h2>
+<ul>
+<li><a href="https://engineering.usu.edu/students/ewc/writing-resources/technical-writing-standards">Technical Writing Standards</a></li>
+<li><a href="https://google.github.io/styleguide/docguide/style.html">Google Markdown Style Guide</a></li>
+<li><a href="https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax">Mastering GitHub Markdown</a></li>
+</ul>
                 
               
               
