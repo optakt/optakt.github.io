@@ -11,6 +11,18 @@ nav:
     - 'Style Guidelines':
         - 'Go': 'style/go.md'
         - 'Markdown': 'style/markdown.md'
+    - 'Knowledge Base':
+        - 'Glossary': 'knowledge_base/glossary.md'
+        - 'Flow': 'knowledge_base/flow/specification.md'
+        - 'Flare':
+            - 'Consensus':
+                - 'Avalanche':
+                    - 'Concepts': 'knowledge_base/flare/consensus/avalanche/concepts.md'
+                    - 'Specification': 'knowledge_base/flare/consensus/avalanche/specification.md'
+                - 'Stellar':
+                    - 'Concepts': 'knowledge_base/flare/consensus/stellar/concepts.md'
+                    - 'Specification': 'knowledge_base/flare/consensus/stellar/specification.md'
+            - 'Specification': 'knowledge_base/flare/specification.md'
 
 theme:
   name: material
