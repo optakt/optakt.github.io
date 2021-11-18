@@ -24,7 +24,7 @@ This is the point where the first two edges of the graph meet.
 When a new transaction is created, its parents are defined in the DAG structure as its ancestors and the trascation is their newly created descendant.
 The parent-child relationship in DAG is not mandatory for a child transaction may not have any relation to its parents transactions outputs.
 It can actually spend funds received in other transactions from its "ancestor set".
-The [ancestor set](../../glossary.md#Ancestor-Set) is the set of all transactions reachable via parent edges throughout history.
+The [ancestor set](../../../glossary.md#Ancestor-Set) is the set of all transactions reachable via parent edges throughout history.
 Oppositely — the term "progeny" means all existing (and potentially existing) children transactions and their children.
 
 The main purpose of a consensus protocol is to avoid the inclusion of conflicting transactions into the ledger.
@@ -37,7 +37,7 @@ Avalanche instantiates a Snowball instance for each conflict set.
 Avalanche treats the concept of repeated queries and multiple counters from Snowball taking advantage of DAG structure.
 Specifically, when a transaction `T` is queried, all of its ancestors reachable through the DAG edges from it are implicitly part of the query.
 Consequently, nodes would respond positively to a query for transaction `T` only if `T` and all of its ancestors are the preferred option in their respective conflict sets.
-If more than a given threshold of responders vote positively, the transactions gets a [chit](../../glossary.md#Chit).
+If more than a given threshold of responders vote positively, the transactions gets a [chit](../../../glossary.md#Chit).
 TODO: finish
 
 ## Consensus Specification

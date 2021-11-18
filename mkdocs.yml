@@ -13,15 +13,16 @@ nav:
         - 'Markdown': 'style/markdown.md'
     - 'Knowledge Base':
         - 'Glossary': 'knowledge_base/glossary.md'
-        - 'Consensus':
-            - 'Avalanche':
-                - 'Concepts': 'knowledge_base/consensus/avalanche/concepts.md'
-                - 'Specification': 'knowledge_base/consensus/avalanche/specification.md'
-            - 'Stellar':
-                - 'Concepts': 'knowledge_base/consensus/stellar/concepts.md'
-                - 'Specification': 'knowledge_base/consensus/stellar/specification.md'
         - 'Flow': 'knowledge_base/flow/specification.md'
-        - 'Flare': 'knowledge_base/flare/specification.md'
+        - 'Flare':
+            - 'Consensus':
+                - 'Avalanche':
+                    - 'Concepts': 'knowledge_base/flare/consensus/avalanche/concepts.md'
+                    - 'Specification': 'knowledge_base/flare/consensus/avalanche/specification.md'
+                - 'Stellar':
+                    - 'Concepts': 'knowledge_base/flare/consensus/stellar/concepts.md'
+                    - 'Specification': 'knowledge_base/flare/consensus/stellar/specification.md'
+            - 'Specification': 'knowledge_base/flare/specification.md'
 
 theme:
   name: material
