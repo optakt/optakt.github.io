@@ -42,6 +42,8 @@ A transaction receives a chit (boolean value) when the majority (quorum) of quer
 ### Confidence
 
 The sum of transaction/vertex's decendants cihts and its own chit.
+The chit value is a result of a one-time query for its associated transaction and becomes immutable afterwards.
+Because chit values can be 0 or 1 - c ∈ {0,1} confidence values are monotonic.
 
 ### Consecutive Success Number
 
@@ -90,3 +92,50 @@ Every acyclic directed graph has at least one topological ordering.
 A system of computers connected by a network - local, hub-based or wide, that work together as one single computer.
 Applications built with distributed systems "apear" to users and other client applications as if they are running on a single machine.
 Distributed systems take advantage of each node's physical and virtual resources (horizontal scalability), minimize overload of the whole system and can have architecture aiming to achieve a certain performance level, speed or other characteristic levels needed for the application running to overcome.
+
+### Partition of a Set
+
+Partiotion of a set is grouping of its elements into non-empty subsets, in such a way that every element is included in exactly one subset.
+
+### Transitive Relation
+
+A set T with elements a, b, c, d -> A{a, b, c, d}
+A relation R on the elements of X that relates
+a to b,
+b to c,
+c to d
+but also relates
+a to c,
+a to d,
+b to d
+is called transitive.
+
+#### Example of a transitive relation R
+
+A -> ancestor of B
+B -> ancestor of C
+=> A -> ancestor of C
+
+```text
+A ──> B ──> C => A ──> C
+```
+
+#### Example of a non-transitive relation R
+
+A -> ancestor of B
+B -> ancestor of C
+A -> ancestor of D
+=> D is NOT an ancestor of C
+
+```text
+A
+├──> B ──> C
+└──> D
+```
+
+The inverse of a transtive relation is always transitive.
+See also [Homogeneous Relation](https://en.wikipedia.org/wiki/Binary_relation#Homogeneous_relation)
+
+### Transitive Closuse of a Graph
+
+A transitive [closure](https://en.wikipedia.org/wiki/Closure_(mathematics)) of a directed graph G is a directed graph G' with an edge (i, j) correspoding to each directed path from i to j in G. The resultant directed graph G' representation in the form of the adjancecy matrix is called the connectivity matrix.
