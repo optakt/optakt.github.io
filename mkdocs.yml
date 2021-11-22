@@ -13,7 +13,22 @@ nav:
         - 'Markdown': 'style/markdown.md'
     - 'Knowledge Base':
         - 'Glossary': 'knowledge_base/glossary.md'
-        - 'Flow': 'knowledge_base/flow/specification.md'
+        - 'Flow':
+            - 'Specification': 'knowledge_base/flow/specification.md'
+            - 'Flow Virtual Machine':
+                - 'Introduction': 'knowledge_base/flow/flow_virtual_machine/introduction.md'
+                - 'Registers': 'knowledge_base/flow/flow_virtual_machine/registers.md'
+                - 'Example': 'knowledge_base/flow/flow_virtual_machine/case_study.md'
+            - 'Cadence':
+                - 'Introduction': 'knowledge_base/flow/cadence/introduction.md'
+                - 'Accounts': 'knowledge_base/flow/cadence/accounts.md'
+                - 'Contracts':
+                    - 'Introduction': 'knowledge_base/flow/cadence/contracts/contracts.md'
+                    - 'Flow Contracts': 'knowledge_base/flow/cadence/contracts/flow_contracts.md'
+                - 'Resources': 'knowledge_base/flow/cadence/resources.md'
+                - 'Reference': 'knowledge_base/flow/cadence/reference.md'
+            - 'Examples':
+                - 'Go SDK': 'knowledge_base/flow/examples/flow-go-sdk.md'
         - 'Flare':
             - 'Consensus':
                 - 'Avalanche':
