@@ -13,7 +13,11 @@ nav:
         - 'Markdown': 'style/markdown.md'
     - 'Knowledge Base':
         - 'Glossary': 'knowledge_base/glossary.md'
-        - 'Flow': 'knowledge_base/flow/specification.md'
+        - 'Flow':
+            - 'Specification': 'knowledge_base/flow/specification.md'
+            - 'Cadence': 'knowledge_base/flow/cadence.md'
+            - 'Examples':
+                - 'Go SDK': 'knowledge_base/flow/flow-go-sdk.md'
         - 'Flare':
             - 'Consensus':
                 - 'Avalanche':

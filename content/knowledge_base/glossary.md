@@ -2,11 +2,29 @@
 
 ## General Blockchain Concepts
 
-### Consensus
-
-TODO: add
-
 ### Blockchain
+
+This technology is based on a chain of blocks linked to each other.
+Once a new block is created and inserted on the chain, the new block will have a link to the previous block, creating a chain.
+They all include the hash of the previous block except for the first one, which is called the genesis block, its a zero hash value.
+
+There are two types of blockchain, permissionless and permissioned.
+The permissionless blockchain, also called public blockchain, is available to everyone, because of that, anyone can create and track down blocks.
+This type of blockchain comes with some limitations, mainly slow performance and bad scaling.
+
+On the other side, the permissioned blockchain, or often referred to as private blockchain, has limited availability, only being accessible to a certain group instead of being publicly available, they are also faster and better to scale.
+On this type of blockchain, there is no anonymity like in a public blockchain.
+
+The core concents of the a blockchain network are:
+
+* Transparency
+    * Every full node in the network has a copy of the whole chain of blocks, this means that every transaction is available to each member, making the transactions traceable. This makes every transaction more transparent and removes the need for intermediaries, allowing the process to be more efficient.
+* Immutable
+    * Information in the blockchain is immutable. If a block in the middle of the chain is changed, the chain is no longer valid. To be valid, the blocks in the furthen down the chain must be recomputed. To apply the previous changes in every node in the network, a consensus algorithm should be used in every block that was modified.
+* Decentralization
+    * This is one of the biggest advantages of the blockchain, being a decentralized system allows for the lack of a central authority to control the transactions. Every full node has a copy of the chain, which they can update with new information.  If someone wants to update the chain, they need to have the consensus of the network. This is done with a consensus algorithm, in the case of the public blockchain, the most popular is Proof Of Work (PoW). One of the main disadvantages of this type of consensus algorithm in the public blockchain is the huge amount of energy required to perform it.
+    
+### Consensus
 
 TODO: add
 
