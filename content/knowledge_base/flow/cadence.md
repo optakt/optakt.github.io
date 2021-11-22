@@ -103,12 +103,12 @@ Each type has some build in functions.
 * fun concat(_ array: T): T
 * fun contains(_ element: T) Bool
 * (specific to Variable size Array Functions)
-  * fun append(_ element: T): Void
-  * fun appendAll(_ array: T) Void
-  * fun insert(at index: Int, _ element: T): Void
-  * fun remove(at index: Int): T
-  * fun removeFirst(): T
-  * fun removeLast(): T
+    * fun append(_ element: T): Void
+    * fun appendAll(_ array: T) Void
+    * fun insert(at index: Int, _ element: T): Void
+    * fun remove(at index: Int): T
+    * fun removeFirst(): T
+    * fun removeLast(): T
 
 #### Dictionary
 
@@ -127,7 +127,6 @@ There is **no** support for floating point numbers.
 ### AnyStruct and AnyResource
 
 `AnyStruct` is the top type of all non-resource types, i.e., all non-resource types are a subtype of it. (Int8, String, Bool, struct, not type specific)
-
 `AnyResource` is the top type of all resource types.
 
 ### Optionals
@@ -373,9 +372,9 @@ restrictedCounter.increment()
 There are two types of accounts from in cadence.
 
 * PublicAccount
-  * The public account is returned from the function `getAccount` and allows the access to the public part of the user account.
+    * The public account is returned from the function `getAccount` and allows the access to the public part of the user account.
 * AuthAccount
-  * The Auth Account is the authenticated account, only accessible from the `prepare` function of a transaction. This allows access to everything within the account.
+    * The Auth Account is the authenticated account, only accessible from the `prepare` function of a transaction. This allows access to everything within the account.
 
 #### PublicAccount
 
