@@ -23,7 +23,7 @@ The core concents of the a blockchain network are:
     * Information in the blockchain is immutable. If a block in the middle of the chain is changed, the chain is no longer valid. To be valid, the blocks in the furthen down the chain must be recomputed. To apply the previous changes in every node in the network, a consensus algorithm should be used in every block that was modified.
 * Decentralization
     * This is one of the biggest advantages of the blockchain, being a decentralized system allows for the lack of a central authority to control the transactions. Every full node has a copy of the chain, which they can update with new information.  If someone wants to update the chain, they need to have the consensus of the network. This is done with a consensus algorithm, in the case of the public blockchain, the most popular is Proof Of Work (PoW). One of the main disadvantages of this type of consensus algorithm in the public blockchain is the huge amount of energy required to perform it.
-    
+
 ### Consensus
 
 TODO: add
