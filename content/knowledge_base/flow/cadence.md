@@ -119,7 +119,6 @@ Each type has some build in functions.
 * let values: [V]
 * fun containsKey(key: K): Bool
 
-
 #### Floating-Point
 
 There is **no** support for floating point numbers.
@@ -172,7 +171,7 @@ For example, a fixed-size array of 3 `Int8` elements has the type `[Int8; 3]`.
 Variable-size array types have the form `[T]`, where `T` is the element type.
 For example, the type `[Int16]` specifies a variable-size array of elements that have type `Int16`.
 
-### Dictionary
+### Dictionary Types
 
 Dictionary keys must be hashable and equatable, i.e., must implement the `Hashable` and `Equatable` interfaces.
 Most of the built-in types, like booleans and integers, are hashable and equatable, so can be used as keys in dictionaries.
