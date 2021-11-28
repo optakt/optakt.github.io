@@ -2,11 +2,68 @@
 
 ## General Blockchain Concepts
 
-### Consensus
-
-TODO: add
-
 ### Blockchain
+
+Blockchain is a technology for implementing a stateful immutable distributed and decentralized ledger of records.
+Participants that update the ledger records represent the peers that run the blockchain network.
+
+Peers participate in the blockchain network collaborating with their resources in the same manner as in other types of distributed network architectures.
+
+Records in the ledger, called transactions, update the ledger state and represent any type of social exchangable value to the participants of the network - token representing ownership, money, access to some resource or event, etc.
+[Transactions](#Transaction) in the blockchain represent transfering of value from one party to the other.
+
+The foundamental difference the blockchain provide to the participants is that their values are exchanged `without` the participation of any third parties.
+For cryptocurrencies this idea drastically changes the concept of money transfers.
+
+Ledger records - transactions, are created and recorded in the ledger using specific steps and types of encryption on different parts of them - hashing, asymmetric and symmetric encryption.
+
+Transactions can be grouped in blocks.
+Blocks are created by the peers based on transaction updates they know about and then distributed in the network.
+Depending on the consensus protocol that is run in the blockchain network, blocks are eventually accepted and inserted in to the ledger.
+
+Each block of transactions follows the previous block inserted and reference it by its ID.
+This creates an immutable chain of blocks of transactions that represent the state of the ledger.
+
+Depending on the peers ability to participate in the blockchain network, blockchains are [public and private](https://101blockchains.com/public-vs-private-blockchain/).
+
+In public blockchains everyone is allowed to participate in the network.
+Peers can be of different types depending on what amount of data from the ledger they keep and how they update it, but in terms of functionality and resources they provide to the network - they are equally placed.
+This means that none of the peers, or a group of them, do not provide any specific functionality to the network that others do not and consequently, when peers leave or arrive in the blockchain network - its runing is not affected.
+Public blockchains do not require trust in other participants in the network.
+
+This is one of the core concepts behind the idea of distribution in the blockchain world.
+
+Private blockchains are a specific type of blockchains that have some type of authorization scheme used for identities that can enter the network and access its records.
+Private blockchains require trust in other participants of the network and some of the peers inside them have different levels of access compared to others.
+In this kind of blockchain networks, a random peer or a group of peers leaving (mailfunctioning) or arriving in the network affects affect the whole network stability.
+
+Depending on the access to participate in the network - being granted or not - blockchains are [permissioned and permissionless](https://101blockchains.com/permissioned-vs-permissionless-blockchains/)
+Generally this difference lie in `providing` an access from some authority running the network, which concerns again the trust between participants.
+
+Permissioned blockchains are networks that require permission to enter it, usually used by organizations for managing their internal processes and data.
+Permissioned blockchains shifts from the core feature of decentralization in the blockchain world and from the initial idea of blockchains in general.
+A permissioned blockchain can also be a public network that only allows participation based on different access levels.
+The participants are usually known by a permissioned blockchain network operator, while the transaction history is not publicly accessible.
+
+A permissionless blockchain network does not require permissions to arrive as a peer in it, but can be public or private depending on the level or data access for the participants (and in the consensus trust levels between participants).
+In both permissionless and permissioned blockchains peers and groups of peers can have different roles and their presense or absence can affect the network functioning.
+
+Initial idea of blockchain networks, as described in [Nakamoto consensus description](https://bitcoin.org/bitcoin.pdf), aims to reach the highest possible levels of transparency, decentralization, anonymity and immutability at the same time.
+During time, different types of blockchains emerged and today, they advance in some of the characteristics but lack in others (for example anonymity).
+
+Core concepts of blockchain according to the initial Nakamoto Consensus descriptions are:
+
+* Transparency. Every full node in the network has a copy of the whole chain of blocks.
+This means that every transaction is available to each member, making the transactions traceable (not available in private and/or permissioned blockchains today).
+* Immutability. Transactions included in the ledger become immutable records (in the general case).
+Immutability is present for all types of blockchains today.
+* Decentralization. This is one of the biggest advantages of the blockchain, being a decentralized system allows for the lack of a central authority to control the transactions.
+Every full node has a copy of the chain, which they can update with new information, and every SPV node can update their records requesting them from a full node.
+Decentralization at its fullnest is not present in permissioned and private blockchains today as described above.
+Once a new block is created and inserted on the chain, the new block will have a link to the previous block, creating a chain.
+They all include the hash of the previous block except for the first one, which is called the genesis block and has a zero hash value.
+
+### Consensus
 
 TODO: add
 
@@ -101,6 +158,12 @@ TODO: add
 ### Slush
 
 TODO: add
+
+## Flow Concepts
+
+### Quorum Certificate
+
+A process by which nodes using the HotStuff consensus algorithm submit signed messages in order to generate a certificate for bootstrapping HotStuff. Each collector cluster runs a mini-version of HotStuff, and since clusters are randomized each epoch, a new quorum ceritificate is required for each cluster each epoch.
 
 ## Other
 
