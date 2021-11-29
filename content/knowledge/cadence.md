@@ -442,7 +442,7 @@ The supported built-ins for this type family are:
 
 #### Floating-Point
 
-There is **no** support for floating point numbers. These kinds of numbers, not natural/cardinal, are handle by the Fixed-Point type.
+There is **no** support for floating point numbers. These kinds of numbers, not natural/cardinal, are handled by the Fixed-Point type.
 
 ### AnyStruct and AnyResource
 
