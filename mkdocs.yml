@@ -3,7 +3,7 @@ copyright: "Copyright &copy; 2021 Optakt"
 docs_dir: 'content'
 
 nav:
-  - 'Overview': 'overview.md'
+  - 'Overview': 'index.md'
   - 'Code':
     - 'Design': 'code/design.md'
     - 'Go': 'code/go.md'
@@ -23,7 +23,6 @@ theme:
   name: material
   features:
     - navigation.sections
-    - toc.integrate
   palette:
     - scheme: default
       primary: white
