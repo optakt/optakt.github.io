@@ -31,7 +31,6 @@ Some features of the Cadence programming language are:
 * **Invalid**: The invalid program is not even be allowed to run. The program error is detected and reported statically by the type checker.
 * **Run-time error**: The erroneous program can run, but bad behavior will result in the execution of the program being aborted.
 
-
 ## Account
 
 Accounts are address on the flow network, e.g. `0xf233dcee88fe0abe`.

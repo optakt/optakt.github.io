@@ -1,10 +1,10 @@
+# Flare
+
 ## Avalanche Consensus Algorithm Concepts
 
 ### Snow Algorithm Group of Protocols
 
 A group of protocols with a strong probabilistic safety guarantee in the presence of Byzantine nodes.
-
-#### Description
 
 The core concept of operating is the execution of repeated sampling of the network at random, ultimately leading to correct nodes' behavior to obtain a common statement (decision, transaction value, outcome).
 This mechanism effectively brings the system to an irreversible state — meaning that a large potion of the network accepted a decision or a statement.
@@ -264,8 +264,6 @@ It is an adaptation of Byzantine agreement to systems with open membership, wher
 
 These groups of nodes let the individual node take decisions based on its own trust criteria.
 The groups bind the system together in the same way as individual networks' peering and transit decisions unify the Internet.
-
-#### Description
 
 FBA is a model suitable for a worldwide consensus.
 In FBA each participant knows and relies on opinion of others that it considers important.

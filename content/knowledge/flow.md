@@ -1,4 +1,4 @@
-# Flow 
+# Flow
 
 ## Registers
 
@@ -232,27 +232,23 @@ Registers can also contain complex types such as dictionaries, structs or arrays
 
 ## Flow Localnet
 
-TODO: describe this better
+TODO
 
 ### Starting a Localnet
 
-* git clone
-* build crypto
-* cd internal/localnet
-* make init
-* make start - docker-compose (...)
+- `git clone https://github.com/onflow/flow-go.git`
+- `cd crypto ; go generate`
+- `cd ../internal/localnet`
+- `make init`
+- `make start`
 
 ### Indexing Localnet's past Sporks with Flow DPS
 
-* git clone DPS
-* build dps README
-* flow-dps-index (...)
+TODO
 
 ### Using Flow Insights to inspect some Registers
 
-* git clone
-* git checkout branch
-* flow-insights (...)
+TODO
 
 ## Flow Go SDK
 
