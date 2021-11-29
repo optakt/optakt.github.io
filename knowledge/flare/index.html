@@ -1,0 +1,1232 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+    
+    
+      
+        <title>Flare - Optakt Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/wide.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#flare" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Optakt Documentation" class="md-header__button md-logo" aria-label="Optakt Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Optakt Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Flare
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Optakt Documentation" class="md-nav__button md-logo" aria-label="Optakt Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Optakt Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Code
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Code" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Code
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/design/" class="md-nav__link">
+        Design
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/go/" class="md-nav__link">
+        Go
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/markdown/" class="md-nav__link">
+        Markdown
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/testing/" class="md-nav__link">
+        Testing
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Process
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Process" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Process
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../process/process/" class="md-nav__link">
+        Meetings
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../process/repositories/" class="md-nav__link">
+        Repositories
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../process/git/" class="md-nav__link">
+        Git
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Knowledge
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Knowledge" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Knowledge
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flow/" class="md-nav__link">
+        Flow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cadence/" class="md-nav__link">
+        Cadence
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Flare
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Flare
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#avalanche-consensus-algorithm-concepts" class="md-nav__link">
+    Avalanche Consensus Algorithm Concepts
+  </a>
+  
+    <nav class="md-nav" aria-label="Avalanche Consensus Algorithm Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#snow-algorithm-group-of-protocols" class="md-nav__link">
+    Snow Algorithm Group of Protocols
+  </a>
+  
+    <nav class="md-nav" aria-label="Snow Algorithm Group of Protocols">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparison-with-nakamoto-consensus" class="md-nav__link">
+    Comparison with Nakamoto Consensus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specification" class="md-nav__link">
+    Specification
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leaderless-byzantine-fault-tolerance-lbft" class="md-nav__link">
+    Leaderless Byzantine Fault Tolerance (LBFT)
+  </a>
+  
+    <nav class="md-nav" aria-label="Leaderless Byzantine Fault Tolerance (LBFT)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lbft-specification" class="md-nav__link">
+    LBFT Specification
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#avalanche" class="md-nav__link">
+    Avalanche
+  </a>
+  
+    <nav class="md-nav" aria-label="Avalanche">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#characteristics" class="md-nav__link">
+    Characteristics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consensus-specification" class="md-nav__link">
+    Consensus Specification
+  </a>
+  
+    <nav class="md-nav" aria-label="Consensus Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transaction-entangling" class="md-nav__link">
+    Transaction Entangling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node-main-loop" class="md-nav__link">
+    Node Main Loop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-for-transaction" class="md-nav__link">
+    Query for Transaction
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#utxo-graph" class="md-nav__link">
+    UTXO Graph
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluation-of-performance" class="md-nav__link">
+    Evaluation of Performance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dag-positives-in-context-of-avalanche" class="md-nav__link">
+    DAG Positives in Context of Avalanche
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cryptography-bottleneck" class="md-nav__link">
+    Cryptography Bottleneck
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snowball-comparison" class="md-nav__link">
+    Snowball Comparison
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stellar-consensus-algorithm-concepts" class="md-nav__link">
+    Stellar Consensus Algorithm Concepts
+  </a>
+  
+    <nav class="md-nav" aria-label="Stellar Consensus Algorithm Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#federated-byzantine-agreement-fba" class="md-nav__link">
+    Federated Byzantine Agreement (FBA)
+  </a>
+  
+    <nav class="md-nav" aria-label="Federated Byzantine Agreement (FBA)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stellar-consensus-protocol" class="md-nav__link">
+    Stellar Consensus Protocol
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fba-specification" class="md-nav__link">
+    FBA Specification
+  </a>
+  
+    <nav class="md-nav" aria-label="FBA Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quorum-slices" class="md-nav__link">
+    Quorum Slices
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safety-and-liveness" class="md-nav__link">
+    Safety and Liveness
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quorum-intersection" class="md-nav__link">
+    Quorum Intersection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dispensable-sets-dsets" class="md-nav__link">
+    Dispensable Sets (DSets)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#federated-voting" class="md-nav__link">
+    Federated Voting
+  </a>
+  
+    <nav class="md-nav" aria-label="Federated Voting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#voting" class="md-nav__link">
+    Voting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#voting-with-open-membership" class="md-nav__link">
+    Voting with Open Membership
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        Glossary
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="flare">Flare</h1>
+<h2 id="avalanche-consensus-algorithm-concepts">Avalanche Consensus Algorithm Concepts</h2>
+<h3 id="snow-algorithm-group-of-protocols">Snow Algorithm Group of Protocols</h3>
+<p>A group of protocols with a strong probabilistic safety guarantee in the presence of Byzantine nodes.</p>
+<p>The core concept of operating is the execution of repeated sampling of the network at random, ultimately leading to correct nodes' behavior to obtain a common statement (decision, transaction value, outcome).
+This mechanism effectively brings the system to an irreversible state — meaning that a large potion of the network accepted a decision or a statement.
+So any such conflicting to that statement would be accepted with a negligible probability ε or smaller.
+TODO: finish</p>
+<p>A more thorough description of Snow algorithms specifications and examples can be found in the <a href="https://assets-global.website-files.com/5d80307810123f5ffbb34d6e/6009805681b416f34dcae012_Avalanche%20Consensus%20Whitepaper.pdf">Avalanche Whitepaper</a>.</p>
+<h4 id="comparison-with-nakamoto-consensus">Comparison with Nakamoto Consensus</h4>
+<p>TODO: add</p>
+<h4 id="specification">Specification</h4>
+<p>TODO: add</p>
+<h3 id="leaderless-byzantine-fault-tolerance-lbft">Leaderless Byzantine Fault Tolerance (LBFT)</h3>
+<p><a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2020/EECS-2020-121.pdf">Leaderless Byzantine Fault Tolerance</a> combines the Snowball and Practical Byzantine Fault Tolerance (pBFT) algorithms.
+It aims to take advantage of the decentralized aspect of Snowball and deterministic property of pBFT in order to eliminate the weakness of Snowballs' probabilistic property and pBFT's reliance on a "leader".</p>
+<h4 id="lbft-specification">LBFT Specification</h4>
+<p>TODO: add</p>
+<h2 id="avalanche">Avalanche</h2>
+<p>An internet-scale electronic payment system, evaluated in a large scale deployment, based on the Snow family of algorithms.
+Avalanche uses a DAG tree for transactions ancestry relation and some optimizations in terms of recursive query of each transaction parents and children, that are described below.
+However, the validation of transaction scripts, UTXO references and related specifics is left to the application implementation.</p>
+<p>A more thorough description of Avalanche specifications can be found in the <a href="https://assets-global.website-files.com/5d80307810123f5ffbb34d6e/6009805681b416f34dcae012_Avalanche%20Consensus%20Whitepaper.pdf">Avalanche Whitepaper</a>.</p>
+<p>TODO: elaborate more on the introduction</p>
+<h3 id="characteristics">Characteristics</h3>
+<p>The Avalanche network operates with multiple single-decree instances (nodes), meaning that each instance can make a decision on only one value.
+Nodes use the <a href="#Snow-Algorithm-Group-of-Protocols">Snowball algorithm</a> for their decision-making process.
+In the case of a payment system and Avalanche, the Snowball logic used to determine a value is the process of deciding whether a transaction is valid.</p>
+<p>The protocol maintains the set of all known transactions using a dynamic, append-only <a href="../glossary/#Directed-Acyclic-Graph-(DAG)">Directed Acyclic Graph</a> (DAG) structure.
+There are two main positives from this:</p>
+<ul>
+<li>DAG streamlines the path on which there are no conflicting transactions — a single vote on a DAG vertex implicitly votes for all transactions on the path to the genesis vertex</li>
+<li>using the same principle as Bitcoin Network (BTC), the DAG tree renders past decisions on the path of transactions as more and more difficult to undo without approval of the correct nodes</li>
+</ul>
+<p>The genesis block in the DAG structure is represented by the graph first link, called "genesis vertex".
+This is the point where the first two edges of the graph meet.</p>
+<p>When a new transaction is created, its parents are defined in the DAG structure as its ancestors and the transaction is their newly created descendant.
+The parent-child relationship in DAG is not mandatory for a child transaction may not have any relation to its parents transactions outputs.
+It can actually spend funds received in other transactions from its <a href="../glossary/#Ancestor-Set">ancestor set</a>.
+This is the set of all transactions reachable via parent edges throughout history.
+Oppositely — the term "progeny" means all existing (and potentially existing) children transactions and their children.</p>
+<p>The main purpose of a consensus protocol is to avoid the inclusion of conflicting transactions into the ledger.
+Even though the characteristics of a conflicting transaction are defined on an application level (ex. transactions that spend same UTXO), the notion of conflict can be abstracted in order to define the conflicting set.
+In Avalanche, every transaction belongs to a conflict set.
+This set consists of multiple transactions that are invalid towards each other, or it is a singleton set - then it contains a single transaction (in the case of a virtuous transaction).
+Since reaching a consensus means to avoid any conflicts between transactions, only one transaction from each conflict set can be included in the approved path of transactions.</p>
+<p>Avalanche instantiates a Snowball instance for each conflict set.
+Avalanche treats the concept of repeated queries and multiple counters from Snowball taking advantage of the DAG structure.
+Specifically, when a transaction <code>T</code> is queried, all of its ancestors reachable through the DAG edges from it are implicitly part of the query.
+Consequently, nodes would respond positively to a query for transaction <code>T</code> only if <code>T</code> and all of its ancestors are the preferred option in their respective conflict sets.
+If more than a given threshold of responders vote positively, the transaction gets a <a href="../glossary/#Chit">chit</a>.
+After that nodes compute their level of confidence as the sum of transaction chit and the chits its progeny, meaning they query the transaction just once and rely on new vertices and possible chits added to the progeny to build up their confidence.</p>
+<p>Described ties are broken in case of preference for first-seen transactions.
+Chits can also be decoupled from the DAG structure, making the protocol immune to attacks where the attacker generates large padded subgraphs.</p>
+<h3 id="consensus-specification">Consensus Specification</h3>
+<p>Each node <code>u</code> keeps track of all transactions it has learned about in set <code>Tu</code>. The set <code>Tu</code> is <a href="../glossary/#Partition-of-a-Set">partitioned</a> into mutually exclusive conflict sets — <code>PT</code> (partition of <code>T</code>), and <code>PT ∈ Tu</code>.
+Since conflicts are <a href="../glossary/#Transitive-Relation">transitive</a>, if <code>PTi</code> and <code>PTj</code> are conflicting, they belong to the same conflict set of transactions — <code>PTi = PTj</code>.
+Conflicting transactions have the equivalence relation because they are equivocations spending the same UTXO.</p>
+<p>The parent connection to <code>T'</code> from <code>T</code> is expressed as <code>T' &lt;— T</code>.
+The relation <code>T' *&lt;— T</code> is its reflexive <a href="../glossary/#Transitive-Closure-of-a-Graph">transitive closure</a> meaning that there is a path from <code>T</code> to <code>T'</code>.
+If <code>T' &lt;— T</code>, then every node in the system that has <code>T</code> also has <code>T'</code> and knows about the same relation <code>T' &lt;— T</code>.
+If such a relation between these transactions do not exist, then no node ends up with <code>T' &lt;— T</code>.</p>
+<p>DAGs built in different nodes are guaranteed to be compatible, though at any moment in time they might not have a complete view of all vertices in the system.
+Each node can compute a confidence value <code>d U (T)</code> (confidence value for node <code>u</code> about transaction <code>T</code>) from the progeny as the sum of transaction T descendants chits and its own chit.
+Each transaction initially has a chit of 0 before the node gets the query results.
+If the node collects a threshold of α 'yes' votes from the query the value of transaction <code>T</code>, chit is set to <code>1</code>, otherwise it will remain <code>0</code>.
+A chit value reflect the result from a single query of its associated transaction and becomes immutable afterwards, while confidence <code>d</code> can increase as the DAG grows by collecting more chits in its progeny.
+Additionally, each node maintains its own local list of known nodes: Nu — nodes known to <code>u</code> is a subset of the set of all existing nodes: <code>Nu ⊆ N</code>.</p>
+<p>Each node implements an event-driven state machine, centered around a query that serves both to solicit votes on each transaction and to notify other nodes of the existence of newly discovered transactions.
+When a node <code>u</code> discovers a transaction <code>T</code> through a query, it starts a one-time query process by sampling <code>k</code> random peers and sending a message to them, after <code>T</code> is delivered to the node by the <code>onReceiveTx</code> callback.
+Node <code>u</code> answers a query by checking whether each <code>T'</code> such that <code>T' *&lt;— T</code> is currently preferred among competing transactions <code>∀T'' ∈ PT'</code> from conflict set <code>P</code> of <code>T'</code>.
+If every single ancestor <code>T'</code> fulfills this criterion, the transaction is said to be strongly preferred and receives a yes-vote (1).
+A failure on this criterion at any <code>T'</code> yields a no-vote (0).
+When <code>u</code> accumulates <code>k</code> responses, it checks whether there are <code>α</code> yes-votes for <code>T</code>, and if so grants the chit value (<code>cT = 1</code>).
+This process yields a labeling of the DAG with a chit value and associated confidence for each transaction <code>T</code>.</p>
+<p>Example of (chit,confidence) values:</p>
+<div class="highlight"><pre><span></span><code>T1(1,6)
+├── T2(1,5)
+│    ├── T4(1,2) ── T8(1,1)
+│    │               │
+│    └────────────── T5(1,3)
+│                    └──── T9(1,1)
+│
+└── T3(0,0)
+    ├── T6(0,0)
+    └── T7(0,0)
+</code></pre></div>
+<p>Conflict set <code>P</code> for <code>T1</code> has one element <code>T1</code>.
+Conflict set <code>P</code> for <code>T2</code> and <code>T3</code> has two elements <code>{T2, T3}</code>.
+Conflict set <code>P</code> for <code>T7</code>, <code>T6</code> and <code>T9</code> has 3 elements <code>{T6, T7, T9}</code>.</p>
+<p>Similar to Snowball, sampling in Avalanche creates a positive feedback for the preference of a single transaction in its conflict set.
+When a transaction has a larger confidence, its descendants are likely to collect chits in the future compared to others with lower confidence.
+For example <code>T2</code> has higher confidence than <code>T3</code> and its descendants are more likely to collect chits in the future.</p>
+<p>Similar to Bitcoin, Avalanche leaves determining the acceptance point of a transaction to the application.
+Committing a transaction can be performed through a safe early commitment.
+For virtuous transactions, <code>T</code> is accepted when it is the only transaction in its conflict set and has a confidence no less than a threshold of <code>β1</code>.
+If a virtuous transaction fails to get accepted due to a problem with parents, it could be accepted if reissued with different parents.</p>
+<h4 id="transaction-entangling">Transaction Entangling</h4>
+<p>How Avalanche entangles transactions:</p>
+<div class="highlight"><pre><span></span><code>init:
+    `Set T` = Ø set of known transactions (empty set)
+    Q = Ø set of queried transactions (empty set)
+
+generateTx:
+    edges = {T&#39; &lt;— T: T&#39; ∈ parentSelection(`Set T`)}
+    T = Tx(data, edges)
+    onReceiveEvent(T)
+
+onReceiveEvent(t):
+    if T ∉ `Set T` then
+        if PT (conflict set of T) = Ø then
+            PT = {T}, Pt.pref = T
+            PT.last = T, PT.cnt = 0
+        else PT = PT U {T}
+
+        `Set T` = T U {T}, cT = 0
+</code></pre></div>
+<p>Because transactions that generate and consume the same UTXO do not conflict with each other, any transaction can be reissued with different parents.</p>
+<h4 id="node-main-loop">Node Main Loop</h4>
+<p>Protocol main loop executed by each node:</p>
+<div class="highlight"><pre><span></span><code>AvalancheLoop:
+    while true do
+        find T that satisfies T ∈ `Set T` AND T ∉ Q
+        K = sample(N\u, k)
+        P = SUM(v ∈ k) query(v, T)
+
+        if P ≥ α then
+            cT = 1 (chit for transaction T)
+            update preferences for ancestors:
+            for T&#39; ∈ `Set T`: T&#39; *&lt;— T do
+                if T&#39; confidence is larger than the confidence of preferred transaction T` in the P conflict set - update the preferred transaction of the set:
+                if d(T&#39;) &gt; d(PT&#39;.pref) then
+                    PT&#39;.pref = T&#39;
+                if T&#39; is not the last transaction in the T&#39; conflict set - update the last place with it
+                if T&#39; ≠ PT&#39;.last then
+                    PT&#39;.last = T&#39;, PT&#39;.cnt=1
+                else
+                    ++PT&#39;.cnt
+        else
+            for T&#39; ∈ `Set T`: T&#39; *&lt;— T do
+                PT&#39;.cnt = 0
+
+            otherwise confidence cnt remains 0 forever
+            Q = Q U {T} - mark T as queried
+</code></pre></div>
+<p>In each iteration the node tries to select a transaction that has not yet been queried.
+If no such transaction exists, the loop stalls until a new transaction is added to <code>Set T</code>.
+When the new transaction is added, the node then select a number of peers <code>k</code> and queries them.
+If more than <code>α</code> of these peers return a positive response, the chit value is set to <code>1</code>.
+After this step, the loop updates the preferred transaction of each conflict set of the transactions in its ancestry.
+Next, <code>T</code> is added to the set <code>Q</code> of queried transactions, so it is never queried again by the node.</p>
+<h4 id="query-for-transaction">Query for Transaction</h4>
+<p>What happens when a node receives a query for transaction <code>T</code> from peer <code>j</code>:</p>
+<div class="highlight"><pre><span></span><code>isPreferred(T):
+    return T = PT.pref
+
+isStronglyPreferred(T):
+    return ∀T&#39; ∈ `Set T`, T&#39; *&lt;— T : isPreferred(T&#39;)
+
+isAccepted(T):
+    return
+        ((∀T&#39; ∈ `Set T`, T&#39; &lt;— T: isAccepted(T&#39;))
+            ∩ |PT|=1 ∩ PT.cnt ≥ β1)  safe early commitment
+        ∪ (PT.cnt ≥ β2)              consecutive counter
+
+onQuery(j, T):
+    onReceiveTx(T)
+    respond(, isStronglyPreferred(T))
+</code></pre></div>
+<p>The first step is to add transaction <code>T</code> to <code>Set T</code> unless it is already included.
+After that step, <code>u</code> determines whether <code>T</code> is currently strongly preferred, in which case <code>u</code> returns a positive response to peer <code>j</code>, otherwise it returns a negative response.
+In the example pseudocode it is assumed that if a node knows about <code>T</code>, then it recursively knows about <code>T</code>'s ancestry.
+This can be achieved by postponing the delivery of <code>T</code> until its entire ancestry is recursively fetched (in practice an additional gossip process that disseminates the transaction is used in parallel).</p>
+<h3 id="utxo-graph">UTXO Graph</h3>
+<p>In addition to the DAG structure used for transactions data, another graph is used for <a href="../glossary/#UTXO-Set">Unspent Transactions Outputs (UTXO)</a> set, that captures the available outputs.
+It is used to realize the ledger for the payment system.
+In the present specifications transactions that encode the data for money transfer are called "transactions", and transactions <code>T ∈ Set T</code> are DAG vertices.</p>
+<p>Transaction and address mechanisms are inherited from Bitcoin.
+In its simplest form, a transaction consists of multiple inputs and outputs with the corresponding redeem scripts.
+Addresses are identified by the hash of their public keys, and signatures are being generated by the corresponding private keys.</p>
+<p>UTXO are fully consumed by a valid transaction and may generate new UTXOs spendable by the named recipients.</p>
+<p>Multiple-input transactions consume multiple UTXOs and in Avalanche may appear in multiple conflict sets.
+The conflict relation of transaction input pairs is transitive, because each pair only spends one unspent output.
+Each input of the transaction is checked by the logic of isAccepted(T) step, consequently a transaction is accepted only if all its input pairs are accepted in their respective Snowball conflict sets.
+The DAG of transaction-inputs is implemented in such a way that multiple transactions can be batched together per query.</p>
+<h3 id="evaluation-of-performance">Evaluation of Performance</h3>
+<p>TODO: add</p>
+<h3 id="dag-positives-in-context-of-avalanche">DAG Positives in Context of Avalanche</h3>
+<p>TODO: add</p>
+<h3 id="cryptography-bottleneck">Cryptography Bottleneck</h3>
+<p>TODO: add</p>
+<h3 id="snowball-comparison">Snowball Comparison</h3>
+<p>TODO: add</p>
+<h2 id="stellar-consensus-algorithm-concepts">Stellar Consensus Algorithm Concepts</h2>
+<h3 id="federated-byzantine-agreement-fba">Federated Byzantine Agreement (FBA)</h3>
+<p>Federated Byzantine agreement is a new model of consensus that achieves robustness through quorum slices.
+It is an adaptation of Byzantine agreement to systems with open membership, where different nodes have different concepts about which group of nodes are important to them about deciding on a statement.</p>
+<p>These groups of nodes let the individual node take decisions based on its own trust criteria.
+The groups bind the system together in the same way as individual networks' peering and transit decisions unify the Internet.</p>
+<p>FBA is a model suitable for a worldwide consensus.
+In FBA each participant knows and relies on opinion of others that it considers important.
+It waits for the <code>vast</code> majority of them to agree on a transaction before considering the transaction settled.
+In turn, those important participant do not agree to the transaction until the participants <code>they</code> consider important agree as well, and so on.
+Eventually — enough of the network accepts a transaction, and consequently it becomes infeasible for an attacker to roll it back.
+Only at that point all the participants consider it settled.</p>
+<h4 id="stellar-consensus-protocol">Stellar Consensus Protocol</h4>
+<p>Stellar consensus protocol (SCP) is a construction of FBA — an FBA system (FBAS).
+It is free from blocked states, in which consensus is no longer possible, unless participant failures make it impossible to satisfy trust dependencies.</p>
+<p>Stellar claims to be the first provably safe consensus mechanism to have the following key properties simultaneously:</p>
+<ul>
+<li>Decentralized control — anyone is able to participate and no central authority dictates whose approval is required for consensus.</li>
+<li>Low latency — nodes can reach consensus at timescales humans expect for web payments — a few seconds.</li>
+<li>Flexible trust — users have the freedom to trust any combination of parties they see fit.</li>
+<li>Asymptotic security — safety rests on digital signatures and hash families whose parameters can realistically be tuned to protect against adversaries with vast computing power.</li>
+</ul>
+<h4 id="fba-specification">FBA Specification</h4>
+<p>Like non-federated Byzantine agreement, FBA addresses the problem of updating replicated state, such as a transaction ledger or certificate tree.
+By agreeing on what updates to apply, nodes avoid contradictory, irreconcilable states.</p>
+<p>Each update is identified by a unique <code>slot</code> from which the inter-update dependencies can be inferred — for example slots can be consecutively numbered positions in a sequentially applied log.</p>
+<p>An FBA system runs a consensus protocol that ensures nodes agree on slot contents.
+A node <code>u</code> can safely apply update <code>x</code> in slot <code>i</code> when it has safely applied updates in all slots upon which <code>i</code> depends.
+Additionally, node <code>u</code> considers that all correctly functioning nodes wil eventually agree on <code>x</code> for slot <code>i</code>.
+At this point <code>u</code> <code>externalized</code> <code>x</code> for slot <code>i</code>.
+The outside world may react to externalized values in irreversible ways, so a node cannot change its mind about them later.</p>
+<p>A challenge for FBA is that malicious parties can join many times and outnumber honest nodes.
+Consequently, traditional majority-based quorums do not work.</p>
+<h5 id="quorum-slices">Quorum Slices</h5>
+<p>In a consensus protocol, nodes exchange messages asserting statements about slots.
+FBA assumes such assertions cannot be forged, which can be guaranteed if nodes are named by public key, and they digitally sign the messages.</p>
+<p>When a node knows about a sufficient set of nodes to assert a statement, it assumes that no other functioning node would contradict that statement.
+Such a sufficient set of nodes is called a <code>quorum slice</code>, or just a slice.
+A node may have multiple slices, any of which is sufficient to convince it of a statement.
+At a high level the FBA system consists of a loose federation of nodes each of which has chosen one or more slices.</p>
+<p>One node might consider that a quorum needs to contain ≥ 3/4 of the nodes in some set <code>S</code>, while another believes that a quorum should contain  &gt; 2/3 of some similar but not identical set <code>S′</code>.
+Nodes might also have less symmetric requirements on quorums, for example a third node might require that a quorum contain a majority of the nodes run by company <code>X</code> and a majority of the nodes run by company <code>Y</code>, where X runs many more nodes than Y.</p>
+<p>By definition, a Federated Byzantine Agreement System (FBAS) is a pair <code>{U, Q}</code> that consists of a set of nodes - <code>U</code> and a quorum function <code>Q</code>.
+<code>Q</code> specifies one or more quorum slices for each node in <code>U</code>, where a node belongs to all of its quorum slices.</p>
+<p>A quorum is a set of nodes sufficient to reach an agreement.
+A quorum slice is the subset of a quorum convincing one particular node of this agreement.
+A quorum slice can be smaller or the same as the quorum.</p>
+<p>Example of a four-node system, where each node has a single slice and arrows point to the other members of that slice:</p>
+<div class="highlight"><pre><span></span><code>u1 —&gt; {u2, u3}
+Q(u1) = (Undefined, Undefined, Undefined)
+
+u2 -&gt; {u2, u3, u4}
+u3 —&gt; {u2, u3, u3}
+u4 -&gt; {u2, u3, u4}
+
+=&gt; Q(u2) = Q(u3) = Q(u4)
+</code></pre></div>
+<p>The slice of node <code>u1</code> is <code>{u1, u2, u3}</code> and it is sufficient to convince <code>u1</code> of a statement.
+But <code>u2</code> and <code>u3</code> have slices that include also <code>u4</code> node.
+This means that neither <code>u2</code> or <code>u3</code> can assert a statement without <code>u4</code>.
+Consequently, no agreement is possible without the participation of <code>u4</code> and the only quorum including <code>u1</code> is the set of all nodes.</p>
+<p>Traditional non-federated Byzantine agreement requires all nodes to accept the same slices for quorums - meaning quorums for each node should be equal.
+Since every member accepts every slice, traditional systems do not distinguish between slices and quorums.</p>
+<p>Traditional PBFT typically has 3f+1 nodes, any 2f+1 of which comprises a quorum, and f is the maximum number of Byzantine failures the system can handle.
+FBA enables each node <code>u</code> to chose its own quorum size <code>Q(u)</code>.
+In this way system-wide quorums arise from individual preferences any node may have.
+In some settings, no individual node may have a complete knowledge of all nodes in the system and yet consensus still should be possible.
+Federated Byzantine agreement is thus a generalization of the Byzantine agreement.</p>
+<h5 id="safety-and-liveness">Safety and Liveness</h5>
+<p>Nodes in FBA are categorized as well-behaved or ill-behaved.
+A well-behaved node chooses sensible quorum slices and obeys the protocol, including eventually responding to all requests.
+An ill-behaved node does not.
+Ill-behaved nodes may act arbitrarily — they might be compromised, their owner may have maliciously modified the software or may be crashed.
+The goal of Byzantine agreement is to ensure that well-behaved nodes externalize the same values despite the presence of ill-behaved nodes.
+This goal contains two parts:</p>
+<ul>
+<li>preventing nodes from diverging and externalizing different values of the same slot</li>
+<li>ensuring nodes can actually externalize values as opposed to getting blocked in some dead-end state from which the consensus is no longer possible</li>
+</ul>
+<p>These properties concern two terms: liveness and safety.
+A set of nodes in FBAS enjoy safety if no two of them ever externalize different values from the same slot.
+A node in FBAS enjoys liveness if it can externalize new values without the participation of any failed (including ill-behaved) nodes.
+Well-behaved nodes that have both safety and liveness properties are called <code>correct</code> nodes.</p>
+<div class="highlight"><pre><span></span><code>liveness AND safety = correct nodes
+</code></pre></div>
+<p>Nodes that are not correct are <code>failed</code>.</p>
+<div class="highlight"><pre><span></span><code>NOT correct = failed nodes
+</code></pre></div>
+<p>All ill-behaved nodes are failed, but a well-behaved node can fail too, by waiting indefinitely for messages from ill-behaved nodes or by having its state poisoned by incorrect messages from ill-behaved nodes.</p>
+<p>Nodes that lack liveness are <code>blocked</code> and nodes that lack safety are <code>divergent</code>.</p>
+<h5 id="quorum-intersection">Quorum Intersection</h5>
+<p>In FBAS there is a quorum intersection, if any two of the quorums share a node that is present in all quorums of the system.</p>
+<p>Disjoint quorums can independently agree on contradictory statements that undermine the system-wide agreement.
+That is why, when many quorums exist — quorum intersection fails if any two do not intersect.</p>
+<p>No protocol can guarantee safety in the absence of quorum intersection, since such a configuration can operate as two different FBA systems that do not exchange any messages.
+Even with quorum intersection, safety might be impossible when the node which intersects the distinct quorums is ill-behaved.
+In that case the effect of having an ill-behaved shared node is equivalent to lack of quorum intersection.</p>
+<p>Since ill-behaved nodes contribute nothing to safety, no protocol can guarantee safety without the well-behaved nodes being intersections points.
+In a worst-case scenario of safety, ill-behaved nodes can just always make any possible contradictory statement and two quorums overlapping only at ill-behaved nodes will again be able to operate like two different FBA system.</p>
+<p>In short, FBAS can survive Byzantine failure by a number of nodes, if after deleting (ignoring) the ill-behaved nodes from the system and quorum slices, it still has a quorum intersection.
+It is the responsibility of each node to ensure that the selected quorum(s) it uses do not violate the quorum intersection.
+One way to solve this is to pick conservative slices that lead to large quorums.
+Malicious nodes can intentionally pick slices that violate the quorum intersection rule, lie about the value returned by the quorum or ignore it in order to make arbitrary assertions.
+In short the value produced by the quorum is not meaningful, if an ill-behaved node is receiving that value.
+That is why the necessary property for safety — quorum intersection of well-behaved nodes after deleting ill-behaved nodes — is unaffected by the slices of ill-behaved nodes.</p>
+<p>Deletion is conceptual for describing better the optimal safety.
+A protocol should guarantee safety for quorum slices without the need to know about the ill-behaved nodes.</p>
+<h5 id="dispensable-sets-dsets">Dispensable Sets (DSets)</h5>
+<p>The fault tolerance of slices selected by the nodes is captured by the notion of a <code>dispensable set</code> or DSet.
+The safety and liveness of nodes outside a DSet can be guaranteed regardless of the behavior of nodes inside the DSet — in an optimally resilient FBAS, if a single DSet encompasses every ill-behaved node, it also contains every failed node, and conversely all nodes outside a DSet are correct.</p>
+<p>To prevent a misbehaving DSet from affecting the correctness of other nodes, two properties must hold.</p>
+<ul>
+<li>safety — deleting the DSet cannot undermine quorum intersection.</li>
+<li>liveness — the DSet cannot deny other nodes a functioning quorum.</li>
+</ul>
+<p>Quorum availability despite the existence of a Dispensable set that contains ill-behaved nodes, protects against ill-behaved nodes in it that refuse to answer requests and block others' progress.
+Quorum intersection despite the existence of a Dispensable set that contains ill-behaved nodes, protects against the opposite — nodes in the DSet making contradictory assertions that enable other nodes to externalize inconsistent values for the same slot.</p>
+<p>Node must balance between the two threads in slice selection.
+All else equal, bigger slices lead to bigger quorums with greater overlap and that leads to the case when fewer DSets with failed nodes will undermine quorum intersection when deleted.
+On the other hand, bigger slices are more likely to contain failed nodes that endanger quorum availability.</p>
+<p>The smallest DSet that contains all ill-behaved nodes may encompass well-behaved nodes as well, reflecting the fact that a sufficiently large set of ill-behaved nodes can cause well-behaved nodes to fail.</p>
+<p>The DSets in FBA are determined 'a priori' by the Quorum function <code>Q</code>.
+Which nodes are well-behaved and ill-behaved depends on runtime behavior, such as machines getting compromised.
+The DSets that are important are those that encompass all ill-behaved nodes, as they help to distinguish nodes that should be guaranteed correct from ones that cannot.</p>
+<p>A node in FBA is intact if there exists a DSet that contains all ill-behaved nodes, and none of its nodes are overlapping with the node.
+A node in FBA is befouled if it is not intact.
+A befouled node is surrounded by enough failed nodes to block its progress or poison its state, even it is well-behaved itself.
+No FBAS can guarantee the correctness of a befouled node.
+Optimal FBAS guarantees that every intact node remains correct.</p>
+<h5 id="federated-voting">Federated Voting</h5>
+<h6 id="voting">Voting</h6>
+<p>Federated Voting consists of nodes casting vote messages that also specify their quorum slices.
+Recipients of these messages can dynamically discover quorums based on voters’ stated slices.
+Quorum overlap ensures intertwined nodes will not find themselves in contradictory quorums.</p>
+<p>However, knowing that no quorum will contradict <code>a</code> is insufficient to confirm <code>a</code>
+When a member of an intact set confirms <code>a</code>, we also need to guarantee that the rest of the set will eventually do so.
+This requires ensuring not just that <code>a</code> received a quorum, but that a quorum knows that <code>a</code> received a quorum.
+Furthermore, this quorum must be able to convince other nodes, including ones that voted against <code>a</code>, to confirm <code>a</code>.</p>
+<p>Federated voting employs a three-phase protocol in which nodes first vote for a statement (broadcasting a message to this effect), then accept it (again broadcasting the fact), and finally confirm it.</p>
+<p>From the perspective of each node, agreement process on statement is divided in three phases — unknown, accepted and confirmed.
+Initially the statement status is completely unknown to the node — it can be <code>true</code>, <code>false</code> or can become completely stuck in an indeterminate state.
+If the first phase (<code>vote</code>) succeeds, meaning the statement is accepted as true, the node may accept the statement as well.</p>
+<p>A node  may vote for any valid statement <code>a</code> that is consistent with its other outstanding votes and accepted statements.
+The node accepts <code>a</code> when it is a member of a quorum, in which every node either votes for <code>a</code> or accepts <code>a</code>.
+Even if the node did not vote for <code>a</code>, if every one of its quorum slices contains a node accepting <code>a</code> and the node has accepted nothing contradicting <code>a</code>, it also accepts <code>a</code>.
+No two nodes that are intact cannot accept contradictory statements.
+This means that if the node is intact and accepts a statement as true, then the statement cannot be false.</p>
+<p>The set of accepting nodes intersecting all the node's quorum slices overrules any contradictory votes that the node may have previously cast by proving these contradictory votes could not have been part of a quorum.
+Finally, when the node is a member of a quorum in which every node accepts <code>a</code>, then this node confirms <code>a</code>.</p>
+<p>However, there are reasons for which after the statement is accepted from the node, it might not act upon it.
+One is the statement can be stuck for other nodes.
+Second is the node could be befouled, which is something it does not know itself, then accepting the statement means nothing (the statement could be false for well-behaved nodes).
+Even if the node is befouled, the system might still have quorum intersection of well-behaved nodes.
+In this case, for optimal safety, the node would need a greater assurance for the statement.</p>
+<p>This is when the confirmation phase takes place.
+This phase addresses both problems: if the second voting on the statements succeeds, the node moves to the <code>confirm</code> phase and in this phase it can consider the statement as true and act on it (considering a statement as true equals to accepting a value and adding it to own records).</p>
+<h6 id="voting-with-open-membership">Voting with Open Membership</h6>
+<p>A correct node in a Byzantine agreement system acts on a statement only when it knows that other correct nodes will never agree to other contradictory statements.
+Most protocols employ voting for this purpose.</p>
+<p>Well-behaved nodes vote for a statement only if it is valid and also never change their votes.
+Consequently, in a centralized Byzantine agreement, it is safe to accept a statement as valid, if a quorum comprising a majority of well-behaved nodes has voted for it.
+We say the statement is ratified when it received the necessary votes.</p>
+<p>The FBA adapts the voting to open membership.
+A quorum, as mentioned above, no more corresponds to a majority of well-behaved nodes.
+In FBA the majority requirement serves to ensure quorum intersection of well-behaved nodes that is present.</p>
+<p>A node votes for a statement if and only if</p>
+<ul>
+<li>the node asserts the statement as valid and consistent with all statements it accepted in the past</li>
+<li>the node asserts it has never voted against this statement implicitly — meaning did not vote for a statement that contradicts the one that it is currently accepting</li>
+<li>the node promises never to vote against that statement in the future — the node will not vote against it implicitly accepting a future contradictory statement</li>
+</ul>
+<p>A quorum <code>ratifies</code> a statement if and only if all every member of it votes for the statement being true.
+A node ratifies a statement if the quorum it is a member of ratified the statement.</p>
+<p>Two contradictory statements in FBAS cannot be both ratified if there is a quorum intersection in that system.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../cadence/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Cadence" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Cadence
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../glossary/" class="md-footer__link md-footer__link--next" aria-label="Next: Glossary" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Glossary
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2021 Optakt
+          </div>
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "toc.integrate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -9,19 +9,19 @@
       
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
-        <title>Optakt Documentation</title>
+        <title>Markdown - Optakt Documentation</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.a57b2b03.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -36,7 +36,7 @@
     
     
     
-      <link rel="stylesheet" href="/stylesheets/wide.css">
+      <link rel="stylesheet" href="../../stylesheets/wide.css">
     
     
       
@@ -57,7 +57,7 @@
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
   
     
-    <script>function __prefix(e){return new URL("/",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
       <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
@@ -65,6 +65,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#markdown-style-guidelines" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -75,7 +80,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="Optakt Documentation" class="md-header__button md-logo" aria-label="Optakt Documentation" data-md-component="logo">
+    <a href="../.." title="Optakt Documentation" class="md-header__button md-logo" aria-label="Optakt Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -94,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Markdown
             
           </span>
         </div>
@@ -186,7 +191,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Optakt Documentation" class="md-nav__button md-logo" aria-label="Optakt Documentation" data-md-component="logo">
+    <a href="../.." title="Optakt Documentation" class="md-nav__button md-logo" aria-label="Optakt Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -205,7 +210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/overview/" class="md-nav__link">
+      <a href="../../overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -218,14 +223,16 @@
 
   
   
+    
+  
   
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       
       
@@ -248,7 +255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/code/design/" class="md-nav__link">
+      <a href="../design/" class="md-nav__link">
         Design
       </a>
     </li>
@@ -262,7 +269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/code/go/" class="md-nav__link">
+      <a href="../go/" class="md-nav__link">
         Go
       </a>
     </li>
@@ -274,11 +281,67 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="/code/markdown/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Markdown
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Markdown
       </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    General
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#specific-to-this-repository" class="md-nav__link">
+    Specific to this Repository
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#external-resources" class="md-nav__link">
+    External Resources
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -290,7 +353,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/code/testing/" class="md-nav__link">
+      <a href="../testing/" class="md-nav__link">
         Testing
       </a>
     </li>
@@ -340,7 +403,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/process/process/" class="md-nav__link">
+      <a href="../../process/process/" class="md-nav__link">
         Meetings
       </a>
     </li>
@@ -354,7 +417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/process/repositories/" class="md-nav__link">
+      <a href="../../process/repositories/" class="md-nav__link">
         Repositories
       </a>
     </li>
@@ -368,7 +431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/process/git/" class="md-nav__link">
+      <a href="../../process/git/" class="md-nav__link">
         Git
       </a>
     </li>
@@ -418,7 +481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/knowledge/flow/" class="md-nav__link">
+      <a href="../../knowledge/flow/" class="md-nav__link">
         Flow
       </a>
     </li>
@@ -432,7 +495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/knowledge/cadence/" class="md-nav__link">
+      <a href="../../knowledge/cadence/" class="md-nav__link">
         Cadence
       </a>
     </li>
@@ -446,7 +509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/knowledge/flare/" class="md-nav__link">
+      <a href="../../knowledge/flare/" class="md-nav__link">
         Flare
       </a>
     </li>
@@ -460,7 +523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/knowledge/glossary/" class="md-nav__link">
+      <a href="../../knowledge/glossary/" class="md-nav__link">
         Glossary
       </a>
     </li>
@@ -485,7 +548,45 @@
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
-  <h1>404 - Not found</h1>
+                
+                
+                <h1 id="markdown-style-guidelines">Markdown Style Guidelines</h1>
+<h2 id="general">General</h2>
+<ul>
+<li>Section titles should follow the <a href="https://en.wikipedia.org/wiki/Title_case#Chicago_Manual_of_Style">Chicago Title Capitalization</a> standard.</li>
+<li>Lists should use the <code>*</code> character rather than the <code>-</code> character.</li>
+<li>Documents should start with a level one heading and should ideally be the same as the file name.</li>
+<li>For long files that are not served within this repository, it is best to have a table of contents at the end of the introduction of the level one heading section.</li>
+<li>Keep extra newlines between paragraphs and sections to make the source easier to read.</li>
+<li>Always specify the language for code blocks so that neither the syntax highlighter nor the text editor must guess.
+  If no specific type makes sense, just use <code>text</code>.</li>
+<li>Use informative link titles. For example, instead of naming your links "link" or "here", wrap part of the sentence that is meant to be linked as a title.</li>
+<li>Do not use gendered pronouns when talking about users/consumers/whatever but always <code>they/their</code> instead.</li>
+<li>Do not use the future tense but use present simple for expressing general truths instead.</li>
+<li>Use active voice when there is no specific need to use passive.</li>
+<li>Abbreviations and acronyms should be spelled out the first time they appear in any technical document with the shortened form appearing in parentheses immediately after the term.
+  The abbreviation or acronym can then be used throughout the document.</li>
+<li>Avoid ambiguous and abstract language (i.e. really, quite, very), imprecise or subjective terms (i.e. fast, slow, tall, small) and words that have no precise meaning (i.e. bit, thing, stuff).</li>
+<li>Avoid contractions (i.e. don't, you'll, etc.) as they are meant for informal contexts.</li>
+<li>Avoid generalized statements, because they are difficult to substantiate and too broad to be supported.</li>
+<li>Paragraphs that include multiple sentences should have the sentences on separate lines, so that updating one sentence results in a clear diff where one line changes.</li>
+</ul>
+<h2 id="specific-to-this-repository">Specific to this Repository</h2>
+<p>In this repository, Markdown is extended by some mkdocs plugins which allow you to include external files within a markdown files, and to insert admonitions.</p>
+<p><a href="https://squidfunk.github.io/mkdocs-material/reference/admonitions/#usage">Admonitions</a> are a way to include side content into a page without significantly interrupting the document flow.
+There are different types of admonitions, and they allow for the inclusion and nesting of arbitrary content.</p>
+<p>Including external files can be done by writing the name of a file present in the <code>include</code> directory surrounded by <code>{</code>/<code>}</code> and exclamation marks on an empty line.</p>
+<h2 id="external-resources">External Resources</h2>
+<ul>
+<li><a href="https://engineering.usu.edu/students/ewc/writing-resources/technical-writing-standards">Technical Writing Standards</a></li>
+<li><a href="https://google.github.io/styleguide/docguide/style.html">Google Markdown Style Guide</a></li>
+<li><a href="https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax">Mastering GitHub Markdown</a></li>
+</ul>
+                
+              
+              
+                
+
 
               
             </article>
@@ -496,6 +597,41 @@
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../go/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Go" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Go
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../testing/" class="md-footer__link md-footer__link--next" aria-label="Next: Testing" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Testing
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -522,10 +658,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "/", "features": ["navigation.sections", "toc.integrate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "/assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "toc.integrate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.b1047164.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
       
     
   </body>
