@@ -6,7 +6,7 @@
 
 ### Goals
 
-Cadence Language was designed with these tree goals in mind:
+Cadence Language was designed with these three goals in mind:
 
 * Safety and security
     * Safety is the underlying reliability of any smart contract. Security is the prevention of attacks on the network or smart contracts.
@@ -17,7 +17,7 @@ Cadence Language was designed with these tree goals in mind:
 
 ### Features
 
-Some of the features of the Cadence programming language are:
+Some features of the Cadence programming language are:
 
 * type safety and a strong static type system
 * resource-oriented programming
@@ -35,9 +35,9 @@ Some of the features of the Cadence programming language are:
 ## Account
 
 Accounts are address on the flow network, e.g. `0xf233dcee88fe0abe`.
-Every account can be accessed through two types &#0151 [`PublicAccount`](#publicaccount) and [`AuthAccount`](#authaccount), each corresponding to a level of accessabilty.
+Every account can be accessed through two types: [`PublicAccount`](#publicaccount) and [`AuthAccount`](#authaccount), each corresponding to a level of accessibility.
 
-Cadence transactions consist of four optional phases &#0151 prepare, precondition, execution and postconditions phase.
+Cadence transactions consist of four optional phases: `prepare`, `precondition`, `execution` and `postconditions`.
 Phases can be omitted, but, if present, they must appear in that order.
 Each account signing the transaction appears as an argument in the `prepare()` phase.
 These signers appear as arguments of `AuthAccount` type, and their number must match the number of signers of the transaction.
@@ -192,7 +192,7 @@ struct DeployedContract {
 ### Account Storage
 
 Each account has storage, and this is where resources and structs can be persisted.
-Authorized accounts have full access to the accounts storage.
+Authorized accounts have full access to the account storage.
 
 Objects in storage are stored under paths.
 Each storage path location corresponds to a single register.
@@ -443,7 +443,7 @@ The supported built-ins for this type family are:
 
 #### Floating-Point
 
-There is **no** support for floating point numbers. These kind of numbers, not natural/cardinal, are handle by the Fixed-Point type.
+There is **no** support for floating point numbers. These kinds of numbers, not natural/cardinal, are handle by the Fixed-Point type.
 
 ### AnyStruct and AnyResource
 
@@ -517,7 +517,7 @@ Arguments are passed to functions by value. Therefore, values passed to a functi
 
 ### Function Preconditions and Postconditions
 
-The functions preconditions and postconditions are blocks of expressions that check input and outputs.
+The functions `preconditions` and `postconditions` are blocks of expressions that check input and outputs.
 
 ```rust
 fun factorial(_ n: Int): Int {
@@ -664,7 +664,7 @@ There are some core events built-in in Cadence.
 ## Contracts
 
 A contract in Cadence is a collection of definitions of interfaces, structs, resources, data (its state) and code (its functions).
-Contracts live in the contract storage area of an account and they can be added, updated and removed.
+Contracts live in the contract storage area of an account, and they can be added, updated and removed.
 
 Composite types &#0151 structs, resources, events and interfaces for these types have to be defined in a contract.
 However, there is an exception to this rule, since there is a number of native event types that are not defined in a contract, but built into the Cadence runtime itself.
@@ -786,11 +786,11 @@ These contracts are essential to the normal operation of the Flow network.
 ### FungibleToken
 
 The `Flow Fungible Token` standard is defined in [0xf233dcee88fe0abe](https://flowscan.org/contract/A.f233dcee88fe0abe.FungibleToken) for the mainnet.
-It defines the `FungibleToken` contract interaface, to which all fungible token contracts need to conform to.
+It defines the `FungibleToken` contract interface, to which all fungible token contracts need to conform to.
 
 The `Vault` resource is also defined in the same contract, which is the resource that each account needs to have in storage in order to own tokens.
 
-Resources and interfaces defined here allow sending and receiving of tokens peer-to-peer, by withdrawing tokens from one users `Vault` and depositing them to another user's `Vault.`
+Resources and interfaces defined here allow sending and receiving of tokens peer-to-peer, by withdrawing tokens from one user's `Vault` and depositing them to another user's `Vault.`
 
 ### FlowToken
 
@@ -803,7 +803,7 @@ The Flow Service Account is an account like any other on Flow except it is respo
 ### FlowEpoch
 
 Top-level smart contract that manages the lifecycle of [epochs](https://docs.onflow.org/staking/epoch-preparation/#epochs-overview).
-Epochs are the smallest unit of time during which the set of network operators is either static or can decrease due to nodes election or malicious nodes presence.
+Epochs are the smallest unit of time during which the set of network operators is either static or can decrease due to nodes election or malicious node presence.
 Nodes may only leave or join the network at epoch boundaries.
 The list of participating nodes is kept in the **Identity Table**.
 
@@ -836,7 +836,7 @@ If any transaction that results in account's storage use greater that the storag
 
 ### FlowClusterQC
 
-This contract manages the process of collecting votes for the root [Quorum Certificate (QC)](./../../../glossary.md#quorum_certificate) of the upcoming epoch for all Collection node clusters assigned for the next epoch.
+This contract manages the process of collecting votes for the root [Quorum Certificate (QC)](glossary.md#quorum-certificate) of the upcoming epoch for all Collection node clusters assigned for the next epoch.
 During the setup phase of the epoch, collection nodes in a specific cluster generate a root block for the cluster.
 The nodes then need to submit a vote for the root block.
 Once enough cluster nodes have voted with the same unique vote, the cluster is considered complete.

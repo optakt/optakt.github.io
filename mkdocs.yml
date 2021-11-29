@@ -4,47 +4,20 @@ docs_dir: 'content'
 
 nav:
   - 'Overview': 'overview.md'
-  - 'Code'
+  - 'Code':
     - 'Design': 'code/design.md'
     - 'Go': 'code/go.md'
     - 'Markdown': 'code/markdown.md'
     - 'Testing': 'code/testing.md'
-  - 'Process'
-    - 'Meetings': 'meetings.md'
-    - 'Repositories': 'repositories.md'
-    - 'Git': 'git.md'
-  - 'Knowledge'
-    - 'Flow': 'flow.md'
-    - 'Cadence': 'cadence.md'
-    - 'Flare': 'flare.md'
-    - 'Glossary': 'glossary.md'
-  - 'Knowledge Base':
-      - 'Glossary': 'knowledge_base/glossary.md'
-      - 'Flow':
-          - 'Specification': 'knowledge_base/flow/specification.md'
-          - 'Flow Virtual Machine':
-              - 'Introduction': 'knowledge_base/flow/flow_virtual_machine/introduction.md'
-              - 'Registers': 'knowledge_base/flow/flow_virtual_machine/registers.md'
-              - 'Example': 'knowledge_base/flow/flow_virtual_machine/case_study.md'
-          - 'Cadence':
-              - 'Introduction': 'knowledge_base/flow/cadence/introduction.md'
-              - 'Accounts': 'knowledge_base/flow/cadence/accounts.md'
-              - 'Contracts':
-                  - 'Introduction': 'knowledge_base/flow/cadence/contracts/contracts.md'
-                  - 'Flow Contracts': 'knowledge_base/flow/cadence/contracts/flow_contracts.md'
-              - 'Resources': 'knowledge_base/flow/cadence/resources.md'
-              - 'Reference': 'knowledge_base/flow/cadence/reference.md'
-          - 'Examples':
-              - 'Go SDK': 'knowledge_base/flow/examples/flow-go-sdk.md'
-      - 'Flare':
-          - 'Consensus':
-              - 'Avalanche':
-                  - 'Concepts': 'knowledge_base/flare/consensus/avalanche/concepts.md'
-                  - 'Specification': 'knowledge_base/flare/consensus/avalanche/specification.md'
-              - 'Stellar':
-                  - 'Concepts': 'knowledge_base/flare/consensus/stellar/concepts.md'
-                  - 'Specification': 'knowledge_base/flare/consensus/stellar/specification.md'
-          - 'Specification': 'knowledge_base/flare/specification.md'
+  - 'Process':
+    - 'Meetings': 'process/process.md'
+    - 'Repositories': 'process/repositories.md'
+    - 'Git': 'process/git.md'
+  - 'Knowledge':
+    - 'Flow': 'knowledge/flow.md'
+    - 'Cadence': 'knowledge/cadence.md'
+    - 'Flare': 'knowledge/flare.md'
+    - 'Glossary': 'knowledge/glossary.md'
 
 theme:
   name: material

@@ -6,7 +6,7 @@ The FVM interacts with the Flow execution state by running atomic operations aga
 What we call a _ledger_ is a type of key/value storage.
 It holds an array of key-value pairs called registers.
 
-In Flow, the ledger implementation provides a number of functionalities and guarantees, including speed, memory-efficiency, crash resillience (via write-ahead logs and checkpoints), thread safety etc.
+In Flow, the ledger implementation provides a number of functionalities and guarantees, including speed, memory-efficiency, crash resilience (via write-ahead logs and checkpoints), thread safety etc.
 It is also a stateful key/value storage, and every update to the ledger creates a new state.
 A limited number of recent states is kept, and updates can be applied to any one of those states.
 
@@ -100,8 +100,7 @@ These contracts are:
 - `LockedTokens`
 - `StakingProxy`
 
-These contracts are described in more detail [here](../cadence/contracts/flow_contracts.md).
-
+These contracts are described in more detail in the [Cadence document](cadence.md#flow-contracts).
 
 ## Flow Virtual Machine
 
@@ -147,7 +146,7 @@ Both Cadence scripts and transactions are procedures, via the [ScriptProcedure](
 // script argument is a byte slice with the Cadence script text.
 procedure := fvm.Script(script)
 
-// The fvm.ScriptProcedure is then run using the Flow Virtual Marchine.
+// The fvm.ScriptProcedure is then run using the Flow Virtual Machine.
 err = vm.Run(ctx, procedure, view, programs)
 ```
 
@@ -301,7 +300,7 @@ transaction() {
 ```
 
 Using the SDK the script connects to the access node using `client.New(ADDRESS)`, then gets the private key and the first account key of the service account and uses it to pay and sign the transaction.
-Finally the transaction is sent.
+Finally, the transaction is sent.
 
 ```go
 package main
@@ -315,7 +314,7 @@ import (
 
 var (
   cadenceScript             = "Cadence transaction code describing token transfer..."
-  serviceAccountAdress      = "0xADDRESS"
+  serviceAccountAddress      = "0xADDRESS"
   serviceAccountPrivateKey  = "privateKey"
 )
 
@@ -332,7 +331,7 @@ func main() {
     panic(err)
   }
 
-	addr := flow.HexToAddress(serviceAccountAdress)
+	addr := flow.HexToAddress(serviceAccountAddress)
 	acc, err := cli.GetAccount(ctx, addr)
 	if err != nil {
     panic(err)
@@ -361,7 +360,7 @@ func main() {
 ### Sending a Script
 
 Flow SDK exposes the method `ExecuteScriptAtLatestBlock` to execute a script on the latest block.
-It also offers two more functions to execute scripts on a block at a defined height or referenced by its id: `ExecuteScriptAtBlockHeight` and `ExecuteScriptAtBlockID` respectavelly.
+It also offers two more functions to execute scripts on a block at a defined height or referenced by its id: `ExecuteScriptAtBlockHeight` and `ExecuteScriptAtBlockID` respectively.
 
 To get the current FLOW token balance from an account the following cadence script should be executed.
 In this script the `ACCOUNT` placeholder is the account address of the target balance.
