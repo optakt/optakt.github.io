@@ -9,10 +9,10 @@ Participants that update the ledger records represent the peers that run the blo
 
 Peers participate in the blockchain network collaborating with their resources in the same manner as in other types of distributed network architectures.
 
-Records in the ledger, called transactions, update the ledger state and represent any type of social exchangable value to the participants of the network - token representing ownership, money, access to some resource or event, etc.
-[Transactions](#Transaction) in the blockchain represent transfering of value from one party to the other.
+Records in the ledger, called transactions, update the ledger state and represent any type of social exchangeable value to the participants of the network — token representing ownership, money, access to some resource or event, etc.
+[Transactions](#Transaction) in the blockchain represent transferring of value from one party to the other.
 
-The foundamental difference the blockchain provide to the participants is that their values are exchanged `without` the participation of any third parties.
+The fundamental difference the blockchain provide to the participants is that their values are exchanged `without` the participation of any third parties.
 For cryptocurrencies this idea drastically changes the concept of money transfers.
 
 Ledger records - transactions, are created and recorded in the ledger using specific steps and types of encryption on different parts of them - hashing, asymmetric and symmetric encryption.
@@ -24,21 +24,22 @@ Depending on the consensus protocol that is run in the blockchain network, block
 Each block of transactions follows the previous block inserted and reference it by its ID.
 This creates an immutable chain of blocks of transactions that represent the state of the ledger.
 
-Depending on the peers ability to participate in the blockchain network, blockchains are [public and private](https://101blockchains.com/public-vs-private-blockchain/).
+Depending on the peers' ability to participate in the blockchain network, blockchains are [public and private](https://101blockchains.com/public-vs-private-blockchain/).
 
 In public blockchains everyone is allowed to participate in the network.
 Peers can be of different types depending on what amount of data from the ledger they keep and how they update it, but in terms of functionality and resources they provide to the network - they are equally placed.
-This means that none of the peers, or a group of them, do not provide any specific functionality to the network that others do not and consequently, when peers leave or arrive in the blockchain network - its runing is not affected.
+This means that none of the peers, or a group of them, provide any specific functionality to the network that others do not.
+Consequently, when peers leave or arrive in the blockchain network — its running is not affected.
 Public blockchains do not require trust in other participants in the network.
 
 This is one of the core concepts behind the idea of distribution in the blockchain world.
 
 Private blockchains are a specific type of blockchains that have some type of authorization scheme used for identities that can enter the network and access its records.
-Private blockchains require trust in other participants of the network and some of the peers inside them have different levels of access compared to others.
-In this kind of blockchain networks, a random peer or a group of peers leaving (mailfunctioning) or arriving in the network affects affect the whole network stability.
+Private blockchains require trust in other participants of the network and some peers inside them have different levels of access compared to others.
+In this kind of blockchain networks, a random peer or a group of peers leaving (malfunctioning) or arriving in the network affects the stability of the whole network.
 
-Depending on the access to participate in the network - being granted or not - blockchains are [permissioned and permissionless](https://101blockchains.com/permissioned-vs-permissionless-blockchains/)
-Generally this difference lie in `providing` an access from some authority running the network, which concerns again the trust between participants.
+Depending on the access to participate in the network — being granted or not, blockchains are [permissioned and permissionless](https://101blockchains.com/permissioned-vs-permissionless-blockchains/)
+Generally this difference lie in `providing` access from some authority running the network, which concerns again the trust between participants.
 
 Permissioned blockchains are networks that require permission to enter it, usually used by organizations for managing their internal processes and data.
 Permissioned blockchains shifts from the core feature of decentralization in the blockchain world and from the initial idea of blockchains in general.
@@ -46,10 +47,10 @@ A permissioned blockchain can also be a public network that only allows particip
 The participants are usually known by a permissioned blockchain network operator, while the transaction history is not publicly accessible.
 
 A permissionless blockchain network does not require permissions to arrive as a peer in it, but can be public or private depending on the level or data access for the participants (and in the consensus trust levels between participants).
-In both permissionless and permissioned blockchains peers and groups of peers can have different roles and their presense or absence can affect the network functioning.
+In both permissionless and permissioned blockchains peers and groups of peers can have different roles and their presence or absence can affect the network functioning.
 
 Initial idea of blockchain networks, as described in [Nakamoto consensus description](https://bitcoin.org/bitcoin.pdf), aims to reach the highest possible levels of transparency, decentralization, anonymity and immutability at the same time.
-During time, different types of blockchains emerged and today, they advance in some of the characteristics but lack in others (for example anonymity).
+During time, different types of blockchains emerged and today, they advance in some characteristics but lack in others (for example anonymity).
 
 Core concepts of blockchain according to the initial Nakamoto Consensus descriptions are:
 
@@ -59,7 +60,7 @@ This means that every transaction is available to each member, making the transa
 Immutability is present for all types of blockchains today.
 * Decentralization. This is one of the biggest advantages of the blockchain, being a decentralized system allows for the lack of a central authority to control the transactions.
 Every full node has a copy of the chain, which they can update with new information, and every SPV node can update their records requesting them from a full node.
-Decentralization at its fullnest is not present in permissioned and private blockchains today as described above.
+Decentralization at its fullest is not present in permissioned and private blockchains today as described above.
 Once a new block is created and inserted on the chain, the new block will have a link to the previous block, creating a chain.
 They all include the hash of the previous block except for the first one, which is called the genesis block and has a zero hash value.
 
@@ -95,19 +96,19 @@ The two main parts of the transaction that represent the chain between available
 
 ### Transaction input
 
-Transaction input is a part of the transaction structure and it identifies (often by reference) which UTXO will be consumed.
+Transaction input is a part of the transaction structure, and it identifies (often by reference) which UTXO will be consumed.
 It provides a proof of ownership using an unblocking script.
 
-First part of the input is usually a pointer/reference to the UTXO, and the second part is the unlocking script (usually contructed by the wallet) that satisfies the spending condition set in the UTXO(s) that the transaction is going to consume.
+First part of the input is usually a pointer/reference to the UTXO, and the second part is the unlocking script (usually constructed by the wallet) that satisfies the spending condition set in the UTXO(s) that the transaction is going to consume.
 Input data structure can have arbitrary fields inside it depending on the blockchain network implementation, but they generally are:
 
-* txid - referencing the transaction id that contains the UTXO
-* index referencing which UTXO from that transaction is going to be spent
-* scriptSig - a script signature that satisfies the spending conditions; known as "unlocking script"
+* `txid` — referencing the transaction id that contains the UTXO
+* `index` — referencing which UTXO from that transaction is going to be spent
+* `scriptSig` — a script signature that satisfies the spending conditions; known as "unlocking script"
 * a sequence number
 
 An input may or may not reference any nominal value or other context depending on the organization.
-What it must contain is the unlocking script (witness part) that unclocks the UTXO.
+What it must contain is the unlocking script (witness part) that unlocks the UTXO.
 
 ### Transaction Output
 
@@ -121,8 +122,8 @@ Transaction outputs consist generally of two parts:
 * amount of the UTXO denominated value
 * a cryptographic script or a public key that determines the conditions on which the UTXO can be spent; also known as the "locking script".
 
-The locking script is a hash representaion of the a public key hash (in the simplest situation) or it is a hash of an unlocking script.
-In both cases - the public key along with the signature or the unlocking script need to be presented at the time of consuming the output in order the values to be transfered.
+The locking script is a hash representation of a public key hash (in the simplest situation) or it is a hash of an unlocking script.
+In both cases - the public key along with the signature or the unlocking script need to be presented at the time of consuming the output in order the values to be transferred.
 
 ### UTXO Set
 
@@ -148,7 +149,7 @@ Because chit values can be `0` or `1` — `c ∈ {0,1}` confidence values are mo
 
 ### Consecutive Success Number
 
-The number of times a transaction or its decendant received an approval from majority (quorum) of queried nodes.
+The number of times a transaction or its descendant received an approval from majority (quorum) of queried nodes.
 TODO: add more thorough description
 
 ### Progeny
@@ -163,7 +164,7 @@ TODO: add
 
 ### Quorum Certificate
 
-A process by which nodes using the HotStuff consensus algorithm submit signed messages in order to generate a certificate for bootstrapping HotStuff. Each collector cluster runs a mini-version of HotStuff, and since clusters are randomized each epoch, a new quorum ceritificate is required for each cluster each epoch.
+A process by which nodes using the HotStuff consensus algorithm submit signed messages in order to generate a certificate for bootstrapping HotStuff. Each collector cluster runs a mini-version of HotStuff, and since clusters are randomized each epoch, a new quorum certificate is required for each cluster each epoch.
 
 ## Other
 
@@ -171,16 +172,16 @@ A process by which nodes using the HotStuff consensus algorithm submit signed me
 
 TODO: introduce the idea in one sentence without technicals
 
-A graph is pair of sets G = (V, E).
-V is a set of elements called vertices (singular: vertex) and E is a set of paired vertices and its elements are called edges.
-An edge {x, y} contains vertices x and y and they are its endpoints.
+A graph is pair of sets `G = (V, E)`.
+`V` is a set of elements called vertices (singular: vertex) and `E` is a set of paired vertices and its elements are called edges.
+An edge `{x, y}` contains vertices `x` and `y`, and they are its endpoints.
 A vertex may belong to no edge and in that case it is not joined to any other vertex.
 The set of vertices in a graph is a discrete value, meaning the set of edges is also a discrete value.
-The number of vertices - |V| is the "order" of the graph and the number of edges - |E| is the "size" of the graph.
+The number of vertices — `|V|` is the "order" of the graph and the number of edges — `|E|` is the "size" of the graph.
 
 ### Directed Graph
 
-A directed [graph](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)) comprises of set of vertices connected by "directed" edges — also called arcs.
+A directed [graph](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)) consists of set of vertices connected by "directed" edges — also called arcs.
 A directed graph is represented as a pair of sets `G = (V, A)`, where:
 
 * `V` is a set of elements (vertices, nodes)
@@ -246,7 +247,7 @@ A
 └──> D
 ```
 
-The inverse of a transtive relation is always transitive.
+The inverse of a transitive relation is always transitive.
 See also [Homogeneous Relation](https://en.wikipedia.org/wiki/Binary_relation#Homogeneous_relation).
 
 ### Transitive Closure of a Graph
