@@ -187,9 +187,7 @@
                     
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Optakt Documentation" class="md-nav__button md-logo" aria-label="Optakt Documentation" data-md-component="logo">
       
@@ -210,7 +208,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../overview/" class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         Overview
       </a>
     </li>
@@ -829,6 +827,340 @@
                 </div>
               </div>
             
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#guidelines" class="md-nav__link">
+    Guidelines
+  </a>
+  
+    <nav class="md-nav" aria-label="Guidelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copy-slices-and-maps-at-boundaries" class="md-nav__link">
+    Copy Slices and Maps at Boundaries
+  </a>
+  
+    <nav class="md-nav" aria-label="Copy Slices and Maps at Boundaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#receiving-slices-and-maps" class="md-nav__link">
+    Receiving Slices and Maps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#returning-slices-and-maps" class="md-nav__link">
+    Returning Slices and Maps
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-enums-at-one" class="md-nav__link">
+    Start Enums at One
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-types" class="md-nav__link">
+    Error Types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-wrapping" class="md-nav__link">
+    Error Wrapping
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handle-type-assertion-failures" class="md-nav__link">
+    Handle Type Assertion Failures
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-mutable-globals" class="md-nav__link">
+    Avoid Mutable Globals
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-init" class="md-nav__link">
+    Avoid init()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-in-main" class="md-nav__link">
+    Exit in Main
+  </a>
+  
+    <nav class="md-nav" aria-label="Exit in Main">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exit-once" class="md-nav__link">
+    Exit Once
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    Performance
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prefer-strconv-over-fmt" class="md-nav__link">
+    Prefer strconv over fmt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-string-to-byte-conversion" class="md-nav__link">
+    Avoid string-to-byte conversion
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefer-specifying-container-capacity" class="md-nav__link">
+    Prefer Specifying Container Capacity
+  </a>
+  
+    <nav class="md-nav" aria-label="Prefer Specifying Container Capacity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#specifying-map-capacity-hints" class="md-nav__link">
+    Specifying Map Capacity Hints
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-slice-capacity" class="md-nav__link">
+    Specifying Slice Capacity
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#style" class="md-nav__link">
+    Style
+  </a>
+  
+    <nav class="md-nav" aria-label="Style">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-grouping" class="md-nav__link">
+    Import Grouping
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#package-names" class="md-nav__link">
+    Package Names
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-names" class="md-nav__link">
+    Function Names
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-grouping-and-ordering" class="md-nav__link">
+    Function Grouping and Ordering
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduce-nesting" class="md-nav__link">
+    Reduce Nesting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unnecessary-else" class="md-nav__link">
+    Unnecessary Else
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#top-level-variable-declarations" class="md-nav__link">
+    Top-level Variable Declarations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-variable-declarations" class="md-nav__link">
+    Local Variable Declarations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduce-scope-of-variables" class="md-nav__link">
+    Reduce Scope of Variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-naked-parameters" class="md-nav__link">
+    Avoid Naked Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initializing-structs" class="md-nav__link">
+    Initializing Structs
+  </a>
+  
+    <nav class="md-nav" aria-label="Initializing Structs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-field-names-to-initialize-structs" class="md-nav__link">
+    Use Field Names to Initialize Structs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#omit-zero-value-fields-in-structs" class="md-nav__link">
+    Omit Zero Value Fields in Structs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-var-for-zero-value-structs" class="md-nav__link">
+    Use var for Zero Value Structs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initializing-struct-references" class="md-nav__link">
+    Initializing Struct References
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initializing-maps" class="md-nav__link">
+    Initializing Maps
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#patterns" class="md-nav__link">
+    Patterns
+  </a>
+  
+    <nav class="md-nav" aria-label="Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#functional-options" class="md-nav__link">
+    Functional Options
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
             
           
           <div class="md-content" data-md-component="content">
@@ -2354,7 +2686,7 @@ Further, it lets options implement other interfaces, including <code>fmt.Stringe
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "toc.integrate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
