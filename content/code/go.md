@@ -162,9 +162,8 @@ const (
 There are various options for declaring errors:
 
 * [errors.New] for errors with simple static strings
-* [fmt.Errorf] for formatted error strings
-* Custom types that implement an `Error()` method
-* Wrapped errors using ["pkg/errors".Wrap]
+* [fmt.Errorf] for formatted and wrapped error strings
+* Custom types that implement the error interface
 
 When returning errors, consider the following to determine the best choice:
 
@@ -273,8 +272,9 @@ func open(file string) error {
 func use() {
   err := open("testfile.txt")
   if err != nil {
-    if _, ok := err.(errNotFound); ok {
-      // handle
+    var errNF *errNotFound
+    if errors.As(err, &errNF) {
+      // handle the error. errNF contains the error's value.
     } else {
       panic("unknown error")
     }
@@ -299,8 +299,8 @@ func (e errNotFound) Error() string {
   return fmt.Sprintf("file %q not found", e.file)
 }
 
-func IsNotFoundError(err error) bool {
-  _, ok := err.(errNotFound)
+func Is(tgt error) bool {
+  _, ok := tgt.(errNotFound)
   return ok
 }
 
@@ -325,14 +325,12 @@ if err != nil {
 There are three main options for propagating errors if a call fails:
 
 * Return the original error if there is no additional context to add and you want to maintain the original error type.
-* Add context using ["pkg/errors".Wrap] so that the error message provides more context and ["pkg/errors".Cause] can be used to extract the original error.
-* Use [fmt.Errorf] if the callers do not need to detect or handle that specific error case.
+* Add context using [fmt.Errorf] with the `%w` flag, so that the error message provides more context.
 
 It is recommended to add context where possible so that instead of a vague error such as "connection refused", you get more useful errors such as "call service foo: connection refused".
 
 See also [Don't just check errors, handle them gracefully].
 
-["pkg/errors".Cause]: https://godoc.org/github.com/pkg/errors#Cause
 [Don't just check errors, handle them gracefully]: https://dave.cheney.net/2016/04/27/dont-just-check-errors-handle-them-gracefully
 
 ### Handle Type Assertion Failures
