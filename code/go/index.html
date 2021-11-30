@@ -1312,9 +1312,8 @@ Since variables have a 0 default value, you should usually start your enums on a
 <p>There are various options for declaring errors:</p>
 <ul>
 <li><a href="https://golang.org/pkg/errors/#New">errors.New</a> for errors with simple static strings</li>
-<li><a href="https://golang.org/pkg/fmt/#Errorf">fmt.Errorf</a> for formatted error strings</li>
-<li>Custom types that implement an <code>Error()</code> method</li>
-<li>Wrapped errors using <a href="https://godoc.org/github.com/pkg/errors#Wrap">"pkg/errors".Wrap</a></li>
+<li><a href="https://golang.org/pkg/fmt/#Errorf">fmt.Errorf</a> for formatted and wrapped error strings</li>
+<li>Custom types that implement the error interface</li>
 </ul>
 <p>When returning errors, consider the following to determine the best choice:</p>
 <ul>
@@ -1413,8 +1412,9 @@ Since variables have a 0 default value, you should usually start your enums on a
 <span class="kd">func</span> <span class="nx">use</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">err</span> <span class="o">:=</span> <span class="nx">open</span><span class="p">(</span><span class="s">&quot;testfile.txt&quot;</span><span class="p">)</span>
   <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">err</span><span class="p">.(</span><span class="nx">errNotFound</span><span class="p">);</span> <span class="nx">ok</span> <span class="p">{</span>
-      <span class="c1">// handle</span>
+    <span class="kd">var</span> <span class="nx">errNF</span> <span class="o">*</span><span class="nx">errNotFound</span>
+    <span class="k">if</span> <span class="nx">errors</span><span class="p">.</span><span class="nx">As</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">errNF</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// handle the error. errNF contains the error&#39;s value.</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
       <span class="nb">panic</span><span class="p">(</span><span class="s">&quot;unknown error&quot;</span><span class="p">)</span>
     <span class="p">}</span>
@@ -1425,44 +1425,11 @@ Since variables have a 0 default value, you should usually start your enums on a
 </td></tr>
 </tbody></table>
 
-<p>Be careful with exporting custom error types directly since they become part of the public API of the package.
-It is preferable to expose matcher functions to check the error instead.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// package foo</span>
-
-<span class="kd">type</span> <span class="nx">errNotFound</span> <span class="kd">struct</span> <span class="p">{</span>
-  <span class="nx">file</span> <span class="kt">string</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="p">(</span><span class="nx">e</span> <span class="nx">errNotFound</span><span class="p">)</span> <span class="nx">Error</span><span class="p">()</span> <span class="kt">string</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;file %q not found&quot;</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">file</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nx">IsNotFoundError</span><span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
-  <span class="nx">_</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">err</span><span class="p">.(</span><span class="nx">errNotFound</span><span class="p">)</span>
-  <span class="k">return</span> <span class="nx">ok</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nx">Open</span><span class="p">(</span><span class="nx">file</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">errNotFound</span><span class="p">{</span><span class="nx">file</span><span class="p">:</span> <span class="nx">file</span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// package bar</span>
-
-<span class="nx">err</span> <span class="o">:=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">)</span>
-<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">IsNotFoundError</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// handle</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nb">panic</span><span class="p">(</span><span class="s">&quot;unknown error&quot;</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
 <h3 id="error-wrapping">Error Wrapping</h3>
 <p>There are three main options for propagating errors if a call fails:</p>
 <ul>
 <li>Return the original error if there is no additional context to add and you want to maintain the original error type.</li>
-<li>Add context using <a href="https://godoc.org/github.com/pkg/errors#Wrap">"pkg/errors".Wrap</a> so that the error message provides more context and <a href="https://godoc.org/github.com/pkg/errors#Cause">"pkg/errors".Cause</a> can be used to extract the original error.</li>
-<li>Use <a href="https://golang.org/pkg/fmt/#Errorf">fmt.Errorf</a> if the callers do not need to detect or handle that specific error case.</li>
+<li>Add context using <a href="https://golang.org/pkg/fmt/#Errorf">fmt.Errorf</a> with the <code>%w</code> flag, so that the error message provides more context.</li>
 </ul>
 <p>It is recommended to add context where possible so that instead of a vague error such as "connection refused", you get more useful errors such as "call service foo: connection refused".</p>
 <p>See also <a href="https://dave.cheney.net/2016/04/27/dont-just-check-errors-handle-them-gracefully">Don't just check errors, handle them gracefully</a>.</p>
