@@ -285,41 +285,6 @@ func use() {
 </td></tr>
 </tbody></table>
 
-Be careful with exporting custom error types directly since they become part of the public API of the package.
-It is preferable to expose matcher functions to check the error instead.
-
-```go
-// package foo
-
-type errNotFound struct {
-  file string
-}
-
-func (e errNotFound) Error() string {
-  return fmt.Sprintf("file %q not found", e.file)
-}
-
-func Is(tgt error) bool {
-  _, ok := tgt.(errNotFound)
-  return ok
-}
-
-func Open(file string) error {
-  return errNotFound{file: file}
-}
-
-// package bar
-
-err := foo.Open("foo")
-if err != nil {
-  if foo.IsNotFoundError(err) {
-    // handle
-  } else {
-    panic("unknown error")
-  }
-}
-```
-
 ### Error Wrapping
 
 There are three main options for propagating errors if a call fails:
