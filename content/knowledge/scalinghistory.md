@@ -115,13 +115,13 @@ Also some PoW based blockchains like Ethereum1.0 suffer from huge transaction fe
    (TODO: What is the incentive to become a [validator in Flare](https://www.thedefistandard.com/flare-network/state-connector-system/)?
    
 Flare’s overall vision is to achieve a truly global network that is:
-   * Decentralised (Not present in Fiat)
-   * Scalable (Not present in Bitcoin/Ethereum)
-   * Secure
-   * Resistant to Sybil Attack (Only present in current PoS systems where there is reliance on economic incentives for safety)
-   * Trustless (Not present in Fiat)
-   * Interoperable
-   * Composable
+* Decentralised (Not present in Fiat)
+* Scalable (Not present in Bitcoin/Ethereum)
+* Secure
+* Resistant to Sybil Attack (Only present in current PoS systems where there is reliance on economic incentives for safety)
+* Trustless (Not present in Fiat)
+* Interoperable
+* Composable
 
 Below is a summary of characteristics of various distributed networks:
 
