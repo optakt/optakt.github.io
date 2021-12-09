@@ -17,7 +17,6 @@ The concept of Blockchain or Cryptography are not new and have been around befor
    However, a criticism of pure FBA is that it leads to fragile structures of constituent nodes, permitting topology scenarios where a single node failure can cause a network-wide failure
    (Resistant to Forks?)
 
-
    TODO: Drawback: Single point failure if quorum sets share a single node?
    (Not mentioning about BFT which require a pre recommended validator list as it is against decentralisation)
 
@@ -39,7 +38,6 @@ The concept of Blockchain or Cryptography are not new and have been around befor
    The next level solution for scalability in terms of consensus algorithms is by Avalanche network. In Avalanche, the underlying [sybil control mechanism](https://en.wikipedia.org/wiki/Sybil_attack) is still PoS but there is a different mechanism in place to finalise validating transactions. This is achieved by a particular node randomly subsampling from other nodes multiple times across multiple cycles and eventually arriving at a consensus. This is then recorded in a Directed Acyclic Graph as opposed to a chain of Blocks. This consensus can easily scale at a much higher level compared to Bitcoin/PoW or Ethereum2.0/PoS because of faster agreement of transactions.
    The issue with Avalanche is similar to what other PoS based networks also have i.e. the economic limit of having a lot of value locked as stake in order to have the PoS running which may not be practical when the network overall value is in trillions of dollars. The minimum staking that is required to become a validator may not be easy for an average person to be a validator without delegating to another validator thereby contributing to centralisation of the network. Thus Avalanche has validators only in the number of thousands and not tens or hundreds of thousands so far.
    Usually many PoS based networks impose a penalty for malicious validators or validators that aren’t online continuously by slashing which is taking away some of the staked tokens as a punishment. Avalanche doesn’t have this mechanism to encourage more participation as a step towards more decentralisation thereby sacrificing a bit more of security.
-   
 
    (Doubt: How the rich get richer compounding effect is absent in Avalanche?)
    (Doubt: How exactly the transactions get written after consensus and how reward distribution happens in Avalanche?)
