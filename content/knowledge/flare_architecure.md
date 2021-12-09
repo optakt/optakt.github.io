@@ -1,7 +1,7 @@
 # Flare Architecture
 
 This section contains information about some parts of the Flare Network.
-In addition, some information regarding Avalanche Platform is also present, since Flare adopted some parts of the Avalanche in it's own ecosystem.
+In addition, it also contains some information regarding the Avalanche platform, since Flare adopted some of its parts within its ecosystem.
 
 ## Avalanche Platform
 
@@ -10,9 +10,9 @@ Avalanche is the first decentralized smart contracts platform built for the scal
 Ethereum's developers can quickly build on Avalanche as Solidity works out-of-the-box.
 
 A key difference between Avalanche and other decentralized networks is the consensus protocol.
-The Avalanche protocol employs a novel approach to a consensus to achieve its strong safety guarantees, quick finality, and high-throughput without compromising decentralization.
+The Avalanche protocol employs a novel approach to a consensus to achieve its strong safety guarantees, quick finality, and high throughput without compromising decentralization.
 
-The purpose of Avalanche platform:
+The purpose of the Avalanche platform:
 
 * creation of subnets and blockchains tied to the main Avalanche network for general and corporate purposes;
 * creation and hosting of decentralized applications;
@@ -28,32 +28,30 @@ The Primary Network contains three build-in blockchains:
 
 * Platform Chain or P-Chain (manages the subnets, coordinates all the validator nodes and the staking mechanism)
 * Contract Chain or C-Chain (network for working with smart contracts)
-* Exchange Chain or X-Chain (meant for creation, management and transaction of tokens on the network – based on DAG a unique kind of consensus model)
+* Exchange Chain or X-Chain (meant for creation, management, and transaction of tokens on the network – based on DAG a unique kind of consensus model)
 
-In total, the Avalanche ecosystem (as of the end of Decemner 2021) operates 13 subnets and 10 blockchains (three main plus 7 minor ones: Dtehereum, Btehereum, C and X-chain PoW and others).
+In total, the Avalanche ecosystem (as of the end of Decemner 2021) operates 13 subnets and 10 blockchains (three main plus 7 minor ones: Dtehereum, Btehereum, C and X-chain PoW, and others).
 
-All the details regarding the operation of the platform, tutorials and tools are described in the [official Avalanche website](https://docs.avax.network/build/tutorials/platform/create-a-subnet/.)
+All the details regarding the operation of the platform, tutorials, and tools are described in the [official Avalanche website](https://docs.avax.network/build/tutorials/platform/create-a-subnet/.)
 
 ### Avalanche Consensus Protocol
 
-Avalanche Platform reach a consensus by using Avalanche Consensus Protocol.
-It has three mechanisms that give structural support to the network.
-These are the non-BFT protocol (Slush) that progressively built up to Snowflake and Snowball.
-These are single-decree consensus protocols with increasing robustness and are all based on the common majority-based metastable voting mechanism.
-
+The Avalanche platform uses the Avalanche Consensus Protocol.
 Avalanche is considered to be a sort of layered consensus protocol and can be broken down into:
 
-* Slush
-* Snowflake
-* Snowball
-* Avalanche
+* Slush - single-decree consensus protocol inspired by gossip algorithms or the non-BFT protocol.
+* Snowflake - strengthen Slush with a single counter that emphasizes a node’s voting decisions.
+* Snowball - adds another layer of protection by implementing confidence counters.
+* Avalanche - generalizes Snowball and maintains a dynamic append-only Directed Acyclic Graph (DAG) of all known transactions.
 
-I'll keep this part brief and more detailed explanations can be found in the links provided at the end of this section.
+These are single-decree consensus protocols with increasing robustness and are all based on the common majority-based metastable voting mechanism.
+
+More detailed explanations are provided at the end of this section.
 
 To understand how the algorithm works, here is a simple example.
 We start with a _slush_.
 Let's say, we have 16 nodes and the network has received a malicious transaction.
-Now these nodes should 'vote' whether this transaction is valid (the sender has sufficient funds in this case).
+Now, these nodes should 'vote' whether this transaction is valid (the sender has sufficient funds in this case).
 Another assumption is that several of these nodes are malicious (I run them in the network to get my transaction through) or they are out-of-date (information they have regarding the state of the network is a bit obsolete).
 To achieve an agreement regarding the transaction, each node picks several other nodes randomly, and they have a vote.
 Each node can repeat this process several times to achieve a final agreement.
@@ -69,7 +67,7 @@ To speed this up, _snowball_ upgrades snowflake's counters to 'confidence' count
 Two counters hold information about the 'positive' and 'negative' votes.
 After some number of votes, the algorithm compares two counters and makes a decision based on that.
 This speeds up the voting process and dramatically decreases the probability of the voting process getting stuck.
-The final part is the Avalanche algorithm that generalizes the snowball and maintains the DAG (direct acyclic graph).
+The final part is the Avalanche algorithm that generalizes the snowball and maintains the DAG.
 DAG is a critical part because it prevents double-spends.
 Because in DAG the transactions are appended to one another, a vote for one transaction implicitly means a vote for all the transactions it is appended to.
 When the transaction is being created, it holds the information about one or more parent transactions.
@@ -90,7 +88,7 @@ Each blockchain is validated by exactly one Subnet.
 A Subnet can validate arbitrarily many blockchains.
 A node may be a member of arbitrarily many Subnets and must be part of the primary network.
 Before any of the Subnets can become a member of the network, it must stake some AVAX tokens.
-Clients interact with Avalanche through APIs calls to nodes (each chain has its [own API](https://docs.avax.network/build/avalanchego-apis/README)).
+Clients interact with Avalanche through API calls to nodes (each chain has its [own API](https://docs.avax.network/build/avalanchego-apis/README)).
 
 AVAX tokens exist on the X-Chain, where they can be traded, on the P-Chain, where they can be provided as a stake when validating the Primary Network, and on the C-Chain, where they can be used in smart contracts or to pay for gas.
 
@@ -123,14 +121,14 @@ TODO: add how Flare hijacks the codebase to run FBA on it.
 
 The State Connector – Flare’s system to observe the state of underlying chains.
 State Connector is one of the most critical protocols on the Flare Network.
-The purpose of a state connector is to connect non-flare assets (like XRP, Dode, LTC, etc.) with the Flare Network (represented by F-Assets) in a trustless manner, or other words, allow the smart contracts on Flare to act on state changes from underlying blockchains.
+The purpose of a state connector is to connect non-flare assets (like XRP, Dode, LTC, etc.) with the Flare Network (represented by F-Assets) in a trustless manner, or in other words, allow the smart contracts on Flare to act on state changes from underlying blockchains.
 The State Connector adopts other blockchains’ consensus mechanisms and validator ecosystems.
 
 ### Advantages
 
 A state connector system is a competitive approach for proving the state of an underlying chain to a smart contract, and it has the following advantages:
 
-* Transaction validity references back to an underlying chain's genesis block: Other approaches like the SPV (Simplified Payment Verification) proof does not check the validity of a transaction, because it is considered harmful for proving the state of an underlying chain to another network.
+* Transaction validity references back to an underlying chain's genesis block: Other approaches like the SPV (Simplified Payment Verification) proof do not check the validity of a transaction, because it is considered harmful for proving the state of an underlying chain to another network.
 * Safety only depends on an underlying chain's validators: There is no trusted third-party service that has its own set of economic incentives and risks.
   Trust is minimized by leveraging the guarantee that safety can only be lost in the state connector if an underlying chain's validators encounter a Byzantine fault.
 * No cooperation needed from an underlying chain's validators: Validators from an underlying chain do not need to modify their chain's codebase to permit Flare to interpret their network.
@@ -190,16 +188,16 @@ It facilitates the trustless issuance of asset value onto the Flare Network.
 An F-Asset is a representation of an asset from another blockchain on the Flare Network via the State Connector System, i.e.XRP = FXRP.
 Every F-Asset minted through the F-Asset System has a 2.5x collateral-backing in FLR, which is denominated in USD.
 Agents are responsible for posting and maintaining the FLR collateral.
-Additionally, they are responsible for answering redemptions, when users decide they would like to have their underlying asset back.
+Additionally, they are responsible for answering redemptions, when users decide they want to have their underlying asset back.
 XRP, Litecoin, Dogecoin, and Stellar are the first four F-Assets and the addition of more is subject to FLR holder governance.
 
-F-Asset System allows the supported cryptos to have the capability to run smart contracts without any changes to the underlying blockchain.
-The reason to do so is that nearly 75% of the value on public blockchains cannot be currently used in a trust-less manner with smart contracts.
+F-Asset System gives the supported cryptos the capability to run smart contracts without any changes to the underlying blockchain.
+The reason to do so is that nearly 75% of the value on public blockchains cannot be currently used in a trustless manner with smart contracts.
 
 Two important parties in the F-Asset System are responsible for issuing F-Assets: Agents and Originators.
-An originator is a person or an institution who wants to convert their cryptocurrency into an F-asset, and an agent (more likely to be an institution) is a participant on the Flare network who will be issuing the F-asset desired by the originator.
+An originator is a person or an institution that wants to convert their cryptocurrency into an F-asset, and an agent (more likely to be an institution) is a participant on the Flare network that issues the F-asset desired by the originator.
 Agents are also responsible for posting and managing the FLR collateral used to back the minting of F-Assets.
-Additionally, as F-Asset holders have the right to claim the underlying asset, the agents will be responsible for honoring redemptions promptly.
+Additionally, as F-Asset holders have the right to claim the underlying asset, the agents are responsible for honoring redemptions promptly.
 
 More detailed information about F-Asset System can be found on these external resources:
 
