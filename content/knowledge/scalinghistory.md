@@ -18,12 +18,12 @@ There used to be no fully robust way to stop this from happening.
    These things include me sending out this transaction info, some number of machines/nodes accepting it (along with transactions from others), verifying that I am truly the one sending it out and then they solve a complicated problem which takes a lot of computing power.
    The first one to solve it actually gets to "write" these transactions in the form of a block and that's how it is finalised.
    A good interactive visualisation of how PoW consensus might work and create a chain of blocks can be found [here](https://youtu.be/_160oMzblY8).
-   
+
 PoW by itself isn’t very new.
 Original similar implementation was thought of in 1992 to [combat email spam](https://en.wikipedia.org/wiki/Hashcash).
 So every email will have some form of simple proof of work so that it is easy for me to send email to a friend but gets very hard for a spammer to send millions of emails at the same time.
-   
-In theory, PoW can scale infinitely. 
+
+In theory, PoW can scale infinitely.
 But with it comes the extra overhead of computational complexity which may not be practical in a truly global sense.
 Also some PoW based blockchains like Ethereum1.0 suffer from huge transaction fees as well as low throughput of 10-15 transactions per second which make them impractical for true global usage.
    Therefore the PoW consensus based blockchains can achieve decentralisation and security but not scalability.
@@ -57,7 +57,7 @@ Also some PoW based blockchains like Ethereum1.0 suffer from huge transaction fe
    The higher the stake and time in the game, the higher the chances of getting to write a block on behalf of the whole ecosystem and in return receive some cryptocurrency.
    This can be distributed among the participating nodes in case of a node pool where there are multiple parties participating by delegating their tokens.
    Two keywords are different here compared to PoW: (1) Computers that participate in PoS consensus are called Validators, (2) Once a block has been created and accepted by the network, it is said to be forged (not mined).
-   Then the validator gets some reward. 
+   Then the validator gets some reward.
    If a validator tries to be malicious then it gets penalised losing some of its staked cryptocurrency.
    PoS is much faster than PoW as there is no need to solve complex cryptographic puzzles to get to be the block writer and the process is much more streamlined.
    Also no unnecessary wastage of energy means PoS is more environment friendly.
@@ -113,7 +113,7 @@ Also some PoW based blockchains like Ethereum1.0 suffer from huge transaction fe
    The native token, Spark, can be used to delegate to the price providers for FTSO (link to FTSO article) without having any locking thereby enabling other usage of Spark at the same time.
    There is no hard link between the safety of the network and the value of native token Spark which allows greater flexibility for how Spark can be used.
    (TODO: What is the incentive to become a [validator in Flare](https://www.thedefistandard.com/flare-network/state-connector-system/)?
-   
+
 Flare’s overall vision is to achieve a truly global network that is:
 
 * Decentralised (Not present in Fiat)
