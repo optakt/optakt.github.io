@@ -63,7 +63,10 @@ Also some PoW based blockchains like Ethereum1.0 suffer from huge transaction fe
    As opposed to 51% of all computing power in case of a PoW system. 
    Sustainability, security are achieved in a PoS model like the one in ethereum2.0 which is on its way to be released.
    PoS ensures more throughput compared to PoW model. 
-   However there is a communication overhead which hinders scalability (TODO: Explain more). Also the higher the adaptation, the higher the overall value represented by the overall native cryptocurrency and therefore higher the value that needs to be locked up as staking by the nodes. This means the native currency's full potential isn't utilised as once they are locked, they can no longer be used for any other purposes unless they are unlocked after the locking period expires. Network’s safety is proportional to the value of stake committed.
+   However there is a communication overhead which hinders scalability (TODO: Explain more). 
+   Also the higher the adaptation, the higher the overall value represented by the overall native cryptocurrency and therefore higher the value that needs to be locked up as staking by the nodes. 
+   This means the native currency's full potential isn't utilised as once they are locked, they can no longer be used for any other purposes unless they are unlocked after the locking period expires. 
+   Network’s safety is proportional to the value of stake committed.
 
 ## 3.1 Sharding and layer 2 solutions
 
