@@ -1,11 +1,10 @@
-
 # A Brief History of Decentralised Scaling
 
-This article will cover how the scaling solutions for decentralised systems in the crypto world have evolved with regards to the consensus algorithms that have been used, what their problems are and how Flare tries to address them.
-We will cover how various blockchains fare in the realm of the [blockchain trilemma](https://vitalik.ca/general/2021/04/07/sharding.html) which roughly states that it is hard to achieve more than 2 ouf 3 from security, scalability and decentralization.
+This article covers how the scaling solutions for decentralized systems in the crypto world have evolved with regards to the consensus algorithms that have been used, what their problems are and how Flare tries to address them.
+It also addresses how various blockchains fare in the realm of the [blockchain trilemma](https://vitalik.ca/general/2021/04/07/sharding.html) which roughly states that it is hard to achieve more than 2 ouf 3 from security, scalability and decentralization.
 
-The concepts at the foundation of blockchain technology, such as cryptography and peer-to-peer networks, were around before the 2000s.
-Still there was no concept of a truly digital currency due to the double spending problem.
+The concepts at the foundation of blockchain technology, such as cryptography (for data encryption) and peer-to-peer networks (that handle distributed information being exchanged between the participants) were around before the 2000s.
+However, there was no concept of a truly digital currency due to the [double spending problem](https://en.wikipedia.org/wiki/Double-spending).
 For example, say I have $100 worth of digital value and I send $100 to both Alice and Bob at the same time.
 There used to be no fully robust way to determine which one of the two transactions is the valid one.
 
@@ -15,7 +14,7 @@ There used to be no fully robust way to determine which one of the two transacti
    So now imagine I have 100 bitcoins.
    There are many machines/nodes which have this information that I have 100 bitcoins.
    If I send 50 of them to Alice then certain things happen before the transfer gets finalized.
-Nodes collect pending transactions in a memory pool.
+Nodes collect pending transactions (sent out by wallet applications) in a memory pool.
 When a node solves the computational problem, it gets to pick the transactions from its memory pool that get included in the next block and thus become part of the consensus state. 
 However, only under the condition that the block follows the rules on transaction validity, i.e. doesn't include any transactions spending the same unit of account twice.   
 This is termed as "Nakamoto consensus".
@@ -33,8 +32,10 @@ Also, some PoW based blockchains like Ethereum suffer from huge transaction fees
 Bitcoin's PoW has the potential to scale a lot in terms of payment system; but the wastage of energy is its biggest problem.
 
 ## 2. Federated Byzantine Agreement
-“Byzantine Generals Problem” is the problem when there are various nodes communicating with each other and a few of them are “Byzantine” which means either faulty or malicious.
-Any blockchain should have mechanisms to solve the Byzantine Generals Problem. 
+[Byzantine Generals Problem](https://bravenewgeek.com/tag/byzantine-generals-problem/) is the problem when there are various nodes communicating with each other and a few of them are “Byzantine” which means either faulty or malicious.
+This means some of the nodes may send out messages which contain deliberately wrong information.
+In the context of blockchain that would concern false signatures, double spent transactions, not replying to messages, etc.
+Therefore, any blockchain should have mechanisms to solve the Byzantine Generals Problem. 
 In case of Bitcoin, the mechanism is PoW.
 Federated Byzantine Agreement (FBA) consensus in a family of consensus protocols, which eliminates Byzantine faults, and provides deterministic finality (unlike PoW which has only probabilistic finality), without having the selection of validators as part of the protocol itself.   
 This was introduced by Stellar.
@@ -44,21 +45,21 @@ As long as the majority of nodes are not malicious, this will ensure security of
 Various overlapping quorum slices across the network makes it almost impossible for the majority of nodes to collude to control consensus.
 Safety and fault tolerance are [preferred over liveness](https://www.youtube.com/watch?v=aU08km2xrz0&ab_channel=Lumenauts).
 In case of an accidental fork, the system is halted until consensus is reached.
-This is important in case of banking applications.
-Consensus that requires only message passing followed by voting process leads to high transaction volume per second and less expenditure of electricity than PoW.
+This is important in banking applications.
+A consensus that requires only message exchanging followed by voting process leads to high messages volume per second and less expenditure of electricity than PoW.
 However, a criticism of pure FBA is that it leads to fragile structures of constituent nodes, permitting topology scenarios where a single node failure can cause a network-wide failure.
 For example, [in November 2021](https://u.today/xrp-ledger-is-back-on-track-after-temporary-halt), four validators in Ripple went down which halted the whole network for 15 minutes because consensus could not longer be reached.
 
 ## 3. Proof of Stake
 
-   Then came the Proof of Stake(PoS) consensus algorithms (e.g. Casper).
-   This no longer needs the computational resources for validation of blocks but rather how much a node or node pool has staked and how long it has been active.
-   Staking is like putting some native cryptocurrency as a collateral.
-   The higher the stake, the higher the chances of getting to write a block on behalf of the whole ecosystem and in return receive some cryptocurrency.
-   Two keywords are different here compared to PoW: (1) Computers that participate in PoS consensus are called Validators, (2) Once a block has been created and accepted by the network, it is said to be forged (not mined).
-   Then the validator gets some reward.
+Then came the [Proof of Stake](https://www.investopedia.com/terms/p/proof-stake-pos.asp) (PoS) consensus algorithms (e.g. Casper).
+This type no longer needs the computational power used for blocks validating but rather an amount staked by network participants (being single or in clusters).
+Staking is putting some native cryptocurrency as a collateral in order to become a validating entity in the network.
+The higher the stake, the higher the chances of getting to write a block on behalf of the whole ecosystem and in return receive some cryptocurrency.
+Two keywords are different here compared to PoW: (1) Computers that participate in PoS consensus are called Validators, (2) Once a block has been created and accepted by the network, it is said to be forged (not mined).
+Then the validator gets some reward.
 If a user doesn't want to run his own validator, then he can generally simply "delegate" his tokens to the validators, which is like staking without running his own validator, and add the weight of the delegated tokens to the staked tokens of the chosen validator, in return for giving part of the reward to the validator.
-   If a validator tries to be malicious then it gets penalised losing some of its staked cryptocurrency.
+If a validator tries to be malicious then it gets penalised losing some of its staked cryptocurrency.
 
 One key difference between PoS and PoW is that a block on a PoS chain has deterministic finality, meaning that once it has been accepted fully, there is no way to ever undo it. 
 In Pow, it can (in theory) always be undone by creating a longer valid chain of blocks.
@@ -73,9 +74,9 @@ This means that a lot of communication is needed.
 In general, voting on the next correct block requires multiple rounds of communication (preparation round, confirmation round and commit round), and the more validators there are, the more overhead there is for everyone to get their messages to the leader of a round.
 Due to this high number of communication scalability is hindered.
 
-   Also the higher the adaptation, the higher the overall value represented by the overall native cryptocurrency and therefore higher the value that needs to be locked up as staking by the nodes.
-   This means the native currency's full potential isn't utilised as once they are locked, they can no longer be used for any other purposes unless they are unlocked after the locking period expires.
-   Network’s security is proportional to the value of stake committed.
+Also the higher the adaptation, the higher the total value represented by the native cryptocurrency and therefore higher the value that needs to be locked up as staking by the nodes.
+This means the native currency's full potential isn't utilised as once they are locked, they can no longer be used for any other purposes unless they are unlocked after the locking period expires.
+Network’s security is proportional to the value of stake committed.
 
 ## 3.1 Sharding and layer 2 solutions
 
