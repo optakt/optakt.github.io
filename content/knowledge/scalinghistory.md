@@ -5,24 +5,24 @@ It also addresses how various blockchains fare in the realm of the [blockchain t
 
 The concepts at the foundation of blockchain technology, such as cryptography (for data encryption) and peer-to-peer networks (that handle distributed information being exchanged between the participants) were around before the 2000s.
 However, there was no concept of a truly digital currency due to the [double spending problem](https://en.wikipedia.org/wiki/Double-spending).
-For example, say I have $100 worth of digital value and I send $100 to both Alice and Bob at the same time.
+For example, say Brian has $100 worth of digital value, and Brian sends $100 to both Alice and Bob at the same time.
 There used to be no fully robust way to determine which one of the two transactions is the valid one.
 
-## 1. Proof of Work
+## Proof of Work
 
-   Then came Satoshi Nakamoto who introduced the pre-existing concept of Proof of Work (PoW) on top of a Blockchain which acts as a distributed ledger of all the transactions of currency.
-   So now imagine I have 100 bitcoins.
-   There are many machines/nodes which have this information that I have 100 bitcoins.
-   If I send 50 of them to Alice then certain things happen before the transfer gets finalized.
+Then came Satoshi Nakamoto who introduced the pre-existing concept of Proof of Work (PoW) on top of a Blockchain which acts as a distributed ledger of all the transactions of currency.
+So now imagine Brian has 100 bitcoins.
+There are many machines/nodes which have this information that Brian has 100 bitcoins.
+If Brian sends 50 of them to Alice then certain things happen before the transfer gets finalized.
 Nodes collect pending transactions (sent out by wallet applications) in a memory pool.
 When a node solves the computational problem, it gets to pick the transactions from its memory pool that get included in the next block and thus become part of the consensus state. 
-However, only under the condition that the block follows the rules on transaction validity, i.e. doesn't include any transactions spending the same unit of account twice.   
+However, only under the condition that the block follows the rules on transaction validity, i.e. does not include any transactions spending the same unit of account twice.   
 This is termed as "Nakamoto consensus".
-   A good interactive visualisation of how PoW consensus might work and create a chain of blocks can be found [here](https://youtu.be/_160oMzblY8).
+A good interactive visualisation of how PoW consensus might work and create a chain of blocks can be found [here](https://youtu.be/_160oMzblY8).
 
 PoW by itself isn’t very new.
-Original similar implementation was thought of in 1992 to [combat email spam](https://en.wikipedia.org/wiki/Hashcash).
-In that use case, every email will have some form of simple proof of work so that it is easy for me to send email to a friend but gets very hard for a spammer to send millions of emails at the same time.
+A similar implementation was thought of in 1992 to [combat email spam](https://en.wikipedia.org/wiki/Hashcash).
+In that use case using the Hashcash system, every email has some form of simple proof of work, which makes it is easy for someone to send an email to a friend but makes it difficult for a spammer to send millions of emails at the same time.
 
 In theory, PoW can scale infinitely.
 The more successful the network is, the higher the demand for the token. 
@@ -31,7 +31,7 @@ As the price increases, more miners are able to profitably run miners, and more 
 Also, some PoW based blockchains like Ethereum suffer from huge transaction fees as well as low throughput of 10-15 transactions per second which make them impractical for true global usage.
 Bitcoin's PoW has the potential to scale a lot in terms of payment system; but the wastage of energy is its biggest problem.
 
-## 2. Federated Byzantine Agreement
+## Federated Byzantine Agreement
 [Byzantine Generals Problem](https://bravenewgeek.com/tag/byzantine-generals-problem/) is the problem when there are various nodes communicating with each other and a few of them are “Byzantine” which means either faulty or malicious.
 This means some of the nodes may send out messages which contain deliberately wrong information.
 In the context of blockchain that would concern false signatures, double spent transactions, not replying to messages, etc.
@@ -50,7 +50,7 @@ A consensus that requires only message exchanging followed by voting process lea
 However, a criticism of pure FBA is that it leads to fragile structures of constituent nodes, permitting topology scenarios where a single node failure can cause a network-wide failure.
 For example, [in November 2021](https://u.today/xrp-ledger-is-back-on-track-after-temporary-halt), four validators in Ripple went down which halted the whole network for 15 minutes because consensus could not longer be reached.
 
-## 3. Proof of Stake
+## Proof of Stake
 
 Then came the [Proof of Stake](https://www.investopedia.com/terms/p/proof-stake-pos.asp) (PoS) consensus algorithms (e.g. Casper).
 This type no longer needs the computational power used for blocks validating but rather an amount staked by network participants (being single or in clusters).
@@ -58,7 +58,7 @@ Staking is putting some native cryptocurrency as a collateral in order to become
 The higher the stake, the higher the chances of getting to write a block on behalf of the whole ecosystem and in return receive some cryptocurrency.
 Two keywords are different here compared to PoW: (1) Computers that participate in PoS consensus are called Validators, (2) Once a block has been created and accepted by the network, it is said to be forged (not mined).
 Then the validator gets some reward.
-If a user doesn't want to run his own validator, then he can generally simply "delegate" his tokens to the validators, which is like staking without running his own validator, and add the weight of the delegated tokens to the staked tokens of the chosen validator, in return for giving part of the reward to the validator.
+If a user does not want to run his own validator, then he can generally simply "delegate" his tokens to the validators, which is like staking without running his own validator, and add the weight of the delegated tokens to the staked tokens of the chosen validator, in return for giving part of the reward to the validator.
 If a validator tries to be malicious then it gets penalised losing some of its staked cryptocurrency.
 
 One key difference between PoS and PoW is that a block on a PoS chain has deterministic finality, meaning that once it has been accepted fully, there is no way to ever undo it. 
@@ -68,51 +68,51 @@ Also no unnecessary wastage of energy means PoS is more environment friendly.
 PoS algorithms based on BFT need 2/3+1 of the nodes to be honest, so the required threshold is higher than PoW where an attacker needs 51% of all computing power.
 Sustainability, security are achieved in a PoS model like the one in Cardano.
 In PoS, explicit agreement is required before a block becomes valid.
-If a sufficient number of validators don't sign the block then it will be rejected even if all consensus rule is followed by the block.
+If a sufficient number of validators do not sign the block then it will be rejected even if all consensus rule is followed by the block.
 Only after the necessary number of participants to the consensus algorithm explicitly vote for the block by signing it, will it become valid.
 This means that a lot of communication is needed. 
 In general, voting on the next correct block requires multiple rounds of communication (preparation round, confirmation round and commit round), and the more validators there are, the more overhead there is for everyone to get their messages to the leader of a round.
 Due to this high number of communication scalability is hindered.
 
 Also the higher the adaptation, the higher the total value represented by the native cryptocurrency and therefore higher the value that needs to be locked up as staking by the nodes.
-This means the native currency's full potential isn't utilised as once they are locked, they can no longer be used for any other purposes unless they are unlocked after the locking period expires.
+This means the native currency's full potential is not utilised as once they are locked, they can no longer be used for any other purposes unless they are unlocked after the locking period expires.
 Network’s security is proportional to the value of stake committed.
 
-## 3.1 Sharding and layer 2 solutions
+## Sharding and layer 2 solutions
 
-   For solving this scaling issue, 'sharding' is introduced (e.g. in the case of [Ethereum 2.0](https://www.youtube.com/watch?v=ctzGr58_jeI&t=657s&ab_channel=Finematics)).
-   Sharding is a way of spreading the computing and storage workload from a blockchain network, so that each node no longer has to process the entire network's transactional load.
-   Each node only needs to maintain info corresponding to its specific shard or partition.
-   For example, addresses starting with “0x00” will be part of shard 1 and addresses starting with “0x01” will be part of shard 2 etc.
-   There is a mechanism in place for inter-shard communication so that the whole blockchain is still viewable from any node.
-   All the shards will be connected to the “Beacon chain” which will have all the history with it and acts as an orchestrator of the whole network.
-   The consensus between all the shards will be maintained by a "beacon chain".
-   However, sharding has its own challenges.
-   Corrupting nodes in a given shard may lead to permanent loss of data.
-   One way to tackle this issue is by randomly assigning a node to a shard and randomly reassigning the node to another shard.
-   Sharding has another problem that the composability aspect of smart contract compatible blockchain will no longer exist.
-   For example, if a Decentralized Finance (DeFi) platform built on top of Ethereum relies on relies on or combines few other projects, then in a sharded system of Ethereum2.0, ideally they should be on the same shard which may not always be the case.
-   If they are not on the same shard then they all needs to be ok with asynchronous updates which is [not ideal](https://www.coindesk.com/tech/2020/10/13/will-a-sharded-ethereum-be-flexible-enough-for-decentralized-finance/).
+For solving this scaling issue, 'sharding' is introduced (e.g. in the case of [Ethereum 2.0](https://www.youtube.com/watch?v=ctzGr58_jeI&t=657s&ab_channel=Finematics)).
+Sharding is a way of spreading the computing and storage workload from a blockchain network, so that each node no longer has to process the entire network's transactional load.
+Each node only needs to maintain info corresponding to its specific shard or partition.
+For example, addresses starting with “0x00” will be part of shard 1 and addresses starting with “0x01” will be part of shard 2 etc.
+There is a mechanism in place for inter-shard communication so that the whole blockchain is still viewable from any node.
+All the shards will be connected to the “Beacon chain” which will have all the history with it and acts as an orchestrator of the whole network.
+The consensus between all the shards will be maintained by a "beacon chain".
+However, sharding has its own challenges.
+Corrupting nodes in a given shard may lead to permanent loss of data.
+One way to tackle this issue is by randomly assigning a node to a shard and randomly reassigning the node to another shard.
+Sharding has another problem that the composability aspect of smart contract compatible blockchain will no longer exist.
+For example, if a Decentralized Finance (DeFi) platform built on top of Ethereum relies on relies on or combines few other projects, then in a sharded system of Ethereum2.0, ideally they should be on the same shard which may not always be the case.
+If they are not on the same shard then they all needs to be ok with asynchronous updates which is [not ideal](https://www.coindesk.com/tech/2020/10/13/will-a-sharded-ethereum-be-flexible-enough-for-decentralized-finance/).
 
-## 4. Avalanche
+## Avalanche
 
 The next level solution for scalability in terms of consensus algorithms is by Avalanche network which uses Snow Consensus with PoS as the underlying [sybil control mechanism](https://en.wikipedia.org/wiki/Sybil_attack).
 In Snow consensus, in short, a particular node randomly sub-samples from other nodes multiple times across multiple cycles and eventually arrives at a consensus.
 This is then recorded in a Directed Acyclic Graph (DAG) as opposed to a chain of blocks.
-Every node has its own view of the current consensus state; they don't progress in lock-step like they do for BFT algorithms.
+Every node has its own view of the current consensus state; they do not progress in lock-step like they do for BFT algorithms.
 However, the local view of each node is eventually consistent with the view of all other nodes on the network.
 
 Snow consensus can easily scale to a higher level compared to PoW or PoS.
 Because the communicational complexity is much lower than BFT; we only need to communicate with random sub-samples of the network for each round. 
-If these are logarithmically smaller than the entire set of validators on the network, the performance doesn't decrease exponentially with the size of the validator set.
+If these are logarithmically smaller than the entire set of validators on the network, the performance does not decrease exponentially with the size of the validator set.
 However, one common issue for PoS blockchains remains: the security of the network depends on the ratio of capital locked up for validation.
 Usually many PoS based networks impose a penalty for malicious validators or validators that aren’t online continuously by slashing which is taking away some of the staked tokens as a punishment.
-In case of Snow consensus, nodes monitor uptime and nodes don't receive rewards when they are not up long enough.
+In case of Snow consensus, nodes monitor uptime and nodes do not receive rewards when they are not up long enough.
 
 Avalanche is a leaderless protocol, which is the first one of its kind. 
 In BFT PoS, there is a leader for every round that has to propose the block; in Avalanche, everyone can propose state changes concurrently.
 
-## 5. Flare
+## Flare
 
 Flare network combines best of both worlds by introducing FBA into the Snow consensus of Avalanche.
 Flare’s FBA achieves safety without relying too much on economic incentives that can interfere with high-value use cases.
@@ -133,10 +133,10 @@ However, someone running a price provider or a proof attestor also needs to run 
 
 Below is a summary of characteristics of various distributed networks:
 
-| Crypto Project  | Decentralisation  |Security   |  Scalability |Energy Efficient   |Composability   | Throughput  |
-|---|---|---|---|---|---|---|
-|Bitcoin(PoW)   | ✅  | ✅  | ❌  |❌   | ❌  | ❌  |
-|Ethereum(PoW)   | ✅  | ✅  | ❌  | ❌  | ✅  | ❌  |
-|Eth2.0(PoS+Sharding)   |✅   |✅   |✅   |✅   | ❌  | ✅  |
-|Avalanche(PoS)   | ✅  | ✅  | ❌  | ✅  |✅   |✅   |
-|Flare(Ava+FBA+UNL)   | ✅  |✅   | ✅  | ✅  |✅   | ✅  |
+| Crypto Project       | Decentralisation | Security | Scalability | Energy Efficient | Composability | Throughput |
+|----------------------|------------------|----------|-------------|------------------|---------------|------------|
+| Bitcoin(PoW)         | ✅                | ✅        | ❌           | ❌                | ❌             | ❌          |
+| Ethereum(PoW)        | ✅                | ✅        | ❌           | ❌                | ✅             | ❌          |
+| Eth2.0(PoS+Sharding) | ✅                | ✅        | ✅           | ✅                | ❌             | ✅          |
+| Avalanche(PoS)       | ✅                | ✅        | ❌           | ✅                | ✅             | ✅          |
+| Flare(Ava+FBA+UNL)   | ✅                | ✅        | ✅           | ✅                | ✅             | ✅          |
