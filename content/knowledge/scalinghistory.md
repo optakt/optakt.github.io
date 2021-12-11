@@ -15,8 +15,8 @@ So now imagine Brian has 100 bitcoins.
 There are many machines/nodes which have this information that Brian has 100 bitcoins.
 If Brian sends 50 of them to Alice then certain things happen before the transfer gets finalized.
 Nodes collect pending transactions (sent out by wallet applications) in a memory pool.
-When a node solves the computational problem, it gets to pick the transactions from its memory pool that get included in the next block and thus become part of the consensus state. 
-However, only under the condition that the block follows the rules on transaction validity, i.e. does not include any transactions spending the same unit of account twice.   
+When a node solves the computational problem, it gets to pick the transactions from its memory pool that get included in the next block and thus become part of the consensus state.
+However, only under the condition that the block follows the rules on transaction validity, i.e. does not include any transactions spending the same unit of account twice.
 This is termed as "Nakamoto consensus".
 A good interactive visualisation of how PoW consensus might work and create a chain of blocks can be found [here](https://youtu.be/_160oMzblY8).
 
@@ -25,19 +25,20 @@ A similar implementation was thought of in 1992 to [combat email spam](https://e
 In that use case using the Hashcash system, every email has some form of simple proof of work, which makes it is easy for someone to send an email to a friend but makes it difficult for a spammer to send millions of emails at the same time.
 
 In theory, PoW can scale infinitely.
-The more successful the network is, the higher the demand for the token. 
+The more successful the network is, the higher the demand for the token.
 The higher the demand for the token, the more the price will increase.
 As the price increases, more miners are able to profitably run miners, and more power is wasted.
 Also, some PoW based blockchains like Ethereum suffer from huge transaction fees as well as low throughput of 10-15 transactions per second which make them impractical for true global usage.
 Bitcoin's PoW has the potential to scale a lot in terms of payment system; but the wastage of energy is its biggest problem.
 
 ## Federated Byzantine Agreement
+
 [Byzantine Generals Problem](https://bravenewgeek.com/tag/byzantine-generals-problem/) is the problem when there are various nodes communicating with each other and a few of them are “Byzantine” which means either faulty or malicious.
 This means some of the nodes may send out messages which contain deliberately wrong information.
 In the context of blockchain that would concern false signatures, double spent transactions, not replying to messages, etc.
-Therefore, any blockchain should have mechanisms to solve the Byzantine Generals Problem. 
+Therefore, any blockchain should have mechanisms to solve the Byzantine Generals Problem.
 In case of Bitcoin, the mechanism is PoW.
-Federated Byzantine Agreement (FBA) consensus in a family of consensus protocols, which eliminates Byzantine faults, and provides deterministic finality (unlike PoW which has only probabilistic finality), without having the selection of validators as part of the protocol itself.   
+Federated Byzantine Agreement (FBA) consensus in a family of consensus protocols, which eliminates Byzantine faults, and provides deterministic finality (unlike PoW which has only probabilistic finality), without having the selection of validators as part of the protocol itself.
 This was introduced by Stellar.
 In FBA, every node has its “quorum set” which is a list of other nodes which this particular node trusts.
 Therefore, to achieve consensus for a transaction, the node relies on the members in its quorum set.
@@ -61,7 +62,7 @@ Then the validator gets some reward.
 If a user does not want to run his own validator, then he can generally simply "delegate" his tokens to the validators, which is like staking without running his own validator, and add the weight of the delegated tokens to the staked tokens of the chosen validator, in return for giving part of the reward to the validator.
 If a validator tries to be malicious then it gets penalised losing some of its staked cryptocurrency.
 
-One key difference between PoS and PoW is that a block on a PoS chain has deterministic finality, meaning that once it has been accepted fully, there is no way to ever undo it. 
+One key difference between PoS and PoW is that a block on a PoS chain has deterministic finality, meaning that once it has been accepted fully, there is no way to ever undo it.
 In Pow, it can (in theory) always be undone by creating a longer valid chain of blocks.
 PoS is relatively faster than PoW as there is no need to solve complex cryptographic puzzles to get to be the block writer and the process is much more streamlined.
 Also no unnecessary wastage of energy means PoS is more environment friendly.
@@ -70,7 +71,7 @@ Sustainability, security are achieved in a PoS model like the one in Cardano.
 In PoS, explicit agreement is required before a block becomes valid.
 If a sufficient number of validators do not sign the block then it will be rejected even if all consensus rule is followed by the block.
 Only after the necessary number of participants to the consensus algorithm explicitly vote for the block by signing it, will it become valid.
-This means that a lot of communication is needed. 
+This means that a lot of communication is needed.
 In general, voting on the next correct block requires multiple rounds of communication (preparation round, confirmation round and commit round), and the more validators there are, the more overhead there is for everyone to get their messages to the leader of a round.
 Due to this high number of communication scalability is hindered.
 
@@ -103,13 +104,13 @@ Every node has its own view of the current consensus state; they do not progress
 However, the local view of each node is eventually consistent with the view of all other nodes on the network.
 
 Snow consensus can easily scale to a higher level compared to PoW or PoS.
-Because the communicational complexity is much lower than BFT; we only need to communicate with random sub-samples of the network for each round. 
+Because the communicational complexity is much lower than BFT; we only need to communicate with random sub-samples of the network for each round.
 If these are logarithmically smaller than the entire set of validators on the network, the performance does not decrease exponentially with the size of the validator set.
 However, one common issue for PoS blockchains remains: the security of the network depends on the ratio of capital locked up for validation.
 Usually many PoS based networks impose a penalty for malicious validators or validators that aren’t online continuously by slashing which is taking away some of the staked tokens as a punishment.
 In case of Snow consensus, nodes monitor uptime and nodes do not receive rewards when they are not up long enough.
 
-Avalanche is a leaderless protocol, which is the first one of its kind. 
+Avalanche is a leaderless protocol, which is the first one of its kind.
 In BFT PoS, there is a leader for every round that has to propose the block; in Avalanche, everyone can propose state changes concurrently.
 
 ## Flare
@@ -124,11 +125,12 @@ The native token, Spark, can be used to delegate to the price providers for FTSO
 There is no hard link between the safety of the network and the value of native token Spark which allows greater flexibility for how Spark can be used.
 
 In Flare, there are two sets of validators:
+
 * the local set of validators that we rely on for consensus;
 * the set of underlying chain validators/miners, that can propose blocks.
 
-When someone proposes a block, they do receive a reward. 
-These sets can overlap. 
+When someone proposes a block, they do receive a reward.
+These sets can overlap.
 However, someone running a price provider or a proof attestor also needs to run a node, so there will be many more nodes than just the underlying chain validators/miners.
 
 Below is a summary of characteristics of various distributed networks:
