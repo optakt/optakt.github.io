@@ -26,7 +26,7 @@ In that use case using the Hashcash system, every email has some form of simple 
 
 In theory, PoW can scale infinitely.
 The more successful the network is, the higher the demand for the token.
-The higher the demand for the token, the more the price will increase.
+The higher the demand for the token, the more its value increases.
 As the price increases, more miners are able to profitably run miners, and more power is wasted.
 Also, some PoW based blockchains like Ethereum suffer from huge transaction fees as well as low throughput of 10-15 transactions per second which make them impractical for true global usage.
 Bitcoin's PoW has the potential to scale a lot in terms of payment system; but the wastage of energy is its biggest problem.
@@ -42,7 +42,7 @@ Federated Byzantine Agreement (FBA) consensus in a family of consensus protocols
 This was introduced by Stellar.
 In FBA, every node has its “quorum set” which is a list of other nodes which this particular node trusts.
 Therefore, to achieve consensus for a transaction, the node relies on the members in its quorum set.
-As long as the majority of nodes are not malicious, this will ensure security of the system.
+As long as the majority of nodes are not malicious, this ensures security of the system.
 Various overlapping quorum slices across the network makes it almost impossible for the majority of nodes to collude to control consensus.
 Safety and fault tolerance are [preferred over liveness](https://www.youtube.com/watch?v=aU08km2xrz0&ab_channel=Lumenauts).
 In case of an accidental fork, the system is halted until consensus is reached.
@@ -57,20 +57,20 @@ Then came the [Proof of Stake](https://www.investopedia.com/terms/p/proof-stake-
 This type no longer needs the computational power used for blocks validating but rather an amount staked by network participants (being single or in clusters).
 Staking is putting some native cryptocurrency as a collateral in order to become a validating entity in the network.
 The higher the stake, the higher the chances of getting to write a block on behalf of the whole ecosystem and in return receive some cryptocurrency.
-Two keywords are different here compared to PoW: (1) Computers that participate in PoS consensus are called Validators, (2) Once a block has been created and accepted by the network, it is said to be forged (not mined).
+Two keywords are different here compared to PoW: computers that participate in PoS consensus are called _validators_, and once a block has been created and accepted by the network, it is said to be _forged_ (not mined).
 Then the validator gets some reward.
 If a user does not want to run his own validator, then he can generally simply "delegate" his tokens to the validators, which is like staking without running his own validator, and add the weight of the delegated tokens to the staked tokens of the chosen validator, in return for giving part of the reward to the validator.
 If a validator tries to be malicious then it gets penalised losing some of its staked cryptocurrency.
 
 One key difference between PoS and PoW is that a block on a PoS chain has deterministic finality, meaning that once it has been accepted fully, there is no way to ever undo it.
-In Pow, it can (in theory) always be undone by creating a longer valid chain of blocks.
+In Pow, it can theoretically always be undone by creating a longer valid chain of blocks.
 PoS is relatively faster than PoW as there is no need to solve complex cryptographic puzzles to get to be the block writer and the process is much more streamlined.
 Also no unnecessary wastage of energy means PoS is more environment friendly.
 PoS algorithms based on BFT need 2/3+1 of the nodes to be honest, so the required threshold is higher than PoW where an attacker needs 51% of all computing power.
 Sustainability, security are achieved in a PoS model like the one in Cardano.
 In PoS, explicit agreement is required before a block becomes valid.
-If a sufficient number of validators do not sign the block then it will be rejected even if all consensus rule is followed by the block.
-Only after the necessary number of participants to the consensus algorithm explicitly vote for the block by signing it, will it become valid.
+If a sufficient number of validators do not sign the block, it gets rejected, even if all consensus rule is followed by the block.
+Only after the necessary number of participants to the consensus algorithm explicitly vote for the block by signing it, does it become valid.
 This means that a lot of communication is needed.
 In general, voting on the next correct block requires multiple rounds of communication (preparation round, confirmation round and commit round), and the more validators there are, the more overhead there is for everyone to get their messages to the leader of a round.
 Due to this high number of communication scalability is hindered.
@@ -79,19 +79,19 @@ Also the higher the adaptation, the higher the total value represented by the na
 This means the native currency's full potential is not utilised as once they are locked, they can no longer be used for any other purposes unless they are unlocked after the locking period expires.
 Network’s security is proportional to the value of stake committed.
 
-## Sharding and layer 2 solutions
+## Sharding and Layer 2 Solutions
 
 For solving this scaling issue, 'sharding' is introduced (e.g. in the case of [Ethereum 2.0](https://www.youtube.com/watch?v=ctzGr58_jeI&t=657s&ab_channel=Finematics)).
 Sharding is a way of spreading the computing and storage workload from a blockchain network, so that each node no longer has to process the entire network's transactional load.
 Each node only needs to maintain info corresponding to its specific shard or partition.
-For example, addresses starting with “0x00” will be part of shard 1 and addresses starting with “0x01” will be part of shard 2 etc.
+For example, addresses starting with “0x00” are part of shard 1 and addresses starting with “0x01” are part of shard 2 etc.
 There is a mechanism in place for inter-shard communication so that the whole blockchain is still viewable from any node.
-All the shards will be connected to the “Beacon chain” which will have all the history with it and acts as an orchestrator of the whole network.
-The consensus between all the shards will be maintained by a "beacon chain".
+All the shards are connected to the “Beacon chain” which has access to all the chain's history and acts as an orchestrator of the whole network.
+The consensus between all the shards is maintained by a "beacon chain".
 However, sharding has its own challenges.
 Corrupting nodes in a given shard may lead to permanent loss of data.
 One way to tackle this issue is by randomly assigning a node to a shard and randomly reassigning the node to another shard.
-Sharding has another problem that the composability aspect of smart contract compatible blockchain will no longer exist.
+Sharding has another problem: smart contract compatible blockchains are no longer composable.
 For example, if a Decentralized Finance (DeFi) platform built on top of Ethereum relies on relies on or combines few other projects, then in a sharded system of Ethereum2.0, ideally they should be on the same shard which may not always be the case.
 If they are not on the same shard then they all needs to be ok with asynchronous updates which is [not ideal](https://www.coindesk.com/tech/2020/10/13/will-a-sharded-ethereum-be-flexible-enough-for-decentralized-finance/).
 
@@ -120,8 +120,8 @@ Flare’s FBA achieves safety without relying too much on economic incentives th
 In Flare, each node has its own local set of validators or quorum set also known as Unique Node List (UNL).
 This varies from the usual FBA because of another requirement that there should be a minimum level of overlap between UNLs.
 This makes the network more single node failure resistant as well as Sybil attack resistant.
-This is because a malicious actor is unlikely to be able to spin up many node instances that will also make it to the UNL list of other existing quorum sets.
-The native token, Spark, can be used to delegate to the price providers for FTSO (link to FTSO article) without having any locking thereby enabling other usage of Spark at the same time.
+This is because a malicious actor is unlikely to be able to spin up many node instances that manage to integrate the UNL list of other existing quorum sets.
+The native token, Spark, is used to delegate to the price providers for [Flare Time Series Oracle (FTSO)](https://flare.xyz/ftso-a-breakdown/) without having any locking thereby enabling other usage of Spark at the same time.
 There is no hard link between the safety of the network and the value of native token Spark which allows greater flexibility for how Spark can be used.
 
 In Flare, there are two sets of validators:
@@ -129,9 +129,9 @@ In Flare, there are two sets of validators:
 * the local set of validators that we rely on for consensus;
 * the set of underlying chain validators/miners, that can propose blocks.
 
-When someone proposes a block, they do receive a reward.
+When someone proposes a block, they receive a reward.
 These sets can overlap.
-However, someone running a price provider or a proof attestor also needs to run a node, so there will be many more nodes than just the underlying chain validators/miners.
+However, someone running a price provider or a proof attestor also needs to run a node, which results in many more nodes than just the underlying chain validators/miners.
 
 Below is a summary of characteristics of various distributed networks:
 
