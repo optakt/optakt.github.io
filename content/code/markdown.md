@@ -13,7 +13,7 @@
 
 * Section titles should follow the [Chicago Title Capitalization](https://en.wikipedia.org/wiki/Title_case#Chicago_Manual_of_Style) standard.
 * Documents should start with a level one heading and should ideally be the same as the file name.
-* Sections should be ordered hierarchically. Each document starts with a level one heading (`#`), which contains one or more level two headings (`##`), which contain one or more level threes (`###`) and so on.
+* Sections should be ordered hierarchically. Each document starts with a level one heading (`#`), which can contain one or more level two headings (`##`), which can contain one or more level threes (`###`) and so on.
 
 ### Formatting
 
