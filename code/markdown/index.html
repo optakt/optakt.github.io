@@ -320,6 +320,40 @@
     General
   </a>
   
+    <nav class="md-nav" aria-label="General">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sections" class="md-nav__link">
+    Sections
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formatting" class="md-nav__link">
+    Formatting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technical-writing" class="md-nav__link">
+    Technical Writing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    Links
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -567,6 +601,40 @@
     General
   </a>
   
+    <nav class="md-nav" aria-label="General">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sections" class="md-nav__link">
+    Sections
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formatting" class="md-nav__link">
+    Formatting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technical-writing" class="md-nav__link">
+    Technical Writing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    Links
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -599,14 +667,31 @@
                 <h1 id="markdown-style-guidelines">Markdown Style Guidelines</h1>
 <h2 id="general">General</h2>
 <ul>
+<li>Always keep the scope of the document in mind. A document should precisely fulfill its purpose, nothing more, nothing less.
+  It is a common pitfall to end up going into rabbit holes and spending half a document explaining irrelevant details.</li>
+<li>Try to write short sentences whenever possible to avoid complex grammar, complex use of tenses, ambiguous pronouns and so on.
+  A good guideline when it comes to technical writing is to aim for 20-30 words per sentence.
+  Keeping sentences short should however never come at the expense of clarity, syntactic cues and important information.</li>
+<li>Just like in code, consistency is key.</li>
+</ul>
+<h3 id="sections">Sections</h3>
+<ul>
 <li>Section titles should follow the <a href="https://en.wikipedia.org/wiki/Title_case#Chicago_Manual_of_Style">Chicago Title Capitalization</a> standard.</li>
-<li>Lists should use the <code>*</code> character rather than the <code>-</code> character.</li>
 <li>Documents should start with a level one heading and should ideally be the same as the file name.</li>
-<li>For long files that are not served within this repository, it is best to have a table of contents at the end of the introduction of the level one heading section.</li>
+<li>Sections should be ordered hierarchically. Each document starts with a level one heading (<code>#</code>), which can contain one or more level two headings (<code>##</code>), which can contain one or more level threes (<code>###</code>) and so on.</li>
+</ul>
+<h3 id="formatting">Formatting</h3>
+<ul>
+<li>Lists should use the <code>*</code> character rather than the <code>-</code> character.</li>
 <li>Keep extra newlines between paragraphs and sections to make the source easier to read.</li>
+<li>Paragraphs that include multiple sentences should have the sentences on separate lines, so that updating one sentence results in a clear diff where one line changes.</li>
+<li>For long files that are not served within this repository, it is best to have a table of contents at the end of the introduction of the level one heading section.</li>
 <li>Always specify the language for code blocks so that neither the syntax highlighter nor the text editor must guess.
   If no specific type makes sense, just use <code>text</code>.</li>
-<li>Use informative link titles. For example, instead of naming your links "link" or "here", wrap part of the sentence that is meant to be linked as a title.</li>
+</ul>
+<h3 id="technical-writing">Technical Writing</h3>
+<ul>
+<li>Use American English (<code>organize</code> instead of <code>organise</code>, <code>behavior</code> instead of <code>behaviour</code>, etc.)</li>
 <li>Do not use gendered pronouns when talking about users/consumers/whatever but always <code>they/their</code> instead.</li>
 <li>Do not use the future tense but use present simple for expressing general truths instead.</li>
 <li>Use active voice when there is no specific need to use passive.</li>
@@ -615,7 +700,22 @@
 <li>Avoid ambiguous and abstract language (i.e. really, quite, very), imprecise or subjective terms (i.e. fast, slow, tall, small) and words that have no precise meaning (i.e. bit, thing, stuff).</li>
 <li>Avoid contractions (i.e. don't, you'll, etc.) as they are meant for informal contexts.</li>
 <li>Avoid generalized statements, because they are difficult to substantiate and too broad to be supported.</li>
-<li>Paragraphs that include multiple sentences should have the sentences on separate lines, so that updating one sentence results in a clear diff where one line changes.</li>
+<li>Avoid story-telling, remain factual and concise.</li>
+<li>Avoid jargon and humor.</li>
+<li>Avoid em-dashes. Putting non-restrictive relative clauses into separate sentences leads to simpler, clearer writing.
+  If em-dashes are needed, make sure to use the right character: <code>—</code> (alt code: <code>ALT+0151</code>).</li>
+<li>When referring to something in a certain way (i.e. <code>FBAS</code> for <em>Federated Byzantine Agreement System</em>) make sure to consistently use only FBAS consistently after the term is introduced.</li>
+</ul>
+<h3 id="links">Links</h3>
+<ul>
+<li>Use informative link titles. For example, instead of naming your links "link" or "here", wrap part of the sentence that is meant to be linked as a title.</li>
+<li>Links to external sources should be:<ul>
+<li>Clear, concise, factual (not tips &amp; tricks-type articles, or blog posts)</li>
+<li>Reliable to stand the test of time (will not start to 404 because it's a personal blog and the person decided to get rid of it for example)</li>
+<li>From reliable sources (this is where Wikipedia isn't always perfect, but fine for technical subjects)</li>
+</ul>
+</li>
+<li>Whenever possible, use internal links instead of external ones (if something has been described in our documents somewhere, link to it instead of externally)</li>
 </ul>
 <h2 id="specific-to-this-repository">Specific to this Repository</h2>
 <p>In this repository, Markdown is extended by some mkdocs plugins which allow you to include external files within a markdown files, and to insert admonitions.</p>
