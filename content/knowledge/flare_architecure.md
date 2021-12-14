@@ -73,7 +73,7 @@ The State Connector adopts other blockchains’ consensus mechanisms and validat
 
 ### Advantages
 
-A state connector system is a competitive approach for proving the state of an underlying chain to a smart contract, and it has the following advantages:
+A [State Connector System](https://docs.flare.network/en/state-connector) is a competitive approach for proving the state of an underlying chain to a smart contract, and it has the following advantages:
 
 * Transaction validity references back to an underlying chain's genesis block: Other approaches like the SPV (Simplified Payment Verification) proof do not check the validity of a transaction, because it is considered harmful for proving the state of an underlying chain to another network.
 * Safety only depends on an underlying chain's validators: There is no trusted third-party service that has its own set of economic incentives and risks.
@@ -92,24 +92,34 @@ State Connector is built into the validators.
 These validators (or validation nodes) are tasked with ordering transactions and confirming validity for consensus plus digesting state changes from integrated blockchains.
 Validators on the Flare Network operate on the ecosystem as well as the integrated blockchains’ ecosystems.
 
-The validation process consists of two stages:
+### Voting
 
-* congestion control by agreement on data availability
-* proving a transaction
+There are three phases of the State Connector voting protocol:
+* Request
+* Commit
+* Reveal
 
-#### Congestion Control by Agreement on Data Availability
+#### Request Phase
 
-In this stage, validators agree on the state of the underlying chain.
-This process of tracking state change availability occurs via a smart contract on the Ethereum Virtual Machine (EVM) level.
-The integrated blockchain validators can submit a valid claim availability proof in a competition to be first but only allows them to do so again after the timeout period has ended since the last valid claim availability proof.
-Additionally, a fee to submit the availability proofs is required to prevent attacking and spamming.
-The timeout period, fee, and count of finalized blocks from the integrated blockchains can all be changed via governance.
+At any point in time, any user can submit a request to the State Connector contract to have an event proven. 
+The window in time that this request enters the network state is known as the request phase from its perspective.
 
-#### Proving a Transaction
+#### Commit Phase
 
-After enough validators agree on the state of the network (data availability proof), validators need to approve the transaction.
-Validators will agree/disagree on the validity of the transaction using the Federated Byzantine Agreement for the network to reach a consensus.
+During the next window of time, attestation providers have the opportunity to commit a hidden vote regarding their belief in the outcome of the events requested in the previous phase. 
+Anyone may operate as an attestation provider without any capital requirement, but a default incentivised set is used as the minimal requirement for passing a vote about the events in the previous set.
+
+#### Reveal Phase
+
+Finally, in the next window of time, attestation providers reveal their votes that they committed to in the previous round. 
+Once this reveal phase concludes and the next phase begins, the revealed votes are automatically counted and all valid events become immediately available to all contracts on Flare.
 Once these criteria are met and that data is available, then the stored transactions in the storage contract are now available to be referenced by any other contract on the Flare Network.
+
+### Branching
+
+The State Connector branching protocol protects Flare against incorrect interpretation of real-world events, proactively, such that there are never any rollbacks on the Flare blockchain state. 
+Instead of having rollbacks, contention on state correctness is handled via automatic state branching into a correct and incorrect path. 
+The security assumption is that if you as an independent node operator are following along with the correct real-world state, then you will always end up on the correct branch of the blockchain state.
 
 ## Flare Time Series Oracle (FTSO)
 
