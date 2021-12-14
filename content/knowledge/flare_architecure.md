@@ -143,6 +143,8 @@ Signal providers may take fees for this service.
 Additionally, the entire process is noncustodial (i.e. participants retain full control of their own data).
 The FTSO ensures the data is fair and accurate and makes it available to network applications.
 
+Additional info and some implementation details are available in [this example of price provider](https://github.com/flare-foundation/FTSO-price-provider).
+
 ### Delegation
 
 Anyone can submit price data to the FTSO and vote for their price estimate.
