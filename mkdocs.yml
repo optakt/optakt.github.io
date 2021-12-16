@@ -17,6 +17,7 @@ nav:
     - 'Flow': 'knowledge/flow.md'
     - 'Cadence': 'knowledge/cadence.md'
     - 'Flare': 'knowledge/flare.md'
+    - 'History Of Slaing in Blockchain': 'knowledge/scalinghistory.md'
     - 'Glossary': 'knowledge/glossary.md'
 
 theme:
