@@ -5,8 +5,6 @@ It also addresses how various blockchains fare in the realm of the [blockchain t
 
 The concepts at the foundation of blockchain technology, such as cryptography (for data encryption) and peer-to-peer networks (that handle distributed information being exchanged between the participants) were around before the 2000s.
 However, there was no concept of a truly digital currency due to the [double spending problem](https://en.wikipedia.org/wiki/Double-spending).
-For example, say Brian has $100 worth of digital value, and Brian sends $100 to both Alice and Bob at the same time.
-There used to be no fully robust way to determine which one of the two transactions is the valid one.
 
 ## Proof of Work
 
