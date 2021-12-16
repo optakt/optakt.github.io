@@ -76,7 +76,7 @@ This means that a lot of communication is needed.
 In general, voting on the next correct block requires multiple rounds of communication (preparation round, confirmation round and commit round), and the more validators there are, the more overhead there is for everyone to get their messages to the leader of a round.
 Scalability is negatively impacted by the high amount of communication.
 
-Also the higher the adaptation, the higher the total value represented by the native cryptocurrency and therefore higher the value that needs to be locked up as staking by the nodes.
+Also the higher the adoption, the higher the total value represented by the native cryptocurrency and therefore higher the value that needs to be locked up as staking by the nodes.
 This means the native currency's full potential is not utilised as, once it is locked, it can no longer be used for any other purposes.
 Network’s security is proportional to the value of stake committed.
 
@@ -90,11 +90,12 @@ A mechanism for inter-shard communication exists so that the whole blockchain is
 All the shards are connected to the “Beacon chain” which has access to all the chain's history and acts as an orchestrator of the whole network.
 The consensus between all the shards is maintained by a "beacon chain".
 However, sharding has its own challenges.
-Corrupting nodes in a given shard may lead to permanent loss of data.
-One way to tackle this issue is by randomly assigning a node to a shard and randomly reassigning the node to another shard.
+Corrupting nodes in a given shard by an attacker may lead to permanent loss of data.
+One way to tackle this issue is by [randomly assigning](https://www.investopedia.com/terms/s/sharding.asp) nodes to certain shards and constantly reassigning them at random intervals.
+This random sampling would make it difficult for hackers to know when and where to corrupt a shard.
 Sharding has another problem: smart contract compatible blockchains are no longer composable.
 For example, if a Decentralized Finance (DeFi) platform built on top of Ethereum relies on or combines few other projects, then in a sharded system of Ethereum 2.0, ideally they should be on the same shard which may not always be the case.
-If they are not on the same shard then they all needs to be ok with asynchronous updates which is [not ideal](https://www.coindesk.com/tech/2020/10/13/will-a-sharded-ethereum-be-flexible-enough-for-decentralized-finance/).
+If they are not on the same shard then they all need to support asynchronous updates which is [not ideal](https://www.coindesk.com/tech/2020/10/13/will-a-sharded-ethereum-be-flexible-enough-for-decentralized-finance/).
 
 ## Avalanche
 
