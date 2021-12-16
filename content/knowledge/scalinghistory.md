@@ -123,17 +123,19 @@ In Flare, each node has its own local set of validators or quorum set also known
 An added requirement compared to the usual FBA is that there should be a minimum level of overlap between UNLs.
 This makes the network more resistant to single node failure as well as Sybil attack resistant.
 This is because a malicious actor is unlikely to be able to spin up many node instances that manage to integrate the UNL list of other existing quorum sets.
+Flare Consensus Protocol (FCP) is leaderless, asyncronous Byzantine fault tolerant and highly scalable due to its usage of a novel networking complexity-reduction technique called federated virtual voting.
+Details on this can be found in [this article on consensus](https://optakt.github.io/knowledge/consensus/).
 
 The native token, Spark, is used to delegate to the price providers for [Flare Time Series Oracle (FTSO)](https://flare.xyz/ftso-a-breakdown/) without having any locking thereby enabling other usage of Spark at the same time.
 There is no hard link between the safety of the network and the value of native token Spark which allows greater flexibility for how Spark can be used.
 
-In Flare, there are two sets of validators:
+The incentive to become a validator in Flare is as follows.
+In Flare, there are two potentially overlapping sets of validators:
 
 * the local set of validators that we rely on for consensus
 * the set of underlying chain validators/miners, that can propose blocks
 
 When someone proposes a block, they receive a reward.
-These sets can overlap.
 However, someone running a price provider or a proof attestor also needs to run a node, which results in many more nodes than just the underlying chain validators/miners.
 
 Below is a summary of characteristics of various distributed networks:
