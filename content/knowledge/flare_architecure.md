@@ -8,7 +8,7 @@ In addition, it contains some information regarding the Avalanche platform, sinc
 Avalanche is an open-source platform for launching decentralized applications and enterprise blockchain deployments in one interoperable, highly scalable ecosystem.
 It is a platform with a new approach to scaling that allows for fast finality of transactions and the ability to run Solidity out-of-the-box.
 
-A key difference between Avalanche and other decentralized networks is the consensus protocol.
+A key difference between Avalanche and other decentralized networks is the [consensus protocol](./flare.md).
 The Avalanche protocol employs a novel approach to a consensus to achieve its strong safety guarantees, quick finality, and high throughput without compromising decentralization.
 
 The purpose of the Avalanche platform:
@@ -68,7 +68,7 @@ Flare uses some parts of the Avalanche codebase with some changes:
 
 * deactivate most of the P-Chain and X-Chain functionality;
 * run the C-Chain with a locally defined set of validators instead of using the P-Chain for the list of validators;
-* hijack the EVM state transition to implement Flare state connector functionality; and
+* hijack the EVM state transition to implement Flare state connector functionality;
 * implement the rest of the Flare systems on top of the C-Chain as Solidity smart contracts.
 
 ## State Connector
@@ -140,6 +140,12 @@ Signal providers may take fees for this service.
 Additionally, the entire process is noncustodial (i.e. participants retain full control of their own data).
 The FTSO ensures the data is fair and accurate and makes it available to network applications.
 
+In nutshell, signal providers submit their votes, which results in a weighted distribution regarding prices at a given time, where the weight is related to the number of tokens held by a given address.
+Next, the top and bottom 25% of these votes are deleted, resulting in a truncated distribution.
+The oracle estimate is computed as the median of this truncated distribution.
+Signal providers get rewarded with FLR tokens if their vote remained in the distribution after truncation.
+Signal provider is then responsible for distributing this award between itself and its delegators.
+
 Additional info and some implementation details are available in [this example of price provider](https://github.com/flare-foundation/FTSO-price-provider).
 
 ### Delegation
@@ -169,7 +175,7 @@ Note: Only Spark delegators are compensated, F-Asset votes are not compensated b
 ## F-Asset System
 
 The F-Asset System is an integral application on the Flare Network.
-It facilitates the trustless issuance of asset value onto the Flare Network.
+It facilitates the trustless issuance of asset values onto the Flare Network.
 An F-Asset is a representation of an asset from another blockchain on the Flare Network via the state connector system, i.e.XRP = FXRP.
 Agents are responsible for posting and maintaining the FLR collateral.
 Additionally, they are responsible for answering redemptions, when users decide they want to have their underlying asset back.
@@ -178,7 +184,7 @@ XRP, Litecoin, Dogecoin, and Stellar are the first four F-Assets and the additio
 The F-Asset system gives the supported cryptos the capability to run smart contracts without any changes to the underlying blockchain.
 The reason to do so is that nearly 65% of the value on public blockchains cannot be currently used in a trustless manner with smart contracts.
 
-Two important parties in the F-Asset System are responsible for issuing F-Assets: Agents and Originators.
+Two important parties in the F-Asset System are responsible for issuing F-Assets: _agents_ and _originators_.
 An originator is a person or an institution that wants to convert their cryptocurrency into an F-asset, and an agent (more likely to be an institution) is a participant on the Flare network that issues the F-asset desired by the originator.
 Agents are also responsible for posting and managing the FLR collateral used to back the minting of F-Assets.
 Additionally, as F-Asset holders have the right to claim the underlying asset, the agents are responsible for honoring redemptions promptly.
