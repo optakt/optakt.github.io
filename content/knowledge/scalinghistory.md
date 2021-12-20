@@ -3,7 +3,7 @@
 This article covers how the scaling solutions for decentralized systems in the crypto world have evolved with regards to the consensus algorithms that have been used, what their problems are and how Flare tries to address them.
 It also addresses how various blockchains fare in the realm of the [blockchain trilemma](https://vitalik.ca/general/2021/04/07/sharding.html) which roughly states that it is hard to achieve more than 2 out of 3 from security, scalability and decentralization.
 
-The concepts at the foundation of blockchain technology, such as cryptography (for data encryption) and peer-to-peer networks (that handle distributed information being exchanged between the participants) were around before the 2000s.
+The concepts at the foundation of blockchain technology, such as cryptography (for data encryption) and peer-to-peer networks (that handle information exchange in a distributed way) were around before the 2000s.
 However, there was no concept of a truly digital currency due to the [double spending problem](https://en.wikipedia.org/wiki/Double-spending).
 
 ## Proof of Work
@@ -99,7 +99,7 @@ If they are not on the same shard then they all need to support asynchronous upd
 
 ## Avalanche
 
-The next level solution for scalability in terms of consensus algorithms is by Avalanche network which uses Snow Consensus with PoS as the underlying [sybil control mechanism](https://en.wikipedia.org/wiki/Sybil_attack).
+The next level solution for scalability in terms of consensus algorithms is by Avalanche consensus which uses Snow algorithm with PoS as the underlying [sybil control mechanism](https://en.wikipedia.org/wiki/Sybil_attack).
 In Snow consensus, in short, a particular node randomly sub-samples from other nodes multiple times across multiple cycles and eventually arrives at a consensus.
 This is then recorded in a Directed Acyclic Graph (DAG) as opposed to networks that work with only a chain of Blocks and no structure for the transaction history.
 Every node has its own view of the current consensus state; they do not progress in lock-step as they do for BFT algorithms.
