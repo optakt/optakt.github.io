@@ -14,10 +14,11 @@ nav:
     - 'Repositories': 'process/repositories.md'
     - 'Git': 'process/git.md'
   - 'Knowledge':
-    - 'Flow': 'knowledge/flow.md'
-    - 'Cadence': 'knowledge/cadence.md'
-    - 'Flare': 'knowledge/flare.md'
-    - 'Scaling History': 'knowledge/scalinghistory.md'
+    - 'Flow VM & SDK': 'knowledge/flow-vm-sdk.md'
+    - 'Flow Cadence': 'knowledge/flow-cadence.md'
+    - 'Flare Scaling': 'knowledge/flare-scaling.md'
+    - 'Flare Consensus': 'knowledge/flare-consensus.md'
+    - 'Flare Architecture': 'knowledge/flare-architecture.md'
     - 'Glossary': 'knowledge/glossary.md'
 
 theme:
