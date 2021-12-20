@@ -18,7 +18,7 @@ However, only under the condition that the block follows the rules on transactio
 This is termed as "Nakamoto consensus".
 Check this [visualization](https://youtu.be/_160oMzblY8) of how PoW consensus might work and create a chain of blocks.
 
-PoW by itself isn’t very new.
+PoW by itself is not very new.
 A similar implementation was thought of in 1992 to [combat email spam](https://en.wikipedia.org/wiki/Hashcash).
 Using the _Hashcash_ system, every email has some form of simple proof of work, which makes it is easy for someone to send an email to a friend but makes it difficult for a spammer to send millions of emails at the same time.
 
@@ -109,7 +109,7 @@ Snow consensus can easily scale to a higher level compared to PoW or PoS.
 Because the nodes only need to communicate with random sub-samples of the network for each round, the communicational complexity is much lower than BFT.
 If these are logarithmically smaller than the entire set of validators on the network, the performance does not decrease exponentially with the size of the validator set.
 However, one common issue for PoS blockchains remains: the security of the network depends on the ratio of capital locked up for validation.
-Usually many PoS based networks impose a penalty for malicious validators or validators that aren’t online continuously by slashing which is taking away some of the staked tokens as a punishment.
+Usually many PoS based networks impose a penalty for malicious validators or validators that are not online continuously by slashing which is taking away some of the staked tokens as a punishment.
 In case of Snow consensus, nodes monitor uptime and nodes do not receive rewards when they are not up long enough.
 
 Avalanche is a leaderless protocol, which is the first one of its kind.
