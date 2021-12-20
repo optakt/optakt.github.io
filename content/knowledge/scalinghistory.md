@@ -20,7 +20,7 @@ Check this [visualization](https://youtu.be/_160oMzblY8) of how PoW consensus mi
 
 PoW by itself isn’t very new.
 A similar implementation was thought of in 1992 to [combat email spam](https://en.wikipedia.org/wiki/Hashcash).
-In that use case using the Hashcash system, every email has some form of simple proof of work, which makes it is easy for someone to send an email to a friend but makes it difficult for a spammer to send millions of emails at the same time.
+Using the _Hashcash_ system, every email has some form of simple proof of work, which makes it is easy for someone to send an email to a friend but makes it difficult for a spammer to send millions of emails at the same time.
 
 In theory, PoW can scale infinitely.
 The more successful the network is, the higher the demand for the token.
