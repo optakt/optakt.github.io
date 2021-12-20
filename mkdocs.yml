@@ -1,4 +1,4 @@
-site_name: "Optakt Documentation"
+site_name: "Optakt Knowledge Base"
 copyright: "Copyright &copy; 2021 Optakt"
 docs_dir: 'content'
 
@@ -13,11 +13,11 @@ nav:
     - 'Meetings': 'process/meetings.md'
     - 'Repositories': 'process/repositories.md'
     - 'Git Flow': 'process/git-flow.md'
-  - 'Flow'
+  - 'Flow':
     - 'Cadence': 'flow/cadence.md'
     - 'Virtual Machine': 'flow/virtual-machine.md'
     - 'SDK': 'flow/sdk.md'
-  - 'Flare'
+  - 'Flare':
     - 'Scaling': 'flare/scaling.md'
     - 'Consensus': 'flare/consensus.md'
     - 'Architecture': 'flare/architecture.md'
