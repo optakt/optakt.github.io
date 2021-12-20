@@ -1,10 +1,10 @@
-## Flow Go SDK
+# Flow Go SDK
 
 Flow Go SDK allows users to interact with the Flow Access API.
 This allows Go code applications to send requests directly to the network.
 The SDK has the ability to send transactions, scripts and get information about the state of the network.
 
-### Sending a Transaction
+## Sending a Transaction
 
 Flow SDK exposes the method `SendTransaction` to send transactions to the Flow Network.
 
@@ -101,7 +101,7 @@ func main() {
 }
 ```
 
-### Sending a Script
+## Sending a Script
 
 Flow SDK exposes the method `ExecuteScriptAtLatestBlock` to execute a script on the latest block.
 It also offers two more functions to execute scripts on a block at a defined height or referenced by its id: `ExecuteScriptAtBlockHeight` and `ExecuteScriptAtBlockID` respectively.
