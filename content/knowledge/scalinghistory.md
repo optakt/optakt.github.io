@@ -36,9 +36,11 @@ Byzantine nodes might not reply to messages, or deliberately send wrong informat
 Therefore, any blockchain should have mechanisms to solve the Byzantine Generals Problem.
 In case of Bitcoin, the mechanism is PoW.
 Federated Byzantine Agreement (FBA) consensus in a family of consensus protocols, which eliminates Byzantine faults, and provides deterministic finality (unlike PoW which has only probabilistic finality), without having the selection of validators as part of the protocol itself.
-This was introduced by Stellar.
+This was introduced by [Stellar](https://www.stellar.org/papers/fast-and-secure-global-payments-with-stellar?locale=en).
 In FBA, every node has its “quorum set” which is a list of other nodes which this particular node trusts.
 Therefore, to achieve consensus for a transaction, the node relies on the members in its quorum set.
+A node's "quorum slices" are the list of nodes from quorum set such that if all members of the quorum slice agree about the state of the system, then the node considers them right.
+Each node unilaterally declares its quorum slices.
 As long as the majority of nodes are not malicious, the security of the system is ensured.
 Various overlapping quorum slices across the network make it almost impossible for the majority of nodes to collude to control consensus.
 Safety and fault tolerance are [preferred over liveness](https://www.youtube.com/watch?v=aU08km2xrz0&ab_channel=Lumenauts).
