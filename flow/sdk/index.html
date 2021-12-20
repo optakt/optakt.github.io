@@ -457,6 +457,8 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           SDK
@@ -474,6 +476,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -482,29 +486,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#flow-go-sdk" class="md-nav__link">
-    Flow Go SDK
-  </a>
-  
-    <nav class="md-nav" aria-label="Flow Go SDK">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#sending-a-transaction" class="md-nav__link">
     Sending a Transaction
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#sending-a-script" class="md-nav__link">
     Sending a Script
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -669,6 +660,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -677,29 +670,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#flow-go-sdk" class="md-nav__link">
-    Flow Go SDK
-  </a>
-  
-    <nav class="md-nav" aria-label="Flow Go SDK">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#sending-a-transaction" class="md-nav__link">
     Sending a Transaction
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#sending-a-script" class="md-nav__link">
     Sending a Script
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -716,13 +696,11 @@
               
                 
                 
-                  <h1>SDK</h1>
-                
-                <h2 id="flow-go-sdk">Flow Go SDK</h2>
+                <h1 id="flow-go-sdk">Flow Go SDK</h1>
 <p>Flow Go SDK allows users to interact with the Flow Access API.
 This allows Go code applications to send requests directly to the network.
 The SDK has the ability to send transactions, scripts and get information about the state of the network.</p>
-<h3 id="sending-a-transaction">Sending a Transaction</h3>
+<h2 id="sending-a-transaction">Sending a Transaction</h2>
 <p>Flow SDK exposes the method <code>SendTransaction</code> to send transactions to the Flow Network.</p>
 <p>In this example the amount of 100 FLOW tokens will be sent between the service account and the <code>RECEIVER_ACCOUNT</code>.
 In the <code>prepare</code> phase of the transaction, the reference to the sender's vault is retrieved and the specified amount of tokens is withdrawn to a temporary vault.
@@ -811,7 +789,7 @@ Finally, the transaction is sent.</p>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="sending-a-script">Sending a Script</h3>
+<h2 id="sending-a-script">Sending a Script</h2>
 <p>Flow SDK exposes the method <code>ExecuteScriptAtLatestBlock</code> to execute a script on the latest block.
 It also offers two more functions to execute scripts on a block at a defined height or referenced by its id: <code>ExecuteScriptAtBlockHeight</code> and <code>ExecuteScriptAtBlockID</code> respectively.</p>
 <p>To get the current FLOW token balance from an account the following cadence script should be executed.
