@@ -10,16 +10,19 @@ nav:
     - 'Markdown': 'code/markdown.md'
     - 'Testing': 'code/testing.md'
   - 'Process':
-    - 'Meetings': 'process/process.md'
+    - 'Meetings': 'process/meetings.md'
     - 'Repositories': 'process/repositories.md'
-    - 'Git': 'process/git.md'
-  - 'Knowledge':
-    - 'Flow VM & SDK': 'knowledge/flow-vm-sdk.md'
-    - 'Flow Cadence': 'knowledge/flow-cadence.md'
-    - 'Flare Scaling': 'knowledge/flare-scaling.md'
-    - 'Flare Consensus': 'knowledge/flare-consensus.md'
-    - 'Flare Architecture': 'knowledge/flare-architecture.md'
-    - 'Glossary': 'knowledge/glossary.md'
+    - 'Git Flow': 'process/git-flow.md'
+  - 'Flow'
+    - 'Cadence': 'flow/cadence.md'
+    - 'Virtual Machine': 'flow/virtual-machine.md'
+    - 'SDK': 'flow/sdk.md'
+  - 'Flare'
+    - 'Scaling': 'flare/scaling.md'
+    - 'Consensus': 'flare/consensus.md'
+    - 'Architecture': 'flare/architecture.md'
+  - 'General':
+    - 'Glossary': 'general/glossary.md'
 
 theme:
   name: material
