@@ -64,6 +64,10 @@ Decentralization at its fullest is not present in permissioned and private block
 Once a new block is created and inserted on the chain, the new block will have a link to the previous block, creating a chain.
 They all include the hash of the previous block except for the first one, which is called the genesis block and has a zero hash value.
 
+### Staking
+
+Staking is putting some native cryptocurrency as collateral to become a validating entity in the network.
+
 ### Consensus
 
 TODO: add
