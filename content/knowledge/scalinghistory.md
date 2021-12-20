@@ -101,7 +101,7 @@ If they are not on the same shard then they all need to support asynchronous upd
 
 The next level solution for scalability in terms of consensus algorithms is by Avalanche network which uses Snow Consensus with PoS as the underlying [sybil control mechanism](https://en.wikipedia.org/wiki/Sybil_attack).
 In Snow consensus, in short, a particular node randomly sub-samples from other nodes multiple times across multiple cycles and eventually arrives at a consensus.
-This is then recorded in a Directed Acyclic Graph (DAG) as opposed to a chain of blocks.
+This is then recorded in a Directed Acyclic Graph (DAG) as opposed to networks that work with only a chain of Blocks and no structure for the transaction history.
 Every node has its own view of the current consensus state; they do not progress in lock-step as they do for BFT algorithms.
 However, the local view of each node is eventually consistent with the view of all other nodes on the network.
 
