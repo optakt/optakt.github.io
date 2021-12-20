@@ -62,9 +62,9 @@ Clients can create and trade assets on the X-Chain and other examples of the AVM
 
 ## Flare's FBA
 
-_TODO_ add more details to each of the items
+TODO [add more details to each of the items](https://github.com/optakt/optakt.github.io/issues/23)
 
-Flare uses some parts of the Avalanche codebase with some changes:
+Currently, Flare uses some parts of the Avalanche codebase with some changes:
 
 * deactivate most of the P-Chain and X-Chain functionality;
 * run the C-Chain with a locally defined set of validators instead of using the P-Chain for the list of validators;
@@ -91,11 +91,7 @@ The [state connector system](https://docs.flare.network/en/state-connector) is a
 
 ### Voting
 
-There are three phases of the state connector voting protocol:
-
-* Request
-* Commit
-* Reveal
+The state connector voting protocol is split into three phases, described in the following sub-sections.
 
 #### Request Phase
 
