@@ -62,7 +62,7 @@ Clients can create and trade assets on the X-Chain and other examples of the AVM
 
 ## Flare's FBA
 
-TODO add more details to each of the items
+_TODO_ add more details to each of the items
 
 Flare uses some parts of the Avalanche codebase with some changes:
 
@@ -90,12 +90,6 @@ The [state connector system](https://docs.flare.network/en/state-connector) is a
   For example proof-of-work, proof-of-stake, and even federated byzantine agreement where there is no global agreement on the set of validators in control of a network.
 * Constant-sized proofs: both the data availability proof and the payment proof are constant-sized, independent of the number of other payments in the data availability period being considered.
 
-### Design
-
-The state connector is built into the validators.
-These validators (or validation nodes) are tasked with ordering transactions and confirming validity for consensus plus digesting state changes from integrated blockchains.
-Validators on the Flare Network operate on the ecosystem as well as the integrated blockchains’ ecosystems.
-
 ### Voting
 
 There are three phases of the state connector voting protocol:
@@ -111,7 +105,7 @@ The window in time that this request enters the network state is known as the re
 
 #### Commit Phase
 
-During the next window of time, attestation providers have the opportunity to commit a hidden vote regarding their belief in the outcome of the events requested in the previous phase.
+During the next window, attestation providers have the opportunity to commit a hidden vote regarding their belief in the outcome of the events requested in the previous phase.
 Anyone may operate as an attestation provider without any capital requirement, but a default incentivized set is used as the minimal requirement for passing a vote about the events in the previous set.
 
 #### Reveal Phase
@@ -124,7 +118,7 @@ Once these criteria are met and that data is available, the stored transactions 
 
 The state connector branching protocol protects Flare against the incorrect interpretation of real-world events, proactively, such that there are never any rollbacks on the Flare blockchain state.
 Instead of having rollbacks, contention on state correctness is handled via automatic state branching into a correct and incorrect path.
-The security assumption is that if you as an independent node operator are following along with the correct real-world state, then you will always end up on the correct branch of the blockchain state.
+The security assumption is that if you, as an independent node operator, are following along with the correct real-world state, then you will always end up on the correct branch of the blockchain state.
 
 ## Flare Time Series Oracle (FTSO)
 
@@ -132,9 +126,9 @@ The [FTSO](https://flare.xyz/ftso-a-breakdown/) provides externally sourced data
 It does so by leveraging the distributed nature of the network and its participants.
 At the moment, only Spark holders get to vote; in the future, each asset's voting power will be split 50-50 between Spark holders and the holders of the particular asset.
 
+Signal providers on the Flare Network are responsible for delivering continuous and accurate data estimates to the FTSO to represent off-chain values on the Flare Network.
 Signal providers exist in the off-chain to collect data, such as asset prices, and deliver it to the FTSO.
 As an example, a provider may collect the price of XRP/$ from three different exchanges, average the price and have this price estimate ready for the FTSO every voting round to submit.
-Signal providers on the Flare Network are responsible for delivering continuous and accurate data estimates to the FTSO to represent off-chain values on the Flare Network.
 Signal providers can provide their F-Asset and FLR votes to do this, but they also can receive delegated votes from other parties to perform this service on their behalf.
 Signal providers may take fees for this service.
 Additionally, the entire process is noncustodial (i.e. participants retain full control of their own data).
