@@ -15,7 +15,7 @@ This network-wide agreement allows the recipient of a crypto coin to have faith 
 
 [Ripple consensus](https://ripple.com/files/ripple_consensus_whitepaper.pdf) is a voting consensus that works with nodes voting for each of its rounds.
 The nodes that run the Ripple Server software and participate in the consensus protocol are called servers.
-Each of them maintains a list of other servers - Unique Node List (UNL), that it queries for each validation round.
+Each of them maintains a list of other servers — Unique Node List (UNL), that it queries for each validation round.
 The UNL is not a list of all servers in the system, but rather only a snapshot that the node knows about.
 Additionally, no participant knows what is the exact number of nodes in the system at any give time and does not need to.
 
@@ -45,7 +45,7 @@ The assumptions that define the Ripple consensus are:
 
 The goal is reaching a consensus amongst all nodes and preventing a situation, in which two disjoint sets of nodes each reach a consensus independently thus having two last-closed ledgers.
 
-The consensus algorithm is applied every few seconds by all nodes and once the consensus is reached - the ledger is considered _closed_ and all well-behaved nodes will have identical ledger history.
+The consensus algorithm is applied every few seconds by all nodes and once the consensus is reached — the ledger is considered _closed_ and all well-behaved nodes will have identical ledger history.
 
 Each of the servers can join or leave the network at some point, which means that in some voting rounds some servers will have different nodes in their UNL lists.
 The notion of _majority rule_ is applied on the UNL set requirement for agreement, but a hard majority cannot be applied, because the total number of servers in the system is unknown.
@@ -96,7 +96,7 @@ This process of dynamically creating quorums uses the transitive closure propert
 With the help of this property, in an FBA system, every node is potentially connected by its indirect connections to other nodes.
 
 Nodes know about other nodes' quorum slices, in the same manner, they know the rest of the information about their network peers — from the broadcast information that every node sends to the network whenever its' voting state changes.
-Each broadcast message includes the details of the sending node's IP and its quorum slices nodes - a typical implementation used in FBA systems (and generally in other blockchains) is a [gossip protocol](https://en.wikipedia.org/wiki/Gossip_protocol).
+Each broadcast message includes the details of the sending node's IP and its quorum slices nodes — a typical implementation used in FBA systems (and generally in other blockchains) is a [gossip protocol](https://en.wikipedia.org/wiki/Gossip_protocol).
 
 #### FBA and Stellar Implementation
 
@@ -131,7 +131,7 @@ Voting in Stellar consists of two phases: nomination and balloting.
 
 At the beginning of the nomination phase, a node randomly votes for a statement on a ledger version it receives from another node in the network.
 The nodes cast out their nomination votes via messages to their peers, as well as the nominations of their peers, meaning separate federated votes are batched together.
-Voting against a value is not defined and a node can nominate as many statements as it likes so after the FBA process is run on each node, a nominee is confirmed and it becomes a _candidate_.
+Voting against a value is not defined and a node can nominate as many statements as it likes so after the FBA process is run on each node, a nominee is confirmed, and it becomes a _candidate_.
 
 The nomination may produce multiple confirmable candidates, so SCP requires the application layer to supply some method for combining them into a single composite, with the only requirement for this method to be deterministic.
 
@@ -222,11 +222,11 @@ Hashgraph is also implemented using a DAG and gossip protocol for communication 
 
 Flare system is a multi-chain platform that manages multiple blockchains and handles value exchange between them.
 It uses FBA and implements its own component (State Connector System) for connectivity and validation of the chains.
-Currently, Flare network uses some of the Avalanche concepts.
+Currently, Flare network borrows concepts from Avalanche.
 
-Avalanche implementation consists of multiple subnets that have [multiple chains connected to them](./flare_architecture.md#Avalanche-Platform).
+Avalanche implementation consists of multiple subnets that have [multiple chains connected to them](./architecture.md#Avalanche-Platform).
 Subnets in Avalanche are dynamic sets of validators working to achieve consensus on one or multiple blockchain networks.
-Generally, there are three chains - [Platform Chain](./flare_architecture.md#P-Chain), [Contract Chain](./flare_architecture.md#C-Chain) and [Exchange Chain](./flare_architecture.md#X-Chain).
+Generally, there are three chains: the [Platform Chain](./architecture.md#p-chain), [Contract Chain](./architecture.md#c-chain) and [Exchange Chain](./architecture.md#x-chain).
 
 Flare takes advantage mainly from the Contract Chain to run FBA voting locally on its nodes.
 
@@ -236,7 +236,7 @@ Attestors vote on state changes on underlying chains, including voting on the nu
 Block producers correspond to validators on the underlying chains.
 They propose blocks to the network, according to their weight voted on by attestors.
 
-The component that monitors the state of the different blockchains is the [State Connector](./flare_architecture.md#State-Connector).
+The component that monitors the state of the different blockchains is the [State Connector](./architecture.md#State-Connector).
 This system provides the Flare Network with flexibility to integrate other blockchains to the Flare Network.
 
 The model design of the State Connector System is crucial to maintaining the accurate digesting of integrated blockchain state changes.
@@ -262,7 +262,7 @@ In the context of asynchronous communication, it is assumed also, that messages 
 
 In Flare network nodes synchronize with each other using the exchanged messages information via a gossip protocol, consequently functioning asynchronously.
 After each node finds its quorum slices, they start to send messages to a random number of peers in them.
-The first messages are the _initial_ messages and they contain information about the transaction amount, the recipient, and a hash of the sender's quorum of nodes.
+The first messages are the _initial_ messages, and they contain information about the transaction amount, the recipient, and a hash of the sender's quorum of nodes.
 Recipients of messages in their turn create new messages that contain information about the received message and the messages they previously created themselves (and sent to some other node in a previous step).
 
 In the second turn, messages contain more information including the hash of previous messages received and sent by the node that are used to build up the connections between them.
@@ -292,16 +292,16 @@ These properties make FCP a compelling model for internet-level `Turing-complete
 
 Multicast group communication protocols are used extensively in fault-tolerant distributed systems.
 For many such systems, the acknowledgements for individual messages define a casual (partial) order of messages.
-Maintaining the consistency of information, that is being replicated on several node instances to protect it against fautls, is greatly simplified by reaching a total ordering on messages.
+Maintaining the consistency of information, that is being replicated on several node instances to protect it against faults, is greatly simplified by reaching a total ordering on messages.
 Algorithms that process the casual (partial) order of messages into a total order exist under the group name "Total Ordering" algorithms.
 
 ### Characteristics
 
 Modern fault-tolerant distributed systems are often built on multicast group communication protocols, which impose a partial order of messages and on many of them information is replicated on several (or all) processors in order to achieve faster access and protection against faults.
-Maintaining the consistency of replicated information is an important and problematic aspect of the implementations and it can be simplified by imposing a total order, rather than a partial order, on messages.
+Maintaining the consistency of replicated information is an important and problematic aspect of the implementations, and it can be simplified by imposing a total order, rather than a partial order, on messages.
 The total order on messages ensures that exactly the same updates are applied to the replicated data in the same order at all nodes.
 
-The Total Ordering algorithms are executed independently and concurrenlty by each process and each of them incrementally creates a total order, without requiring the transmission of any additional messages in the geenral case.
+The Total Ordering algorithms are executed independently and concurrently by each process and each of them incrementally creates a total order, without requiring the transmission of any additional messages in the general case.
 They operate in the presence of asynchrony and communication faults, which may cause different processes to receive messages in different orders, and they tolerate both crash and Byzantine process fault.
 The system is asynchronous in the sense that no bound can be placed on the time required for a computation or for a communication of a message.
 A crash fault causes a process to stop processing and generating messages.
@@ -311,25 +311,25 @@ The total order ensures consistency by having the same updates applied to the re
 
 Each broadcast message has a header consisting of a process identifier, a message sequence number and payload content.
 A typical implementation might use a digital signature to substantiate the source of a message (process identifier) for each node.
-Systems capable of tolerating Byzantine faults must be able to confirm the source of a message and to detect messages that have the same header but different contents and/or aknowledgements within the message.
-Another option is to also embed a digest of the message content in its identifier, so that aknowledgements of messages with different contents but same sequence number will be regarded as aknowledgements of distinct messages.
-The aknowledgment and re-transmission mechanisms can ensure that all versions of a message are delivered to all destinations.
+Systems capable of tolerating Byzantine faults must be able to confirm the source of a message and to detect messages that have the same header but different contents and/or acknowledgements within the message.
+Another option is to also embed a digest of the message content in its identifier, so that acknowledgements of messages with different contents but same sequence number will be regarded as acknowledgements of distinct messages.
+The acknowledgement and re-transmission mechanisms can ensure that all versions of a message are delivered to all destinations.
 Digital signatures and digests are computationally expensive, but do not require the additional rounds of message exchange of alternative strategies.
 
 The output of the algorithms is a total order of messages that is identical at all non-faulty processes in the system.
-Message `x1` from process `a` follows a message `x0` from process `b` if `x1` acknowledges `x0` or `x1` acknowledges some some other message `y` that follows `x0`, where `y` is not the same as `x0` and `y` is not the same as `x1`.
-This implies that the messages relation is transivite and also each message follows itself, consequently the relation is also reflexive.
+Message `x1` from process `a` follows a message `x0` from process `b` if `x1` acknowledges `x0` or `x1` acknowledges some other message `y` that follows `x0`, where `y` is not the same as `x0` and `y` is not the same as `x1`.
+This implies that the relation between messages is transitive and also each message follows itself, consequently the relation is also reflexive.
 A message `x1` from a non-Byzantine process `a` acknowledges a message `x0` only if the process has received all messages that `x0` follows before it broadcast `x1`.
 Consequently, a message from a non-Byzantine process follows all messages broadcast earlier from that process.
 
-These requirements cannot be assured for messages from Byzantine processes, because such process might have transmitted multiple messages that acknowledge the same or different prior messages or even trasmitted messages of which other processes are unaware.
+These requirements cannot be assured for messages from Byzantine processes, because such process might have transmitted multiple messages that acknowledge the same or different prior messages or even transmitted messages of which other processes are unaware.
 A Byzantine process can also originate a message that occurs within a cycle in the partial order.
-A non-Byzantine process cannot originate a message that occurs in a cycle, because a message from a non-Byzantine process cannot aknowledge another message that itself aknowledges the first one.
-A nonfaulty process executing a Total ordering algorithm does not advance a message to the total order unless it has already advanced to the total order all of the messages that preceed it in the partial order.
-Thus, a nonfaulty process does not advance to the total order any message in a cycle, or any message that follows a message in a cycle.
+A non-Byzantine process cannot originate a message that occurs in a cycle, because a message from a non-Byzantine process cannot acknowledge another message that itself acknowledges the first one.
+A non-faulty process executing a Total ordering algorithm does not advance a message to the total order unless it has already advanced to the total order all the messages that precede it in the partial order.
+Thus, a non-faulty process does not advance to the total order any message in a cycle, or any message that follows a message in a cycle.
 If a Byzantine process ever participates in a cycle, then none of its subsequent messages will be ordered.
 
-A Byzantine process can originate two or more concurrent messages with the same header, but with different contents and/or aknowledgments, neither of which follows the other and possibly each of which purports to follow different messages.
+A Byzantine process can originate two or more concurrent messages with the same header, but with different contents and/or acknowledgments, neither of which follows the other and possibly each of which purports to follow different messages.
 These messages are called _mutants_.
 
 The input to the Total Ordering algorithms is a Byzantine partial order of messages and the output is a total order of messages.
@@ -338,7 +338,7 @@ Only information derived from the Byzantine casual order it used to construct th
 A "candidate message" is a message from the process's Byzantine casual order that is not yet in the total order but only follows a message from it.
 A set of candidate messages is called a "candidate set".
 Thus, messages that occur in a cycle cannot be candidate messages, however mutant messages that are not in a cycle can be candidate messages and even members of the same candidate set.
-With the exception of mutants, at most one candidate message from a given process will be considered for the next advancement to the total order.
+Except for mutants, at most one candidate message from a given process will be considered for the next advancement to the total order.
 
 Prefixes in the Byzantine casual order are subsets of messages that are related to each other by their follows relations and can contain multiple messages followed by a single one.
 The size of a Byzantine casual order is the number of messages in that subset at any point.
@@ -356,16 +356,16 @@ In a step, all candidate sets that can be constructed from the candidate message
 
 Examples and further specifications of [Total Ordering algorithms](https://core.ac.uk/display/82213948) specify conditions for each one and calculates its communication complexity and performance.
 
-The algorithms employ a multistage voting strategy to achieve agreements on the total order and epxloit the random structure of the casual order to achieve probabilistic termination.
+The algorithms employ a multistage voting strategy to achieve agreements on the total order and exploits the random structure of the casual order to achieve probabilistic termination.
 They ensure that non-faulty processes construct identical total orders on messages and that non-Byzantine processes construct consistent total orders, provided that the resilience requirements are satisfied.
 
-A process has no control over which message extends its casual order prefix in a step and it cannot determine whether any future extension of its casual order prefix will involve a message that follows a particular message.
+A process has no control over which message extends its casual order prefix in a step, and it cannot determine whether any future extension of its casual order prefix will involve a message that follows a particular message.
 The asynchronous nature and faulty behavior of the process and the communication medium are reflected in the Byzantine partial order of messages that is input to the algorithms.
 
 ### Aleph Algorithm
 
 One of the examples of Total Order algorithms with total ordering execution is [Aleph](https://arxiv.org/abs/1908.05156).
-Aleph is a leaderless, fully asynchronous, Byzantine Fault Tolerant consensus protocol for total odering of messages that are exchanged between entities in a network.
+Aleph is a leaderless, fully asynchronous, Byzantine Fault Tolerant consensus protocol for total ordering of messages that are exchanged between entities in a network.
 Consequently, it is based on a distributed construction of a partially ordered set and the execution step - the algorithm for reaching a consensus on its extension to a total order.
 To achieve a consensus, the processes perform computations based on only a local copy of the data structure, however, they are bound to end up with the same result as required by the total ordering process.
 
@@ -376,33 +376,33 @@ From the high level perspective Aleph consensus algorithm functions on a set of 
 The nodes need to agree on a total ordering of the received transactions arriving in some [unreliable streams of data that the nodes observe locally](#Characteristics).
 The set of transactions that each one sees is a growing blockchain that does not have a built-in notion of finality and the streams of data are an advancing sequence of blockchain "tips" that each of the participants sees.
 
-The problem of ordering transactions in asynchronous types of protocols, where they are received with some time delay and in mixed order, is also known as _Atomic Broadcats_.
+The problem of ordering transactions in asynchronous types of protocols, where they are received with some time delay and in mixed order, is also known as _Atomic Broadcast_.
 It describes the situation where a set of nodes commonly constructs a total ordering of a set of transactions, where these transactions might not arrive all at the same time.
 Every time a node receives a transactions, it processes it and places it at its position.
-The sequence of transacations must be output in an incremental manner, meaning that before putting a transaction at some position, previous positions must have their respective transactions set.
+The sequence of transactions must be output in an incremental manner, meaning that before putting a transaction at some position, previous positions must have their respective transactions set.
 It is assumed that whenever an honest node outputs a transaction at some position, every other honest node will also eventually output the same transaction for this position.
 Also, every transaction that is input at some honest node is eventually output by all honest nodes.
 This ensures that not only all honest nodes will produce the same ordering, but also that no transactions is lost due to censorship because all honest nodes will output it.
 
-So Aleph produces a single stream of data that "combines" all of the individual streams of the nodes and is consistent among them, meaning the nodes produce the same unique sequence of finalized blocks.
+So Aleph produces a single stream of data that "combines" all the individual streams of the nodes and is consistent among them, meaning the nodes produce the same unique sequence of finalized blocks.
 As a Byzantine Tolerant type of protocol, Aleph implements Atomic Broadcast over a set of `3f+1` number of nodes, where `f` denotes the number of dishonest nodes.
 The protocol deals with an expected latency for each transaction, which is the time it is output by all honest nodes after it has been input to at least some preset number of nodes.
 
 The consensus separates the network communication from the protocol logic.
 The only role for the network layer is to maintain a common data structure in the form of a DAG tree among all nodes.
 The purpose of using it is to divide the algorithm execution into separate virtual rounds.
-In each round the nodes emits exactly one "unit" that should be thought of as a message broadcast to all the other nodes and it is a vertex position on its local DAG version.
-Every unit contains infomation about its creator, its parents and additional data that can be included in it.
-All the nodes are expected to geneate such units and maintain their local copies of the common DAG, to which new units are continuously added.
-Aleph uses tansitive properties of the underlying DAG.
+In each round the nodes emits exactly one "unit" that should be thought of as a message broadcast to all the other nodes, and it is a vertex position on its local DAG version.
+Every unit contains information about its creator, its parents and additional data that can be included in it.
+All the nodes are expected to generate such units and maintain their local copies of the common DAG, to which new units are continuously added.
+Aleph uses transitive properties of the underlying DAG.
 Each unit has a "DAG-round" that is defined by the maximum length of a downward chain starting from the current transaction, meaning getting as long as possible path of its ancestors.
 A unit with no parents will have a DAG-round 0, otherwise it has a DAG-round equal to the maximum of DAG-rounds of its parents plus one.
-Evey node should create one unit in every round and it should do so after learning a large portion (at least `2f+1`) of units created in the previous round.
+Evey node should create one unit in every round, and it should do so after learning a large portion (at least `2f+1`) of units created in the previous round.
 
 Then the protocol is stated entirely through [combinatorial properties of this structure](https://cardinal-cryptography.github.io/AlephBFT/how_alephbgt_does_it.html)
 Each of the nodes votes on the units it sees and decisions on accepting it or not are binary.
 
-In a network running Aleph ptocol, where a steady inflow of transactions is being assumed, the communication complexity achieved is O(N² logN).
+In a network running Aleph protocol, where a steady inflow of transactions is being assumed, the communication complexity achieved is O(N² logN).
 There is no requirement for a trusted dealer to distribute certain cryptographic keys among nodes, but Aleph rather implements an ABFT Randomness Beacon with trustless setup.
 
 Aleph protocol is an example of a Total Ordering algorithm that creates a total order of blocks, thus creating a finalized chain at run, and keep its DAG history records only locally.
@@ -431,20 +431,20 @@ Besides broadcasting blocks, nodes listen to requests from other nodes for speci
 
 An honest node includes all transactions received from clients as entries into a block it emits.
 Also, all honest nodes receive and checks for validity all blocks they directly or indirectly reference in their created blocks.
-This means that an honest node receives and stores locally a copy of the full DAG record, startng from the genesis vertex until the last block it emits.
+This means that an honest node receives and stores locally a copy of the full DAG record, starting from the genesis vertex until the last block it emits.
 And if an honest node emits a block, all honest nodes will eventually receive and consider valid (after validating) this block as well as all blocks that it references directly or indirectly in its content entries.
 
 A dishonest node may contradict itself and send two distinct blocks for the same position in the chain or not send a block for a position for some time or ever.
 All honest nodes reference all valid blocks in their own blocks, including contradictory ones, and proceed with the next phase of the protocol called "interpretation".
 
 The aim of the interpretation phase is for all honest nodes, despite holding a different subset of the DAG record at any point, to eventually agree on a specific block for any position or alternatively to agree that there is no such block, and to produce the next position in the total ordering of blocks.
-Blockmania is created as a simplified variant of PBFT algorthm and all parties need to agree on a single position rather than the sequence and all nodes perform their interpretation process independently.
+Blockmania is created as a simplified variant of PBFT algorithm and all parties need to agree on a single position rather than the sequence and all nodes perform their interpretation process independently.
 
 For reaching a decision for a single position, Blockmania runs an abstract terminating reliable broadcast protocol that is never materialized in real exchanged messages but rather the structure of the block DAG is interpreted by each node.
 At any time, a node can emit a message to propose a block in a "pre-prepare" message to all nodes.
 Honest nodes only propose one block for any given position.
 This message contains a _view_ value that represents the change in the blockchain state and has a sequence number starting from zero.
-Upon receiving the pre-prepare message, nodes that have the same view broadcast a "prepare" message that contain their identity, view sequence number, block hash and content.
+Upon receiving the "pre-prepare" message, nodes that have the same view broadcast a "prepare" message that contain their identity, view sequence number, block hash and content.
 If the view sequence number is zero, meaning this is the first proposed view change, the proposer signature is checked before accepting message.
 If the node does not have the same view interpreted, it does not send out "prepare" message, but sets the received "pre-prepare" and "prepare" messages for that view in its input records buffer.
 Upon receiving `2t` "prepare" messages for a view and a corresponding "pre-prepare" message in its input buffer, nodes broadcast "commit" messages for that view.
@@ -453,16 +453,16 @@ After receiving `2t+1` number of "commit" messages (also saved inside the input 
 The consensus assumes that if two honest nodes reach a decision about a position in the chain, defined by block creator and a block sequence number, that decision will be the same, assuming at most `f` byzantine nodes.
 A decision will eventually be reached for any position in the total order of blocks by all honest nodes.
 
-The Blockmania considers a reliable transmission between honest nodes - a Byzantine network may delay arbitrarily blocks, but evetually they will be delivered.
+The Blockmania considers a reliable transmission between honest nodes — a Byzantine network may delay arbitrarily blocks, but eventually they will be delivered.
 This is achieved in practice using re-transmissions.
 Each node monitors chains of other nodes and in case their own blocks are not included into those within an estimated round trip time, they may re-transmit them.
 Also, an honest node may request missing blocks from other nodes, when those have been included in their chains as valid.
 Nodes use the gossip protocol to communicate with each other and do not need to know all participants in the network to reach to a decision.
 
 The goal of Blockmania protocol is to ensure that all honest nodes arrive at the same ordering of blocks, despite the presence of Byzantine nodes.
-Blockmania may be used with a Proof of Stake system by dynamically defining the quorum of nodes that reach agreement on a block before comitting (`t`), thus two honest parties with a partial view of the Block DAG, can reach an agreement on which blocks will be accepted by all.
+Blockmania may be used with a Proof of Stake system by dynamically defining the quorum of nodes that reach agreement on a block before committing (`t`), thus two honest parties with a partial view of the Block DAG, can reach an agreement on which blocks will be accepted by all.
 
-In the Blockmania consensus, nodes update their block history using a DAG tree availalbe to all, parts of which they just keep as copies in their local memory.
+In the Blockmania consensus, nodes update their block history using a DAG tree available to all, parts of which they just keep as copies in their local memory.
 The consensus is built in a modular manner and combines the quorum-based reaching of agreement with the total ordering creation, meaning it is one step further from PBFT types of algorithms.
 
 ### SafetyScore
@@ -471,39 +471,39 @@ The consensus is built in a modular manner and combines the quorum-based reachin
 It is a decentralized protocol that disseminates risk measures among the network participants based on their interactions with a disease.
 It is basically a digital tracing algorithm that can be used from all kinds of applications but preventing leaks of participants personal data in the network.
 
-It is Byzantine Fault tolerant, permissionsless consensus that aims to produce a global consistent totally-ordered log of records, which is the finalized blockchain state at any time.
+It is Byzantine Fault tolerant, permissionless consensus that aims to produce a global consistent totally-ordered log of records, which is the finalized blockchain state at any time.
 Network can tolerate up to `f` faulty nodes for total number of network participants `2f+1`.
 
-The database is a distirbuted ledger without a center of control.
-Each node generates its own sequence of blocks and all nodes collectively write history to a DAG structure that acts as a underlying representation of a distributed ledger current state.
+The database is a distributed ledger without a center of control.
+Each node generates its own sequence of blocks and all nodes collectively write history to a DAG structure that acts as an underlying representation of a distributed ledger current state.
 
-Nodes that can validate blocks published on the distribited ledger are known as validator nodes.
+Nodes that can validate blocks published on the distributed ledger are known as validator nodes.
 The right to become a validator is earned by nodes that are operating reliably and are as far away as possible from each other in order to increase the overall resilience of the network.
 
 Nodes use asymmetric model of digital signatures that are used for authentication of messages they transmit and use shared secrets derived from ECDG X25519.
 
-In SaferyScore certain organizations are able to run specialized nodes that act as a distributed notary.
+In SafetyScore certain organizations are able to run specialized nodes that act as a distributed notary.
 They perform roles similar to notaries in the real world and act as witnesses ensuring the documents and transactions are properly executed.
-The right to operate a Distributed Notary is limited to organizations that have had a track record of working to preserve digital rights and freedoms, e.g. Electornic Frontier Foundation, Mozilla Foundation, Open Rights Group, etc.
-The distributed notary nodes have access to some confidential infromation like link between two activity keys and the operators should push back against parties looking to de-anonymize users.
+The right to operate a Distributed Notary is limited to organizations that have had a track record of working to preserve digital rights and freedoms, e.g. Electronic Frontier Foundation, Mozilla Foundation, Open Rights Group, etc.
+The distributed notary nodes have access to some confidential information like link between two activity keys and the operators should push back against parties looking to de-anonymize users.
 Participants in the distributed ledger entity also enforce punishments to network nodes that violate the protocol, after a valid claim for the faulty act is presented.
 
 Each node validation of blocks is based on [Kairos algorithm](https://kairos.com) for face recognition.
 The IDs and the public keys of initial validators set are used to bootstrap the network.
 
 The Kairos algorithm uses each of the participants IDs to calculate their risk rate of infection based on interactions with other participants that also have some non-zero risk records in the network.
-Among other specifics, risk is calculcated based on time after last contact and current level of recent interactions as well as on risk tokens calculated for each calendar day.
+Among other specifics, risk is calculated based on time after last contact and current level of recent interactions as well as on risk tokens calculated for each calendar day.
 The maximum proximity distance allowed, that devices take into consideration when calculating interactions, is 3 meters of each other.
 
 Nodes act as servers to clients and receive requests from them and can read from and write to distributed ledger
-Nodes public keys are broadcast over the netork and participants do not need to know all of the others in the network.
+Nodes public keys are broadcast over the network and participants do not need to know all the others in the network.
 
 In the case of SafetyScore, transactions and data coming from clients are records that are preset to be sent by software on different types of devices.
 The aim of the algorithm is to build a total order of records with metadata from the incoming Byzantine casual order of messages.
 
-SafetyScore is not a network for records of any value tranfer, but rather a network for keeping records of history activity that is available to a certain number of participants in the network.
-It is buils as a Total Ordering algorithm in its consensus process in the sense that it outputs a total ordered blocks with data that contain references to records that all network participants agreed on.
+SafetyScore is not a network for records of any value transfer, but rather a network for keeping records of history activity that is available to a certain number of participants in the network.
+It is built as a Total Ordering algorithm in its consensus process in the sense that it outputs a total ordered blocks with data that contain references to records that all network participants agreed on.
 After the ledger is updated with the latest record, all nodes update their local copies.
 
-SafetyScore is an example of a blockchain network with multiple logical layers, that implements the total ordering of blocks for its network layer and validator committe on its communication layer.
+SafetyScore is an example of a blockchain network with multiple logical layers, that implements the total ordering of blocks for its network layer and validator committee on its communication layer.
 It shows that the total ordering in an asynchronous environment, not only can be successfully reached, but also included as a building block in a much more complicated network of records.

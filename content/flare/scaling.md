@@ -123,7 +123,7 @@ In Flare, each node has its own local set of validators or quorum set also known
 An added requirement compared to the usual FBA is that there should be a minimum level of overlap between UNLs.
 This makes the network more resistant to single node failure as well as Sybil attack resistant.
 This is because a malicious actor is unlikely to be able to spin up many node instances that manage to integrate the UNL list of other existing quorum sets.
-Flare Consensus Protocol (FCP) is leaderless, asyncronous Byzantine fault tolerant and highly scalable due to its usage of a novel networking complexity-reduction technique called federated virtual voting.
+Flare Consensus Protocol (FCP) is leaderless, asynchronous Byzantine fault tolerant and highly scalable due to its usage of a novel networking complexity-reduction technique called federated virtual voting.
 Details on this can be found in [this article on consensus](https://optakt.github.io/flare/consensus/).
 
 The native token, Spark, is used to delegate to the price providers for [Flare Time Series Oracle (FTSO)](https://flare.xyz/ftso-a-breakdown/) without having any locking thereby enabling other usage of Spark at the same time.
