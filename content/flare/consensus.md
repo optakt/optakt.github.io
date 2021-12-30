@@ -317,25 +317,7 @@ The acknowledgement and re-transmission mechanisms can ensure that all versions 
 Digital signatures and digests are computationally expensive, but do not require the additional rounds of message exchange of alternative strategies.
 
 The output of the algorithms is a total order of messages that is identical at all non-faulty processes in the system.
-Message `x1` from process `a` follows a message `x0` from process `b` if `x1` acknowledges `x0` or `x1` acknowledges some other message `y` that follows `x0`, where `y` is not the same as `x0` and `y` is not the same as `x1`.
-This implies that the relation between messages is transitive and also each message follows itself, consequently the relation is also reflexive.
-A message `x1` from a non-Byzantine process `a` acknowledges a message `x0` only if the process has received all messages that `x0` follows before it broadcast `x1`.
-
-```text
- a       b                chain
- |       |                  |
- |       |                  |
- |       |                  |
- |      `x0`------------->  |  ↓
- |                          |
- |     [`y`-------------->] |  ↓
- |                          |
-`x1`--------------------->  |  ↓
-                            |
-                           ...
- ```
-
-Consequently, a message from a non-Byzantine process follows all messages broadcast earlier from that process.
+Messages from non-Byzantine processes follow all previously broadcast messages. The relation between messages is transitive, and since each message also follows itself, it is reflexive as well. Messages need to acknowledge previously broadcast messages to be considered non-faulty.
 
 These requirements cannot be assured for messages from Byzantine processes, because such process might have transmitted multiple messages that acknowledge the same or different prior messages or even transmitted messages of which other processes are unaware.
 A Byzantine process can also originate a message that occurs within a cycle in the partial order.
