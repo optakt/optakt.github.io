@@ -320,6 +320,21 @@ The output of the algorithms is a total order of messages that is identical at a
 Message `x1` from process `a` follows a message `x0` from process `b` if `x1` acknowledges `x0` or `x1` acknowledges some other message `y` that follows `x0`, where `y` is not the same as `x0` and `y` is not the same as `x1`.
 This implies that the relation between messages is transitive and also each message follows itself, consequently the relation is also reflexive.
 A message `x1` from a non-Byzantine process `a` acknowledges a message `x0` only if the process has received all messages that `x0` follows before it broadcast `x1`.
+
+```text
+ a       b                chain
+ |       |                  |
+ |       |                  |
+ |       |                  |
+ |      `x0`------------->  |  ↓
+ |                          |
+ |     [`y`-------------->] |  ↓
+ |                          |
+`x1`--------------------->  |  ↓
+                            |
+                           ...
+ ```
+
 Consequently, a message from a non-Byzantine process follows all messages broadcast earlier from that process.
 
 These requirements cannot be assured for messages from Byzantine processes, because such process might have transmitted multiple messages that acknowledge the same or different prior messages or even transmitted messages of which other processes are unaware.
@@ -338,7 +353,7 @@ Only information derived from the Byzantine casual order it used to construct th
 A "candidate message" is a message from the process's Byzantine casual order that is not yet in the total order but only follows a message from it.
 A set of candidate messages is called a "candidate set".
 Thus, messages that occur in a cycle cannot be candidate messages, however mutant messages that are not in a cycle can be candidate messages and even members of the same candidate set.
-Except for mutants, at most one candidate message from a given process will be considered for the next advancement to the total order.
+Except for mutants, at most one candidate message from a given process is considered for the next advancement to the total order.
 
 Prefixes in the Byzantine casual order are subsets of messages that are related to each other by their follows relations and can contain multiple messages followed by a single one.
 The size of a Byzantine casual order is the number of messages in that subset at any point.
@@ -382,7 +397,7 @@ Every time a node receives a transactions, it processes it and places it at its 
 The sequence of transactions must be output in an incremental manner, meaning that before putting a transaction at some position, previous positions must have their respective transactions set.
 It is assumed that whenever an honest node outputs a transaction at some position, every other honest node will also eventually output the same transaction for this position.
 Also, every transaction that is input at some honest node is eventually output by all honest nodes.
-This ensures that not only all honest nodes will produce the same ordering, but also that no transactions is lost due to censorship because all honest nodes will output it.
+This ensures that not only all honest nodes will produce the same ordering, but also that no transaction is lost due to censorship because all honest nodes will output it.
 
 So Aleph produces a single stream of data that "combines" all the individual streams of the nodes and is consistent among them, meaning the nodes produce the same unique sequence of finalized blocks.
 As a Byzantine Tolerant type of protocol, Aleph implements Atomic Broadcast over a set of `3f+1` number of nodes, where `f` denotes the number of dishonest nodes.
@@ -396,14 +411,14 @@ Every unit contains information about its creator, its parents and additional da
 All the nodes are expected to generate such units and maintain their local copies of the common DAG, to which new units are continuously added.
 Aleph uses transitive properties of the underlying DAG.
 Each unit has a "DAG-round" that is defined by the maximum length of a downward chain starting from the current transaction, meaning getting as long as possible path of its ancestors.
-A unit with no parents will have a DAG-round 0, otherwise it has a DAG-round equal to the maximum of DAG-rounds of its parents plus one.
+A unit with no parents has a DAG-round of `0`, otherwise it has a DAG-round equal to the maximum of DAG-rounds of its parents plus `1`.
 Evey node should create one unit in every round, and it should do so after learning a large portion (at least `2f+1`) of units created in the previous round.
 
 Then the protocol is stated entirely through [combinatorial properties of this structure](https://cardinal-cryptography.github.io/AlephBFT/how_alephbgt_does_it.html)
 Each of the nodes votes on the units it sees and decisions on accepting it or not are binary.
 
-In a network running Aleph protocol, where a steady inflow of transactions is being assumed, the communication complexity achieved is O(N² logN).
-There is no requirement for a trusted dealer to distribute certain cryptographic keys among nodes, but Aleph rather implements an ABFT Randomness Beacon with trustless setup.
+In a network running Aleph protocol, where a steady inflow of transactions is assumed, the communication complexity achieved is `O(N² logN)`.
+There is no requirement for a trusted dealer to distribute certain cryptographic keys among nodes, but Aleph implements an ABFT Randomness Beacon with a trustless setup.
 
 Aleph protocol is an example of a Total Ordering algorithm that creates a total order of blocks, thus creating a finalized chain at run, and keep its DAG history records only locally.
 This gives to the nodes a higher level of independence when executing the algorithm, and the weight of synchronizing towards reaching the same total order of blocks is transferred to the combinatoric selection of messages from the Byzantine flow.
@@ -416,7 +431,7 @@ Blockmania is another example of a Total Ordering algorithm.
 
 Typically, clients are external to the network nodes and emit transactions that need to be agreed upon.
 
-Nodes in the network maintain an asymmetric signature scheme and all others can authentically verify their messages via public key.
+Nodes in the network maintain an asymmetric signature scheme and all others can authentically verify their messages via public keys.
 Blockmania keep consistent blocks history using a DAG structure, that is subsequently interpreted by each node separately.
 
 The basic inter-node network operation in Blockmania consists of each node periodically broadcasting a block to all other nodes.
@@ -432,7 +447,7 @@ Besides broadcasting blocks, nodes listen to requests from other nodes for speci
 An honest node includes all transactions received from clients as entries into a block it emits.
 Also, all honest nodes receive and checks for validity all blocks they directly or indirectly reference in their created blocks.
 This means that an honest node receives and stores locally a copy of the full DAG record, starting from the genesis vertex until the last block it emits.
-And if an honest node emits a block, all honest nodes will eventually receive and consider valid (after validating) this block as well as all blocks that it references directly or indirectly in its content entries.
+And if an honest node emits a block, all honest nodes eventually receive and consider it valid (after validating) as well as all blocks that it references directly or indirectly in its content entries.
 
 A dishonest node may contradict itself and send two distinct blocks for the same position in the chain or not send a block for a position for some time or ever.
 All honest nodes reference all valid blocks in their own blocks, including contradictory ones, and proceed with the next phase of the protocol called "interpretation".
@@ -441,19 +456,19 @@ The aim of the interpretation phase is for all honest nodes, despite holding a d
 Blockmania is created as a simplified variant of PBFT algorithm and all parties need to agree on a single position rather than the sequence and all nodes perform their interpretation process independently.
 
 For reaching a decision for a single position, Blockmania runs an abstract terminating reliable broadcast protocol that is never materialized in real exchanged messages but rather the structure of the block DAG is interpreted by each node.
-At any time, a node can emit a message to propose a block in a "pre-prepare" message to all nodes.
+At any time, a node can emit a message to propose a block in a _pre-prepare_ message to all nodes.
 Honest nodes only propose one block for any given position.
 This message contains a _view_ value that represents the change in the blockchain state and has a sequence number starting from zero.
-Upon receiving the "pre-prepare" message, nodes that have the same view broadcast a "prepare" message that contain their identity, view sequence number, block hash and content.
+Upon receiving the _pre-prepare_ message, nodes that have the same view broadcast a _prepare_ message that contain their identity, view sequence number, block hash and content.
 If the view sequence number is zero, meaning this is the first proposed view change, the proposer signature is checked before accepting message.
-If the node does not have the same view interpreted, it does not send out "prepare" message, but sets the received "pre-prepare" and "prepare" messages for that view in its input records buffer.
-Upon receiving `2t` "prepare" messages for a view and a corresponding "pre-prepare" message in its input buffer, nodes broadcast "commit" messages for that view.
-After receiving `2t+1` number of "commit" messages (also saved inside the input buffer), nodes consider view with the next position "decided" and update their local DAG versions.
+If the node does not have the same view interpreted, it does not send out _prepare_ message, but sets the received _pre-prepare_ and _prepare_ messages for that view in its input records buffer.
+Upon receiving `2t` _prepare_ messages for a view and a corresponding _pre-prepare_ message in its input buffer, nodes broadcast _commit_ messages for that view.
+After receiving `2t+1` number of _commit_ messages (also saved inside the input buffer), nodes consider view with the next position "decided" and update their local DAG versions.
 
-The consensus assumes that if two honest nodes reach a decision about a position in the chain, defined by block creator and a block sequence number, that decision will be the same, assuming at most `f` byzantine nodes.
-A decision will eventually be reached for any position in the total order of blocks by all honest nodes.
+The consensus assumes that if two honest nodes reach a decision about a position in the chain, defined by block creator and a block sequence number, they always reach the same decision, assuming at most `f` byzantine nodes.
+A decision is eventually reached for any position in the total order of blocks by all honest nodes.
 
-The Blockmania considers a reliable transmission between honest nodes — a Byzantine network may delay arbitrarily blocks, but eventually they will be delivered.
+The Blockmania considers a reliable transmission between honest nodes to be a Byzantine network that may arbitrarily delay blocks, but where they eventually get delivered.
 This is achieved in practice using re-transmissions.
 Each node monitors chains of other nodes and in case their own blocks are not included into those within an estimated round trip time, they may re-transmit them.
 Also, an honest node may request missing blocks from other nodes, when those have been included in their chains as valid.
