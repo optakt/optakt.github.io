@@ -305,7 +305,7 @@ The Total Ordering algorithms are executed independently and concurrently by eac
 They operate in the presence of asynchrony and communication faults, which may cause different processes to receive messages in different orders, and they tolerate both crash and Byzantine process fault.
 The system is asynchronous in the sense that no bound can be placed on the time required for a computation or for a communication of a message.
 A crash fault causes a process to stop processing and generating messages.
-A Byzantine fault allows an arbitrary behavior by the faulty process, including generating of messages intended to mislead the other processes.
+A Byzantine fault is some arbitrary behavior by the faulty process, including generating of messages intended to mislead the other processes.
 
 The total order ensures consistency by having the same updates applied to the replicated pieces of data in the same order at all sites.
 
@@ -317,7 +317,9 @@ The acknowledgement and re-transmission mechanisms can ensure that all versions 
 Digital signatures and digests are computationally expensive, but do not require the additional rounds of message exchange of alternative strategies.
 
 The output of the algorithms is a total order of messages that is identical at all non-faulty processes in the system.
-Messages from non-Byzantine processes follow all previously broadcast messages. The relation between messages is transitive, and since each message also follows itself, it is reflexive as well. Messages need to acknowledge previously broadcast messages to be considered non-faulty.
+Messages from non-Byzantine processes follow all previously broadcast messages.
+The relation between messages is transitive, and since each message also follows itself, it is reflexive as well.
+Messages need to acknowledge previously broadcast messages to be considered non-faulty.
 
 These requirements cannot be assured for messages from Byzantine processes, because such process might have transmitted multiple messages that acknowledge the same or different prior messages or even transmitted messages of which other processes are unaware.
 A Byzantine process can also originate a message that occurs within a cycle in the partial order.
@@ -351,7 +353,7 @@ Even though the messages can be delayed or lost, every non-faulty process must d
 An _execution step_ consists of adding one message to the Byzantine casual (partial) order prefix and executing the ordering algorithms.
 In a step, all candidate sets that can be constructed from the candidate messages in the casual order prefix are considered.
 
-Examples and further specifications of [Total Ordering algorithms](https://core.ac.uk/display/82213948) specify conditions for each one and calculates its communication complexity and performance.
+Examples and further specifications of [Total Ordering algorithms](https://core.ac.uk/display/82213948) specify conditions for each one of these algorithms and and include calculations on their communication complexity and performance.
 
 The algorithms employ a multistage voting strategy to achieve agreements on the total order and exploits the random structure of the casual order to achieve probabilistic termination.
 They ensure that non-faulty processes construct identical total orders on messages and that non-Byzantine processes construct consistent total orders, provided that the resilience requirements are satisfied.
@@ -367,7 +369,7 @@ Consequently, it is based on a distributed construction of a partially ordered s
 To achieve a consensus, the processes perform computations based on only a local copy of the data structure, however, they are bound to end up with the same result as required by the total ordering process.
 
 The nodes in Aleph protocol network send arbitrary messages to each other using a combination of multicast and random gossip for communication.
-Each node knows the identity of all other nodes and identifies itself through its public key, for which it holds a private key.
+Each node knows the identities of all other nodes and identifies itself through its public key, for which it holds a private key.
 
 From the high level perspective Aleph consensus algorithm functions on a set of nodes that listen for transactions.
 The nodes need to agree on a total ordering of the received transactions arriving in some [unreliable streams of data that the nodes observe locally](#Characteristics).
@@ -394,9 +396,9 @@ All the nodes are expected to generate such units and maintain their local copie
 Aleph uses transitive properties of the underlying DAG.
 Each unit has a "DAG-round" that is defined by the maximum length of a downward chain starting from the current transaction, meaning getting as long as possible path of its ancestors.
 A unit with no parents has a DAG-round of `0`, otherwise it has a DAG-round equal to the maximum of DAG-rounds of its parents plus `1`.
-Evey node should create one unit in every round, and it should do so after learning a large portion (at least `2f+1`) of units created in the previous round.
+Every node should create one unit in every round, and it should do so after learning a large portion (at least `2f+1`) of units created in the previous round.
 
-Then the protocol is stated entirely through [combinatorial properties of this structure](https://cardinal-cryptography.github.io/AlephBFT/how_alephbgt_does_it.html)
+Then the protocol is stated entirely through [combinatorial properties of this structure](https://cardinal-cryptography.github.io/AlephBFT/how_alephbft_does_it.html)
 Each of the nodes votes on the units it sees and decisions on accepting it or not are binary.
 
 In a network running Aleph protocol, where a steady inflow of transactions is assumed, the communication complexity achieved is `O(N² logN)`.
@@ -414,7 +416,7 @@ Blockmania is another example of a Total Ordering algorithm.
 Typically, clients are external to the network nodes and emit transactions that need to be agreed upon.
 
 Nodes in the network maintain an asymmetric signature scheme and all others can authentically verify their messages via public keys.
-Blockmania keep consistent blocks history using a DAG structure, that is subsequently interpreted by each node separately.
+Blockmania keeps consistent blocks history using a DAG structure, that is subsequently interpreted by each node separately.
 
 The basic inter-node network operation in Blockmania consists of each node periodically broadcasting a block to all other nodes.
 The nodes are loosely synchronized, using a [byzantine clock synchronization](https://lamport.azurewebsites.net/pubs/clocks2.pdf) and emit blocks at regular intervals.
@@ -431,10 +433,10 @@ Also, all honest nodes receive and checks for validity all blocks they directly 
 This means that an honest node receives and stores locally a copy of the full DAG record, starting from the genesis vertex until the last block it emits.
 And if an honest node emits a block, all honest nodes eventually receive and consider it valid (after validating) as well as all blocks that it references directly or indirectly in its content entries.
 
-A dishonest node may contradict itself and send two distinct blocks for the same position in the chain or not send a block for a position for some time or ever.
+A dishonest node may contradict itself and send two distinct blocks for the same position in the chain or not send a block for a position for some time, or ever.
 All honest nodes reference all valid blocks in their own blocks, including contradictory ones, and proceed with the next phase of the protocol called "interpretation".
 
-The aim of the interpretation phase is for all honest nodes, despite holding a different subset of the DAG record at any point, to eventually agree on a specific block for any position or alternatively to agree that there is no such block, and to produce the next position in the total ordering of blocks.
+The aim of the interpretation phase is for all honest nodes, despite holding a different subset of the DAG record at any point, to eventually agree on a specific block for any position, or alternatively, to agree that there is no such block, and to produce the next position in the total ordering of blocks.
 Blockmania is created as a simplified variant of PBFT algorithm and all parties need to agree on a single position rather than the sequence and all nodes perform their interpretation process independently.
 
 For reaching a decision for a single position, Blockmania runs an abstract terminating reliable broadcast protocol that is never materialized in real exchanged messages but rather the structure of the block DAG is interpreted by each node.
@@ -451,7 +453,7 @@ The consensus assumes that if two honest nodes reach a decision about a position
 A decision is eventually reached for any position in the total order of blocks by all honest nodes.
 
 The Blockmania considers a reliable transmission between honest nodes to be a Byzantine network that may arbitrarily delay blocks, but where they eventually get delivered.
-This is achieved in practice using re-transmissions.
+In practice, this is achieved using re-transmissions.
 Each node monitors chains of other nodes and in case their own blocks are not included into those within an estimated round trip time, they may re-transmit them.
 Also, an honest node may request missing blocks from other nodes, when those have been included in their chains as valid.
 Nodes use the gossip protocol to communicate with each other and do not need to know all participants in the network to reach to a decision.
@@ -464,9 +466,9 @@ The consensus is built in a modular manner and combines the quorum-based reachin
 
 ### SafetyScore
 
-[SafetyScore consensus](https://safetyscore.app/whitepaper#kairos) is an example of an algorithm that builds a total ordered ledger, that is inspired by the idea of an epidemic spread of a virus that is hard to detect.
+[SafetyScore consensus](https://safetyscore.app/whitepaper#kairos) is an example of an algorithm that builds a total ordered ledger, inspired by the idea of an epidemic spread of a virus that is hard to detect.
 It is a decentralized protocol that disseminates risk measures among the network participants based on their interactions with a disease.
-It is basically a digital tracing algorithm that can be used from all kinds of applications but preventing leaks of participants personal data in the network.
+It is basically a digital tracing algorithm that can be used for all kinds of applications, while preventing leaks of personal data of network participants.
 
 It is Byzantine Fault tolerant, permissionless consensus that aims to produce a global consistent totally-ordered log of records, which is the finalized blockchain state at any time.
 Network can tolerate up to `f` faulty nodes for total number of network participants `2f+1`.
@@ -483,7 +485,7 @@ In SafetyScore certain organizations are able to run specialized nodes that act 
 They perform roles similar to notaries in the real world and act as witnesses ensuring the documents and transactions are properly executed.
 The right to operate a Distributed Notary is limited to organizations that have had a track record of working to preserve digital rights and freedoms, e.g. Electronic Frontier Foundation, Mozilla Foundation, Open Rights Group, etc.
 The distributed notary nodes have access to some confidential information like link between two activity keys and the operators should push back against parties looking to de-anonymize users.
-Participants in the distributed ledger entity also enforce punishments to network nodes that violate the protocol, after a valid claim for the faulty act is presented.
+Participants in the distributed notary entity also enforce punishments to network nodes that violate the protocol, after a valid claim for the faulty act is presented.
 
 Each node validation of blocks is based on [Kairos algorithm](https://kairos.com) for face recognition.
 The IDs and the public keys of initial validators set are used to bootstrap the network.
