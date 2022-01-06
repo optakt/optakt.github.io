@@ -736,58 +736,58 @@ The tokens are then deposited to the receiver from the temporary vault.</p>
 </code></pre></div>
 <p>Using the SDK the script connects to the access node using <code>client.New(ADDRESS)</code>, then gets the private key and the first account key of the service account and uses it to pay and sign the transaction.
 Finally, the transaction is sent.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span><span class="w"></span>
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s">&quot;context&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;context&quot;</span><span class="w"></span>
 
-    <span class="s">&quot;github.com/onflow/flow-go-sdk&quot;</span>
-    <span class="s">&quot;github.com/onflow/flow-go-sdk/crypto&quot;</span>
-<span class="p">)</span>
+<span class="w">    </span><span class="s">&quot;github.com/onflow/flow-go-sdk&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;github.com/onflow/flow-go-sdk/crypto&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 
-<span class="kd">var</span> <span class="p">(</span>
-  <span class="nx">cadenceScript</span>             <span class="p">=</span> <span class="s">&quot;Cadence transaction code describing token transfer...&quot;</span>
-  <span class="nx">serviceAccountAddress</span>      <span class="p">=</span> <span class="s">&quot;0xADDRESS&quot;</span>
-  <span class="nx">serviceAccountPrivateKey</span>  <span class="p">=</span> <span class="s">&quot;privateKey&quot;</span>
-<span class="p">)</span>
+<span class="kd">var</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="nx">cadenceScript</span><span class="w">             </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;Cadence transaction code describing token transfer...&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nx">serviceAccountAddress</span><span class="w">      </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;0xADDRESS&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nx">serviceAccountPrivateKey</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;privateKey&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 
-<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">ctx</span> <span class="o">:=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">()</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nx">ctx</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">()</span><span class="w"></span>
 
-  <span class="nx">cli</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">client</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="nx">grpc</span><span class="p">.</span><span class="nx">WithInsecure</span><span class="p">())</span>
-    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-        <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">}</span>
+<span class="w">  </span><span class="nx">cli</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;127.0.0.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">grpc</span><span class="p">.</span><span class="nx">WithInsecure</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-  <span class="nx">privateKey</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">DecodePrivateKeyHex</span><span class="p">(</span><span class="nx">crypto</span><span class="p">.</span><span class="nx">ECDSA_P256</span><span class="p">,</span> <span class="nx">serviceAccountPrivateKey</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-    <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="nx">privateKey</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">crypto</span><span class="p">.</span><span class="nx">DecodePrivateKeyHex</span><span class="p">(</span><span class="nx">crypto</span><span class="p">.</span><span class="nx">ECDSA_P256</span><span class="p">,</span><span class="w"> </span><span class="nx">serviceAccountPrivateKey</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-    <span class="nx">addr</span> <span class="o">:=</span> <span class="nx">flow</span><span class="p">.</span><span class="nx">HexToAddress</span><span class="p">(</span><span class="nx">serviceAccountAddress</span><span class="p">)</span>
-    <span class="nx">acc</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">GetAccount</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">addr</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-    <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-  <span class="p">}</span>
+<span class="w">    </span><span class="nx">addr</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">flow</span><span class="p">.</span><span class="nx">HexToAddress</span><span class="p">(</span><span class="nx">serviceAccountAddress</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="nx">acc</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">cli</span><span class="p">.</span><span class="nx">GetAccount</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">addr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-    <span class="nx">accountKey</span> <span class="o">:=</span> <span class="nx">acc</span><span class="p">.</span><span class="nx">Keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="nx">signer</span> <span class="o">:=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">NewInMemorySigner</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">,</span> <span class="nx">accountKey</span><span class="p">.</span><span class="nx">HashAlgo</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">accountKey</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">acc</span><span class="p">.</span><span class="nx">Keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="nx">signer</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">crypto</span><span class="p">.</span><span class="nx">NewInMemorySigner</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">,</span><span class="w"> </span><span class="nx">accountKey</span><span class="p">.</span><span class="nx">HashAlgo</span><span class="p">)</span><span class="w"></span>
 
-    <span class="nx">tx</span> <span class="o">:=</span> <span class="nx">flow</span><span class="p">.</span><span class="nx">NewTransaction</span><span class="p">().</span>
-        <span class="nx">SetPayer</span><span class="p">(</span><span class="nx">addr</span><span class="p">).</span>
-        <span class="nx">SetProposalKey</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span> <span class="nx">accountKey</span><span class="p">.</span><span class="nx">Index</span><span class="p">,</span> <span class="nx">accountKey</span><span class="p">.</span><span class="nx">SequenceNumber</span><span class="p">).</span>
-        <span class="nx">SetScript</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">cadenceScript</span><span class="p">))</span>
+<span class="w">    </span><span class="nx">tx</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">flow</span><span class="p">.</span><span class="nx">NewTransaction</span><span class="p">().</span><span class="w"></span>
+<span class="w">        </span><span class="nx">SetPayer</span><span class="p">(</span><span class="nx">addr</span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="nx">SetProposalKey</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span><span class="w"> </span><span class="nx">accountKey</span><span class="p">.</span><span class="nx">Index</span><span class="p">,</span><span class="w"> </span><span class="nx">accountKey</span><span class="p">.</span><span class="nx">SequenceNumber</span><span class="p">).</span><span class="w"></span>
+<span class="w">        </span><span class="nx">SetScript</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">cadenceScript</span><span class="p">))</span><span class="w"></span>
 
-    <span class="nx">err</span> <span class="o">:=</span> <span class="nx">tx</span><span class="p">.</span><span class="nx">SignEnvelope</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span> <span class="nx">accountKey</span><span class="p">.</span><span class="nx">Index</span><span class="p">,</span> <span class="nx">signer</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-    <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-  <span class="p">}</span>
+<span class="w">    </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">SignEnvelope</span><span class="p">(</span><span class="nx">addr</span><span class="p">,</span><span class="w"> </span><span class="nx">accountKey</span><span class="p">.</span><span class="nx">Index</span><span class="p">,</span><span class="w"> </span><span class="nx">signer</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="nx">err</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">SendTransaction</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">tx</span><span class="p">)</span>
-  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-    <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">cli</span><span class="p">.</span><span class="nx">SendTransaction</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">tx</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="sending-a-script">Sending a Script</h2>
 <p>Flow SDK exposes the method <code>ExecuteScriptAtLatestBlock</code> to execute a script on the latest block.
@@ -809,34 +809,34 @@ In this script the <code>ACCOUNT</code> placeholder is the account address of th
 <p>To execute the script from the Go SDK first it requires to create a new connection to an access node.
 This is done using <code>client.New(ACCESS_NODE_ADDRESS)</code>.
 With this connection the script can be executed using <code>ExecuteScriptAtLatestBlock(CONTEXT, CADENCE_SCRIPT, ARGUMENTS)</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span><span class="w"></span>
 
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s">&quot;context&quot;</span>
-    <span class="s">&quot;fmt&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;context&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span><span class="w"></span>
 
-    <span class="s">&quot;github.com/onflow/flow-go-sdk&quot;</span>
-<span class="p">)</span>
+<span class="w">    </span><span class="s">&quot;github.com/onflow/flow-go-sdk&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 
-<span class="kd">var</span> <span class="p">(</span>
-  <span class="nx">cadenceScript</span> <span class="p">=</span> <span class="s">&quot;Cadence script code describing retrieving token balance...&quot;</span>
-<span class="p">)</span>
+<span class="kd">var</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="nx">cadenceScript</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;Cadence script code describing retrieving token balance...&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 
-<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">ctx</span> <span class="o">:=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">()</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nx">ctx</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">()</span><span class="w"></span>
 
-  <span class="nx">cli</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">client</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="nx">grpc</span><span class="p">.</span><span class="nx">WithInsecure</span><span class="p">())</span>
-    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-        <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-    <span class="p">}</span>
+<span class="w">  </span><span class="nx">cli</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;127.0.0.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">grpc</span><span class="p">.</span><span class="nx">WithInsecure</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    <span class="nx">script</span> <span class="o">:=</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">cadenceScript</span><span class="p">)</span>
-    <span class="nx">value</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">ExecuteScriptAtLatestBlock</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">script</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
-  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-    <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-  <span class="p">}</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;\nValue: %s&quot;</span><span class="p">,</span> <span class="nx">value</span><span class="p">.</span><span class="nx">String</span><span class="p">())</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="nx">script</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">cadenceScript</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="nx">value</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">cli</span><span class="p">.</span><span class="nx">ExecuteScriptAtLatestBlock</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">script</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;\nValue: %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">.</span><span class="nx">String</span><span class="p">())</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
                 
               
