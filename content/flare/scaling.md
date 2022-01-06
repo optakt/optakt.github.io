@@ -1,4 +1,4 @@
-# A Brief History of Decentralised Scaling
+# A Brief History of Decentralized Scaling
 
 This article covers how the scaling solutions for decentralized systems in the crypto world have evolved with regards to the consensus algorithms that have been used, what their problems are and how Flare tries to address them.
 It also addresses how various blockchains fare in the realm of the [blockchain trilemma](https://vitalik.ca/general/2021/04/07/sharding.html) which roughly states that it is hard to achieve more than 2 out of 3 from security, scalability and decentralization.
@@ -77,7 +77,7 @@ In general, voting on the next correct block requires multiple rounds of communi
 Scalability is negatively impacted by the high amount of communication.
 
 Also the higher the adoption, the higher the total value represented by the native cryptocurrency and therefore higher the value that needs to be locked up as staking by the nodes.
-This means the native currency's full potential is not utilised as, once it is locked, it can no longer be used for any other purposes.
+This means the native currency's full potential is not utilized as, once it is locked, it can no longer be used for any other purposes.
 The network’s security is proportional to the value of stake committed.
 
 ## Sharding and Layer 2 Solutions
@@ -123,7 +123,7 @@ In Flare, each node has its own local set of validators or quorum set also known
 An added requirement compared to the usual FBA is that there should be a minimum level of overlap between UNLs.
 This makes the network more resistant to single node failure as well as Sybil attack resistant.
 This is because a malicious actor is unlikely to be able to spin up many node instances that manage to integrate the UNL list of other existing quorum sets.
-Flare Consensus Protocol (FCP) is leaderless, asyncronous Byzantine fault tolerant and highly scalable due to its usage of a novel networking complexity-reduction technique called federated virtual voting.
+Flare Consensus Protocol (FCP) is leaderless, asynchronous Byzantine fault tolerant and highly scalable due to its usage of a novel networking complexity-reduction technique called federated virtual voting.
 Details on this can be found in [this article on consensus](https://optakt.github.io/flare/consensus/).
 
 The native token, Spark, is used to delegate to the price providers for [Flare Time Series Oracle (FTSO)](https://flare.xyz/ftso-a-breakdown/) without having any locking thereby enabling other usage of Spark at the same time.
@@ -140,7 +140,7 @@ However, someone running a price provider or a proof attestor also needs to run 
 
 Below is a summary of characteristics of various distributed networks:
 
-| Crypto Project       | Decentralisation | Security | Scalability | Energy Efficient | Composability | Throughput |
+| Crypto Project       | Decentralization | Security | Scalability | Energy Efficient | Composability | Throughput |
 |----------------------|------------------|----------|-------------|------------------|---------------|------------|
 | Bitcoin(PoW)         | ✅                | ✅        | ❌           | ❌                | ❌             | ❌          |
 | Ethereum(PoW)        | ✅                | ✅        | ❌           | ❌                | ✅             | ❌          |

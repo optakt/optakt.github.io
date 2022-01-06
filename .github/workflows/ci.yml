@@ -21,6 +21,11 @@ jobs:
         with:
           python-version: '3.8'
 
+      - name: Setup NPM
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
       - name: Upgrade pip
         run: |
           # install pip=>20.1 to use "pip cache dir"
@@ -40,6 +45,18 @@ jobs:
 
       - name: Install dependencies
         run: python3 -m pip install -r ./requirements.txt
+
+      - name: Install spellchecker
+        run: |
+          npm i markdown-spellcheck -g
+          npm i markdownlint -g
+          npm i markdownlint-cli -g
+
+      - name: Spellcheck
+        run: mdspell -r -a -x -n "content/**/*.md"
+
+      - name: Lint
+        run: markdownlint "content/**/*.md" -i "content/include"
 
       - name: Build documentation
         run: mkdocs build
