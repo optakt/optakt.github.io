@@ -8,7 +8,7 @@ In addition, it contains some information regarding the Avalanche platform since
 Avalanche is an open-source platform for launching decentralized applications and enterprise blockchain deployments in one interoperable, highly scalable ecosystem.
 It is a platform with a new approach to scaling that allows for fast finality of transactions and the ability to run Solidity out-of-the-box.
 
-The most significant difference between Avalanche and other decentralized networks is the [consensus protocol](./flare.md).
+The most significant difference between Avalanche and other decentralized networks is the [consensus protocol](./consensus.md).
 The Avalanche protocol employs a novel approach to a consensus to achieve strong safety guarantees, quick finality, and high throughput without compromising decentralization.
 
 The purpose of the Avalanche platform:

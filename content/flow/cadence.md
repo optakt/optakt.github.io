@@ -835,7 +835,7 @@ If any transaction that results in account's storage use greater that the storag
 
 ### FlowClusterQC
 
-This contract manages the process of collecting votes for the root [Quorum Certificate (QC)](glossary.md#quorum-certificate) of the upcoming epoch for all Collection node clusters assigned for the next epoch.
+This contract manages the process of collecting votes for the root [Quorum Certificate (QC)](../general/glossary.md#quorum-certificate) of the upcoming epoch for all Collection node clusters assigned for the next epoch.
 During the setup phase of the epoch, collection nodes in a specific cluster generate a root block for the cluster.
 The nodes then need to submit a vote for the root block.
 Once enough cluster nodes have voted with the same unique vote, the cluster is considered complete.
