@@ -10,14 +10,14 @@ In Flow, the ledger implementation provides a number of functionalities and guar
 It is also a stateful key/value storage, and every update to the ledger creates a new state.
 A limited number of recent states is kept, and updates can be applied to any one of those states.
 
-Each ledger register is referenced by an ID - the *key* and holds a *value* - binary data.
+Each ledger register is referenced by an ID — the _key_ and holds a _value_ — binary data.
 
 ### Register ID to Ledger Path
 
-When referencing storage locations from Flow code, each register is uniquely identified by three components - *owner*, *controller* and *key*.
+When referencing storage locations from Flow code, each register is uniquely identified by three components — _owner_, _controller_ and _key_.
 Owner represents the account to which the register belongs to.
-Depending on the register, the *controller* field can be either empty or have the value of the *owner* field.
-The *key* field represents the specific storage location of the account.
+Depending on the register, the _controller_ field can be either empty or have the value of the _owner_ field.
+The _key_ field represents the specific storage location of the account.
 
 Definition of a register ID ([source](https://github.com/onflow/flow-go/blob/master/model/flow/ledger.go)):
 
