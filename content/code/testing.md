@@ -24,6 +24,14 @@ The best way to go about it is to follow the [official guidelines of the Go `tes
 >   func TestT_M() { ... }
 > ```
 
+You might sometimes want to have multiple test functions for a single method, in which case the tests should be prefixed as defined above, and followed with the purpose of the test:
+
+```go
+func TestMyType_MethodDoesSomethingWhenX(t *testing.T) { ... }
+func TestMyType_MethodDoesHandlesXFailure(t *testing.T) { ... }
+// And so on.
+```
+
 When it comes to subtests, the names of individual subtests should be lowercased and concise.
 The tests usually start with a subtest called `nominal case` which verifies that the tested component behaves as expected in a baseline situation, where no failures occur and no edge cases are handled.
 
