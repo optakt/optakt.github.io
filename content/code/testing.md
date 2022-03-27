@@ -85,9 +85,14 @@ Using those mocks is as simple as instantiating a baseline version of the mock a
 {!mock_test_example.md!}
 ```
 
+#### Mocks Package
+
+When the same mock needs to be used within multiple packages, it can make sense to create a package to store common mocks.
+This package should be located at `./testing/mocks` from the root of the repository, and each file within it should define a single mock.
+
 ### Pseudorandom Generic Values
 
-When using test data for unit tests, it is always a good idea to use random generated data as the inputs.
+When using test data for unit tests, it is often a good idea to use random generated data as the inputs.
 This avoids the bias where a test passes because it is given a valid set of inputs while some other inputs might have highlighted a flaw in the logic, by using an _unconstrained_ data set.
 
 In order for the tests to be repeatable and for results to be consistent though, the given inputs should not be completely random, but instead they should be pseudorandom, with the same initial seed, to ensure the same sequence of "random" tests.
@@ -101,6 +106,11 @@ Here is an example of such a value being generated.
 !!! warning
 
     While randomly generating valid inputs makes sense, randomly generating invalid inputs does not. In the case of invalid inputs, it is much better to have an exhaustive list of all types of cases that are expected to be invalid and always test each one of them.
+
+#### Generic Values Package
+
+When the same generic value need to be used within multiple packages, it can make sense to create a package to store common generic values.
+This package should be located at `./testing/mocks` from the root of the repository, and values should be in a file called `generic.go`.
 
 ### Parallelization
 
