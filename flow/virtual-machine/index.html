@@ -840,9 +840,9 @@ It holds an array of key-value pairs called registers.</p>
 <p>In Flow, the ledger implementation provides a number of functionalities and guarantees, including speed, memory-efficiency, crash resilience (via write-ahead logs and checkpoints), thread safety etc.
 It is also a stateful key/value storage, and every update to the ledger creates a new state.
 A limited number of recent states is kept, and updates can be applied to any one of those states.</p>
-<p>Each ledger register is referenced by an ID - the <em>key</em> and holds a <em>value</em> - binary data.</p>
+<p>Each ledger register is referenced by an ID — the <em>key</em> and holds a <em>value</em> — binary data.</p>
 <h3 id="register-id-to-ledger-path">Register ID to Ledger Path</h3>
-<p>When referencing storage locations from Flow code, each register is uniquely identified by three components - <em>owner</em>, <em>controller</em> and <em>key</em>.
+<p>When referencing storage locations from Flow code, each register is uniquely identified by three components — <em>owner</em>, <em>controller</em> and <em>key</em>.
 Owner represents the account to which the register belongs to.
 Depending on the register, the <em>controller</em> field can be either empty or have the value of the <em>owner</em> field.
 The <em>key</em> field represents the specific storage location of the account.</p>
