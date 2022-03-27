@@ -328,7 +328,7 @@ A non-faulty process executing a Total ordering algorithm does not advance a mes
 Thus, a non-faulty process does not advance to the total order any message in a cycle, or any message that follows a message in a cycle.
 If a Byzantine process ever participates in a cycle, then none of its subsequent messages will be ordered.
 
-A Byzantine process can originate two or more concurrent messages with the same header, but with different contents and/or acknowledgments, neither of which follows the other and possibly each of which purports to follow different messages.
+A Byzantine process can originate two or more concurrent messages with the same header, but with different contents and/or acknowledgements, neither of which follows the other and possibly each of which purports to follow different messages.
 These messages are called _mutants_.
 
 The input to the Total Ordering algorithms is a Byzantine partial order of messages and the output is a total order of messages.
@@ -353,7 +353,7 @@ Even though the messages can be delayed or lost, every non-faulty process must d
 An _execution step_ consists of adding one message to the Byzantine casual (partial) order prefix and executing the ordering algorithms.
 In a step, all candidate sets that can be constructed from the candidate messages in the casual order prefix are considered.
 
-Examples and further specifications of [Total Ordering algorithms](https://core.ac.uk/display/82213948) specify conditions for each one of these algorithms and and include calculations on their communication complexity and performance.
+Examples and further specifications of [Total Ordering algorithms](https://core.ac.uk/display/82213948) specify conditions for each one of these algorithms and include calculations on their communication complexity and performance.
 
 The algorithms employ a multistage voting strategy to achieve agreements on the total order and exploits the random structure of the casual order to achieve probabilistic termination.
 They ensure that non-faulty processes construct identical total orders on messages and that non-Byzantine processes construct consistent total orders, provided that the resilience requirements are satisfied.
@@ -473,7 +473,7 @@ It is basically a digital tracing algorithm that can be used for all kinds of ap
 It is Byzantine Fault tolerant, permissionless consensus that aims to produce a global consistent totally-ordered log of records, which is the finalized blockchain state at any time.
 Network can tolerate up to `f` faulty nodes for total number of network participants `2f+1`.
 
-The database is a distributed ledger without a center of control.
+The database is a distributed ledger.
 Each node generates its own sequence of blocks and all nodes collectively write history to a DAG structure that acts as an underlying representation of a distributed ledger current state.
 
 Nodes that can validate blocks published on the distributed ledger are known as validator nodes.

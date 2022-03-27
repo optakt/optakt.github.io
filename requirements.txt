@@ -4,3 +4,4 @@ mkdocs-markdownextradata-plugin==0.2.4
 mkdocs-material==7.3.6
 markdown-include==0.6.0
 mkdocs-exclude==1.0.2
+markupsafe==2.0.1
