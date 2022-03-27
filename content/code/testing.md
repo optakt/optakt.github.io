@@ -229,3 +229,7 @@ If this is missing, examples will not be executed and therefore not included in 
 
 When a package exposes a performance-critical piece of code, it should be benchmarked, and benchmark tests must be available for anyone to reproduce the benchmark using their hardware.
 Writing benchmark results in a markdown file without providing a way to reproduce them is irrelevant.
+
+```go
+{!benchmark_example.md!}
+```
