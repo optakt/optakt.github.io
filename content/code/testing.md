@@ -140,6 +140,20 @@ This can be very useful, as it enables creating a hierarchical structure within 
 {!index_internal_test.md!}
     ```
 
+##### Structure
+
+In those tests, usually the structure is composed of:
+
+* At the top-level, the common testing variables that are used in multiple subtests.
+    * This can be a logger that discards logs, some test input that can be reused, expected return values shared between tests, and so on.
+* In each sub-test:
+    * The test is defined as parallelized;
+    * The inputs and outputs are defined in variables;
+    * The mocks are defined and their methods overridden when necessary;
+    * The test subject is created and given the mocks;
+    * The tested method is called on the subject, its return values are often stored in `got` and `err`: `got, err := mything.Do(input)`;
+    * Assertions are made on the returned values.
+
 #### Table-Driven Tests
 
 It makes a lot of sense to use subtests when testing the behavior of complex components, but it is better to use [table-driven tests](https://dave.cheney.net/2019/05/07/prefer-table-driven-tests) when testing a simple function with an expected output for a given input, and that there are many cases to cover.
