@@ -6,6 +6,14 @@ Untested code is fragile, difficult to maintain and becomes questionable as soon
 
 This guide assumes that you are already familiar with Go testing.
 
+
+!!! warning "External projects"
+
+    This guide assumes that you are dealing with an Optakt project.
+    When working on projects for clients, they might have different testing practices.
+    In such a case, first make sure to keep your tests consistent with their own, and if you have any doubts please voice them on Slack.
+    If the tests of the original project are really problematic, we can discuss refactoring them and changing the way their tests are written in the future to improve code quality and reduce technical debt.
+
 ## Unit Tests
 
 This section outlines a few of the rules we try to follow when it comes to Go unit tests.
