@@ -6,7 +6,6 @@ Untested code is fragile, difficult to maintain and becomes questionable as soon
 
 This guide assumes that you are already familiar with Go testing.
 
-
 !!! warning "External projects"
 
     This guide assumes that you are dealing with an Optakt project.
@@ -40,8 +39,29 @@ func TestMyType_MethodDoesHandlesXFailure(t *testing.T) { ... }
 // And so on.
 ```
 
-When it comes to subtests, the names of individual subtests should be lowercased and concise.
-The tests usually start with a subtest called `nominal case` which verifies that the tested component behaves as expected in a baseline situation, where no failures occur and no edge cases are handled.
+When it comes to subtests, the names of individual subtests should be lowercased and concise. The tests usually start
+with a subtest called `nominal case` which verifies that the tested component behaves as expected in a baseline
+situation, where no failures occur and no edge cases are handled. Subsequent tests should follow the paths through which
+the function can flow from top to bottom.
+
+With the following example:
+
+```go
+{!function_example.md!}
+```
+
+There are three possible paths through which this function can be traversed:
+
+* The nominal case, where `s.validate.Struct` and `s.index.HeightForBlock` return no errors and the function returns a
+  valid response.
+* The case where `s.validate.Struct` returns an error.
+* The case where `s.index.HeightForBlock` returns an error.
+
+And here is what the tests should look like:
+
+```go
+{!function_example_tests.md!}
+```
 
 ### Internal Unit Tests
 
