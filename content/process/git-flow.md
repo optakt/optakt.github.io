@@ -23,7 +23,7 @@ Whenever the base branch one of your pull requests is against gets updated with 
 1. Fetch the latest version of the base branch you need to rebase against. In most cases this will be `master`.
 2. Run `git rebase <base branch>` from your local branch.
 3. This will make `git` rewind history and put your HEAD back to the first commit that diverges between the two branches.
-4. One by one, commits will be applied to your local branch until one with conflicts is reached.
+4. One by one, commits will be automatically applied to your local branch until one with conflicts is reached.
 5. You will now need to resolve the conflicts
    1. This can be done with a GUI using most development environments, or manually by running `git status` to see which files have conflicts that need to be resolved and modifying them manually.
 6. Now, run `git rebase --continue` to continue rebasing.
@@ -77,8 +77,8 @@ On the master branch, each commit should correspond to a single PR, and within e
 
 This is not simple however, since it means that if you go ahead and code huge amounts at once, you will then need to either:
 
-* Create multiple commits from these changes, by interactively adding the specific parts that belong together into one commit for each feature/component of the changes.
-* Create one huge commit for now, and split it later on by using `git rebase` and amending the commit history.
+* Create multiple commits from these changes, by [interactively adding](#interactive-add) the specific parts that belong together into one commit for each feature/component of the changes.
+* Create one huge commit for now, and [split it later on](#amending-commit-history) by using `git rebase` and amending the commit history.
 
 ### Interactive Add
 
@@ -87,7 +87,7 @@ This means you do not need to add a whole file to your next commit, but instead 
 
 ### Amending Commit History
 
-The other solution is to use `git rebase -i` to amend the commit history.
+The other solution is to use `git rebase -i <base branch>` to amend the commit history.
 In order to split a commit into multiple parts, you need to specify the `edit` directive for that commit.
 Once you get to that point in the rebasing process, running `git status` will show you all the changes from that commit.
 You can then use `git restore --staged <file names>` to remove them from staging.
