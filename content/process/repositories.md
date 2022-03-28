@@ -116,6 +116,16 @@ Reviewers should only block a PR by `Requesting Changes` if one or more elements
 
 Once a PR has been reviewed and approved by at least one reviewer, it can be merged. The only way we allow merging is by squashing all the PR's commits into a single one, as this keeps the `master` branch and the changelog clean and easy to follow.
 
+!!! warning "Closing Pull Requests"
+
+    When closing a Pull Request, make sure to always specify the reason for doing so by adding a comment to the PR.
+    This will ensure that collaborators can follow the process and understand the reasons for the PR being closed, and that the repository has a well-documented history.
+
+    If you have issues with conflicts and/or your branch is messy, **NEVER** close the PR and delete the remote branch.
+    Instead, simply create a new clean branch on which you cherry-pick your commits, clean up, and overwrite the original remote branch by using `git push --force`.
+    This will update the PR and the previous history will be removed while preserving the original suggestion threads and PR metadata.
+    Doing this also avoids duplicating information and having a confusing git history for the repository.
+
 ### Labels
 
 Task prioritization is currently handled using labels:
