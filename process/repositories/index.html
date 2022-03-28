@@ -935,6 +935,15 @@ Using the <a href="https://nomnoml.com/">official website for the language</a>, 
 </ul>
 <p>Reviewers should only block a PR by <code>Requesting Changes</code> if one or more elements from the Pull Request must be changed before the PR can get merged. If a reviewer only gives feedback for nitpicks and style, for example, they should most likely just leave comments but not request changes. This keeps the reviewing process smoother.</p>
 <p>Once a PR has been reviewed and approved by at least one reviewer, it can be merged. The only way we allow merging is by squashing all the PR's commits into a single one, as this keeps the <code>master</code> branch and the changelog clean and easy to follow.</p>
+<div class="admonition warning">
+<p class="admonition-title">Closing Pull Requests</p>
+<p>When closing a Pull Request, make sure to always specify the reason for doing so by adding a comment to the PR.
+This will ensure that collaborators can follow the process and understand the reasons for the PR being closed, and that the repository has a well-documented history.</p>
+<p>If you have issues with conflicts and/or your branch is messy, <strong>NEVER</strong> close the PR and delete the remote branch.
+Instead, simply create a new clean branch on which you cherry-pick your commits, clean up, and overwrite the original remote branch by using <code>git push --force</code>.
+This will update the PR and the previous history will be removed while preserving the original suggestion threads and PR metadata.
+Doing this also avoids duplicating information and having a confusing git history for the repository.</p>
+</div>
 <h3 id="labels">Labels</h3>
 <p>Task prioritization is currently handled using labels:</p>
 <ul>
