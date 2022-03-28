@@ -118,8 +118,8 @@ Once a PR has been reviewed and approved by at least one reviewer, it can be mer
 
 !!! warning "Closing Pull Requests"
 
-    When closing a Pull Request, make sure to always specify the reason for closing it by adding a comment to the PR while closing it.
-    This will ensure that collaborators can follow the process and understand the reasons for the PR being closed, and ensures that the repository has a well-documented history.
+    When closing a Pull Request, make sure to always specify the reason for doing so by adding a comment to the PR.
+    This will ensure that collaborators can follow the process and understand the reasons for the PR being closed, and that the repository has a well-documented history.
 
     If you have issues with conflicts and/or your branch is messy, **NEVER** close the PR and delete the remote branch.
     Instead, simply create a new clean branch on which you cherry-pick your commits, clean up, and overwrite the original remote branch by using `git push --force`.
