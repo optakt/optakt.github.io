@@ -35,7 +35,7 @@ You might sometimes want to have multiple test functions for a single method, in
 
 ```go
 func TestMyType_MethodDoesSomethingWhenX(t *testing.T) { ... }
-func TestMyType_MethodDoesHandlesXFailure(t *testing.T) { ... }
+func TestMyType_MethodDoesHandleXFailure(t *testing.T) { ... }
 // And so on.
 ```
 
