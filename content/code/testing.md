@@ -52,8 +52,7 @@ With the following example:
 
 There are three possible paths through which this function can be traversed:
 
-* The nominal case, where `s.validate.Struct` and `s.index.HeightForBlock` return no errors and the function returns a
-  valid response.
+* The nominal case, where `s.validate.Struct` and `s.index.HeightForBlock` return no errors and the function returns a valid response.
 * The case where `s.validate.Struct` returns an error.
 * The case where `s.index.HeightForBlock` returns an error.
 
