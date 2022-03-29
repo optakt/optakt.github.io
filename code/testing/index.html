@@ -356,12 +356,38 @@
     Mocks
   </a>
   
+    <nav class="md-nav" aria-label="Mocks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mocks-package" class="md-nav__link">
+    Mocks Package
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
   <a href="#pseudorandom-generic-values" class="md-nav__link">
     Pseudorandom Generic Values
   </a>
+  
+    <nav class="md-nav" aria-label="Pseudorandom Generic Values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generic-values-package" class="md-nav__link">
+    Generic Values Package
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -384,6 +410,19 @@
   <a href="#subtests-and-sub-benchmarks" class="md-nav__link">
     Subtests and Sub-benchmarks
   </a>
+  
+    <nav class="md-nav" aria-label="Subtests and Sub-benchmarks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    Structure
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -798,12 +837,38 @@
     Mocks
   </a>
   
+    <nav class="md-nav" aria-label="Mocks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mocks-package" class="md-nav__link">
+    Mocks Package
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
   <a href="#pseudorandom-generic-values" class="md-nav__link">
     Pseudorandom Generic Values
   </a>
+  
+    <nav class="md-nav" aria-label="Pseudorandom Generic Values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generic-values-package" class="md-nav__link">
+    Generic Values Package
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -826,6 +891,19 @@
   <a href="#subtests-and-sub-benchmarks" class="md-nav__link">
     Subtests and Sub-benchmarks
   </a>
+  
+    <nav class="md-nav" aria-label="Subtests and Sub-benchmarks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    Structure
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -905,6 +983,13 @@
 Over the course of the product development life cycle, testing saves time and money, and helps developers write better code, more efficiently.
 Untested code is fragile, difficult to maintain and becomes questionable as soon as changes are made.</p>
 <p>This guide assumes that you are already familiar with Go testing.</p>
+<div class="admonition warning">
+<p class="admonition-title">External projects</p>
+<p>This guide assumes that you are dealing with an Optakt project.
+When working on projects for clients, they might have different testing practices.
+In such a case, first make sure to keep your tests consistent with their own, and if you have any doubts please voice them on Slack.
+If the tests of the original project are really problematic, we can discuss refactoring them and changing the way their tests are written in the future to improve code quality and reduce technical debt.</p>
+</div>
 <h2 id="unit-tests">Unit Tests</h2>
 <p>This section outlines a few of the rules we try to follow when it comes to Go unit tests.</p>
 <h3 id="naming-conventions">Naming Conventions</h3>
@@ -918,8 +1003,105 @@ The best way to go about it is to follow the <a href="https://pkg.go.dev/testing
 <span class="w">  </span><span class="kd">func</span><span class="w"> </span><span class="nx">TestT_M</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </blockquote>
-<p>When it comes to subtests, the names of individual subtests should be lowercased and concise.
-The tests usually start with a subtest called <code>nominal case</code> which verifies that the tested component behaves as expected in a baseline situation, where no failures occur and no edge cases are handled.</p>
+<p>You might sometimes want to have multiple test functions for a single method, in which case the tests should be prefixed as defined above, and followed with the purpose of the test:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span><span class="w"> </span><span class="nx">TestMyType_MethodDoesSomethingWhenX</span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">TestMyType_MethodDoesHandleXFailure</span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="c1">// And so on.</span><span class="w"></span>
+</code></pre></div>
+<p>When it comes to subtests, the names of individual subtests should be lowercased and concise. The tests usually start
+with a subtest called <code>nominal case</code> which verifies that the tested component behaves as expected in a baseline
+situation, where no failures occur and no edge cases are handled. Subsequent tests should follow the paths through which
+the function can flow from top to bottom.</p>
+<p>With the following example:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c1">// server.go</span><span class="w"></span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">s</span><span class="w"> </span><span class="o">*</span><span class="nx">Server</span><span class="p">)</span><span class="w"> </span><span class="nx">GetHeightForBlock</span><span class="p">(</span><span class="nx">_</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">req</span><span class="w"> </span><span class="o">*</span><span class="nx">GetHeightForBlockRequest</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="nx">GetHeightForBlockResponse</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">        </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">validate</span><span class="p">.</span><span class="nx">Struct</span><span class="p">(</span><span class="nx">req</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;bad request: %w&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="nx">blockID</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">flow</span><span class="p">.</span><span class="nx">HashToID</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">BlockID</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="nx">height</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">index</span><span class="p">.</span><span class="nx">HeightForBlock</span><span class="p">(</span><span class="nx">blockID</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;could not get height for block: %w&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="nx">res</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">GetHeightForBlockResponse</span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nx">BlockID</span><span class="p">:</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">BlockID</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nx">Height</span><span class="p">:</span><span class="w">  </span><span class="nx">height</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>There are three possible paths through which this function can be traversed:</p>
+<ul>
+<li>The nominal case, where <code>s.validate.Struct</code> and <code>s.index.HeightForBlock</code> return no errors and the function returns a valid response.</li>
+<li>The case where <code>s.validate.Struct</code> returns an error.</li>
+<li>The case where <code>s.index.HeightForBlock</code> returns an error.</li>
+</ul>
+<p>And here is what the tests should look like:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c1">// server_internal_test.go</span><span class="w"></span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nx">TestServer_GetHeightForBlock</span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nx">blockID</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">mocks</span><span class="p">.</span><span class="nx">GenericHeader</span><span class="p">.</span><span class="nx">ID</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="nx">tests</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nx">name</span><span class="w"> </span><span class="kt">string</span><span class="w"></span>
+<span class="w">            </span><span class="nx">req</span><span class="w"> </span><span class="o">*</span><span class="nx">GetHeightForBlockRequest</span><span class="w"></span>
+<span class="w">            </span><span class="nx">mockErr</span><span class="w"> </span><span class="kt">error</span><span class="w"></span>
+<span class="w">            </span><span class="nx">wantBlockID</span><span class="w"> </span><span class="nx">flow</span><span class="p">.</span><span class="nx">Identifier</span><span class="w"></span>
+<span class="w">            </span><span class="nx">checkErr</span><span class="w"> </span><span class="nx">require</span><span class="p">.</span><span class="nx">ErrorAssertionFunc</span><span class="w"></span>
+<span class="w">        </span><span class="p">}{</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nx">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;nominal case&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nx">req</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">GetHeightForBlockRequest</span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nx">BlockID</span><span class="p">:</span><span class="w"> </span><span class="nx">mocks</span><span class="p">.</span><span class="nx">ByteSlice</span><span class="p">(</span><span class="nx">blockID</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="nx">mockErr</span><span class="p">:</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                </span><span class="nx">wantBlockID</span><span class="p">:</span><span class="w"> </span><span class="nx">blockID</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nx">checkErr</span><span class="p">:</span><span class="w"> </span><span class="nx">require</span><span class="p">.</span><span class="nx">NoError</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nx">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;handles invalid block request&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nx">req</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">GetHeightForBlockRequest</span><span class="p">{},</span><span class="w"></span>
+<span class="w">                </span><span class="nx">checkErr</span><span class="p">:</span><span class="w"> </span><span class="nx">require</span><span class="p">.</span><span class="nx">Error</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nx">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;handles failure to retrieve block height from index&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nx">req</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">GetHeightForBlockRequest</span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nx">BlockID</span><span class="p">:</span><span class="w"> </span><span class="nx">mocks</span><span class="p">.</span><span class="nx">ByteSlice</span><span class="p">(</span><span class="nx">blockID</span><span class="p">),</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">                </span><span class="nx">mockErr</span><span class="p">:</span><span class="w"> </span><span class="nx">mocks</span><span class="p">.</span><span class="nx">GenericError</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nx">checkErr</span><span class="p">:</span><span class="w"> </span><span class="nx">require</span><span class="p">.</span><span class="nx">Error</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">test</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">tests</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nx">test</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">test</span><span class="w"></span>
+<span class="w">            </span><span class="nx">t</span><span class="p">.</span><span class="nx">Run</span><span class="p">(</span><span class="nx">test</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nx">t</span><span class="p">.</span><span class="nx">Parallel</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">                </span><span class="nx">index</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">mocks</span><span class="p">.</span><span class="nx">BaselineReader</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="nx">index</span><span class="p">.</span><span class="nx">HeightForBlockFunc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">blockID</span><span class="w"> </span><span class="nx">flow</span><span class="p">.</span><span class="nx">Identifier</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">uint64</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="nx">mocks</span><span class="p">.</span><span class="nx">GenericHeight</span><span class="p">,</span><span class="w"> </span><span class="nx">test</span><span class="p">.</span><span class="nx">mockErr</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">                </span><span class="nx">s</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">Server</span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nx">index</span><span class="p">:</span><span class="w">    </span><span class="nx">index</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="nx">validate</span><span class="p">:</span><span class="w"> </span><span class="nx">validator</span><span class="p">.</span><span class="nx">New</span><span class="p">(),</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">                </span><span class="nx">got</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">GetHeightForBlock</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">(),</span><span class="w"> </span><span class="nx">test</span><span class="p">.</span><span class="nx">req</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="nx">test</span><span class="p">.</span><span class="nx">checkErr</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nx">assert</span><span class="p">.</span><span class="nx">Equal</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="w"> </span><span class="nx">mocks</span><span class="p">.</span><span class="nx">GenericHeight</span><span class="p">,</span><span class="w"> </span><span class="nx">got</span><span class="p">.</span><span class="nx">Height</span><span class="p">)</span><span class="w"></span>
+<span class="w">                    </span><span class="nx">assert</span><span class="p">.</span><span class="nx">Equal</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="w"> </span><span class="nx">test</span><span class="p">.</span><span class="nx">wantBlockID</span><span class="p">[:],</span><span class="w"> </span><span class="nx">got</span><span class="p">.</span><span class="nx">BlockID</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">})</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <h3 id="internal-unit-tests">Internal Unit Tests</h3>
 <p>In most cases, packages can be tested using external tests only.
 When writing tests for a package called <code>xyz</code>, the external tests should be in the same folder, but in a package called <code>xyz_test</code>.
@@ -975,8 +1157,11 @@ The Go language makes it easy to do so elegantly by creating structures that imp
 <span class="w">    </span><span class="p">})</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// ...</span><span class="w"></span>
 </code></pre></div>
+<h4 id="mocks-package">Mocks Package</h4>
+<p>When the same mock needs to be used within multiple packages, it can make sense to create a package to store common mocks.
+This package should be located at <code>./testing/mocks</code> from the root of the repository, and each file within it should define a single mock.</p>
 <h3 id="pseudorandom-generic-values">Pseudorandom Generic Values</h3>
-<p>When using test data for unit tests, it is always a good idea to use random generated data as the inputs.
+<p>When using test data for unit tests, it is often a good idea to use random generated data as the inputs.
 This avoids the bias where a test passes because it is given a valid set of inputs while some other inputs might have highlighted a flaw in the logic, by using an <em>unconstrained</em> data set.</p>
 <p>In order for the tests to be repeatable and for results to be consistent though, the given inputs should not be completely random, but instead they should be pseudorandom, with the same initial seed, to ensure the same sequence of "random" tests.</p>
 <p>Here is an example of such a value being generated.</p>
@@ -1003,6 +1188,9 @@ This avoids the bias where a test passes because it is given a valid set of inpu
 <p class="admonition-title">Warning</p>
 <p>While randomly generating valid inputs makes sense, randomly generating invalid inputs does not. In the case of invalid inputs, it is much better to have an exhaustive list of all types of cases that are expected to be invalid and always test each one of them.</p>
 </div>
+<h4 id="generic-values-package">Generic Values Package</h4>
+<p>When the same generic value need to be used within multiple packages, it can make sense to create a package to store common generic values.
+This package should be located at <code>./testing/mocks</code> from the root of the repository, and values should be in a file called <code>generic.go</code>.</p>
 <h3 id="parallelization">Parallelization</h3>
 <p>Since the version <code>1.7</code> of Go, tests can be run in parallel.
 This can be done by calling <a href="https://pkg.go.dev/testing#T.Parallel"><code>t.Parallel</code></a> in each subtest.
@@ -1074,6 +1262,24 @@ This can be very useful, as it enables creating a hierarchical structure within 
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </details>
+<h5 id="structure">Structure</h5>
+<p>In those tests, usually the structure is composed of:</p>
+<ul>
+<li>At the top-level, the common testing variables that are used in multiple subtests.<ul>
+<li>This can be a logger that discards logs, some test input that can be reused, expected return values shared between tests, and so on.</li>
+</ul>
+</li>
+<li>In each sub-test:<ul>
+<li>The test is defined as parallelized;</li>
+<li>The inputs and outputs are defined in variables;</li>
+<li>The mocks are defined and their methods overridden when necessary;</li>
+<li>If test is for a method, the method's struct (the subject of the test) is created and given the mocks;</li>
+<li>The tested method is called on the subject, its return values are often stored in <code>got</code> and <code>err</code>: <code>got, err := mything.Do(input)</code>;</li>
+<li>If the test should not error, <code>require.NoError</code> is called on the error return;</li>
+<li>Assertions are made on the returned value.</li>
+</ul>
+</li>
+</ul>
 <h4 id="table-driven-tests">Table-Driven Tests</h4>
 <p>It makes a lot of sense to use subtests when testing the behavior of complex components, but it is better to use <a href="https://dave.cheney.net/2019/05/07/prefer-table-driven-tests">table-driven tests</a> when testing a simple function with an expected output for a given input, and that there are many cases to cover.
 For such cases, table-driven tests massively improve clarity and readability.</p>
@@ -3430,6 +3636,28 @@ If this is missing, examples will not be executed and therefore not included in 
 <h2 id="benchmarks">Benchmarks</h2>
 <p>When a package exposes a performance-critical piece of code, it should be benchmarked, and benchmark tests must be available for anyone to reproduce the benchmark using their hardware.
 Writing benchmark results in a markdown file without providing a way to reproduce them is irrelevant.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c1">// test_trie.go</span><span class="w"></span>
+<span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nx">BenchmarkTrie_InsertMany</span><span class="p">(</span><span class="nx">b</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">        </span><span class="nx">paths</span><span class="p">,</span><span class="w"> </span><span class="nx">payloads</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">helpers</span><span class="p">.</span><span class="nx">SampleRandomRegisterWrites</span><span class="p">(</span><span class="nx">helpers</span><span class="p">.</span><span class="nx">NewGenerator</span><span class="p">(),</span><span class="w"> </span><span class="mi">1000</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="nx">b</span><span class="p">.</span><span class="nx">Run</span><span class="p">(</span><span class="s">&quot;insert 1000 elements (reference)&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">b</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">N</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nx">ref</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">reference</span><span class="p">.</span><span class="nx">NewEmptyMTrie</span><span class="p">()</span><span class="w"></span>
+<span class="w">                </span><span class="nx">ref</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">reference</span><span class="p">.</span><span class="nx">NewTrieWithUpdatedRegisters</span><span class="p">(</span><span class="nx">ref</span><span class="p">,</span><span class="w"> </span><span class="nx">paths</span><span class="p">,</span><span class="w"> </span><span class="nx">payloads</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="nx">_</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">ref</span><span class="p">.</span><span class="nx">RootHash</span><span class="p">()</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">})</span><span class="w"></span>
+
+<span class="w">        </span><span class="nx">b</span><span class="p">.</span><span class="nx">Run</span><span class="p">(</span><span class="s">&quot;insert 1000 elements (new)&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">b</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">N</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nx">tr</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">trie</span><span class="p">.</span><span class="nx">NewEmptyTrie</span><span class="p">()</span><span class="w"></span>
+<span class="w">                </span><span class="nx">tr</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">tr</span><span class="p">.</span><span class="nx">Mutate</span><span class="p">(</span><span class="nx">paths</span><span class="p">,</span><span class="w"> </span><span class="nx">payloads</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="nx">_</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">tr</span><span class="p">.</span><span class="nx">RootHash</span><span class="p">()</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">})</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
                 
               
               
