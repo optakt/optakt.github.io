@@ -161,7 +161,8 @@ In those tests, usually the structure is composed of:
     * The mocks are defined and their methods overridden when necessary;
     * If test is for a method, the method's struct (the subject of the test) is created and given the mocks;
     * The tested method is called on the subject, its return values are often stored in `got` and `err`: `got, err := mything.Do(input)`;
-    * Assertions are made on the returned values.
+	* If the test should not error, `require.NoError` is called on the error return;
+    * Assertions are made on the returned value.
 
 #### Table-Driven Tests
 
