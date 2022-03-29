@@ -382,9 +382,95 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Git Flow
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Git Flow
       </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rebasing" class="md-nav__link">
+    Rebasing
+  </a>
+  
+    <nav class="md-nav" aria-label="Rebasing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alternative-to-rebasing" class="md-nav__link">
+    Alternative to Rebasing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-reflog" class="md-nav__link">
+    Git Reflog
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-restore" class="md-nav__link">
+    Git Restore
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clean-commits" class="md-nav__link">
+    Clean Commits
+  </a>
+  
+    <nav class="md-nav" aria-label="Clean Commits">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interactive-add" class="md-nav__link">
+    Interactive Add
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amending-commit-history" class="md-nav__link">
+    Amending Commit History
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -624,6 +710,75 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rebasing" class="md-nav__link">
+    Rebasing
+  </a>
+  
+    <nav class="md-nav" aria-label="Rebasing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alternative-to-rebasing" class="md-nav__link">
+    Alternative to Rebasing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-reflog" class="md-nav__link">
+    Git Reflog
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-restore" class="md-nav__link">
+    Git Restore
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clean-commits" class="md-nav__link">
+    Clean Commits
+  </a>
+  
+    <nav class="md-nav" aria-label="Clean Commits">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interactive-add" class="md-nav__link">
+    Interactive Add
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amending-commit-history" class="md-nav__link">
+    Amending Commit History
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -636,7 +791,83 @@
                 
                 
                 <h1 id="git">Git</h1>
-<p>TODO</p>
+<p>This guide assumes that you are already familiar with the basic functionalities of <code>git</code>:</p>
+<ul>
+<li>Cloning repositories</li>
+<li>Checking branches out</li>
+<li>Committing changes</li>
+<li>Pushing</li>
+<li>Pulling</li>
+</ul>
+<p>And it will walk you through slightly more advanced concepts that will come in handy when working on Optakt projects.</p>
+<h2 id="rebasing">Rebasing</h2>
+<p>The most important thing you'll likely need to master is <em>rebasing</em>.
+Whenever the base branch one of your pull requests is against gets updated with changes that conflict with yours, you will need to rebase your branch before it can be properly reviewed and merged.</p>
+<div class="admonition warning">
+<p class="admonition-title">git merge</p>
+<p>We do not use <code>git merge</code> at Optakt, because it would result in a messier commit history.
+Rebasing, and squashing commits before merging pull requests ensures that when looking at master, each commit corresponds to a single pull request.</p>
+</div>
+<ol>
+<li>Fetch the latest version of the base branch you need to rebase against. In most cases this will be <code>master</code>.</li>
+<li>Run <code>git rebase &lt;base branch&gt;</code> from your local branch.</li>
+<li>This will make <code>git</code> rewind history and put your HEAD back to the first commit that diverges between the two branches.</li>
+<li>One by one, commits will be automatically applied to your local branch until one with conflicts is reached.</li>
+<li>You will now need to resolve the conflicts</li>
+<li>This can be done with a GUI using most development environments, or manually by running <code>git status</code> to see which files have conflicts that need to be resolved and modifying them manually.</li>
+<li>Now, run <code>git rebase --continue</code> to continue rebasing.</li>
+<li>Once the final commit is reached, you can run <code>git push --force</code> to overwrite the previous version of your branch with the new rebased one.</li>
+</ol>
+<details class="hint">
+<summary>If you made a mistake</summary>
+<p>If you made a mistake and overwrote your remote and local branches with one that does not work, no worries!
+You can always use <a href="#git-reflog"><code>git reflog</code></a> to get back to the previous state of your branch, before you started rebasing.</p>
+</details>
+<p>For more details on <code>git  rebase</code>, please read the <a href="https://git-scm.com/book/en/v2/Git-Branching-Rebasing">git manual</a>.</p>
+<h3 id="alternative-to-rebasing">Alternative to Rebasing</h3>
+<p>In some cases, if the base branch was modified by force and now has tons of conflicts that are not related to your own changes, you might be better off not rebasing, so that you do not have to deal with resolving many conflicts you are unsure of.</p>
+<p>In that situation, you can follow these simple steps:</p>
+<ol>
+<li><code>git log</code> on your branch to know the hashes of your commits</li>
+<li><code>git checkout &lt;base branch&gt;</code></li>
+<li><code>git pull</code></li>
+<li><code>git checkout -b tmp</code></li>
+<li><code>git cherry-pick &lt;commit hash&gt;</code> for each of your commits</li>
+<li><code>git branch -D &lt;your branch&gt;</code> to remove your local branch</li>
+<li><code>git checkout -b &lt;your branch&gt;</code> to use the contents of the now clean <code>tmp</code> branch as your new local branch</li>
+<li><code>git push --set-upstream=&lt;remote&gt; &lt;your branch&gt; --force</code> to overwrite the remote version of your branch with the clean one</li>
+</ol>
+<p>If there was a pull request that used your branch, it will now automatically be updated and no longer have any conflicts.</p>
+<details class="hint">
+<summary>If you made a mistake</summary>
+<p>If you made a mistake and overwrote your remote and local branches with one that does not work, no worries!
+You can always use <a href="#git-reflog"><code>git reflog</code></a> to get back to the previous state of your branch, before you deleted anything.</p>
+</details>
+<h2 id="git-reflog">Git Reflog</h2>
+<p>Reference logs, or "reflogs", record when the tips of branches and other references were updated in the local repository.
+This is very useful for us, in order to revert changes that were made by mistake and to get back to the previous state of a modified branch.</p>
+<p>You can use <code>git reflog show</code> to look at your reference logs and find the hashes of the references you are interested in, and then simply <code>git checkout &lt;hash&gt;</code> to get back to their state. From there, you can use <code>git checkout -b &lt;branch name&gt;</code> to create a branch from that point in history.</p>
+<h2 id="git-restore">Git Restore</h2>
+<p><code>git restore</code> is a relatively new command in <code>git</code> which allows you to restore files from any point in history and even from other branches.
+This can be very useful for example if you want a specific file from a specific commit on another branch, you don't need to <code>cherry-pick</code> the whole commit, but instead of you run <code>git restore --source=&lt;other branch&gt; -- /path/to/file</code>.</p>
+<h2 id="clean-commits">Clean Commits</h2>
+<p>Ideally, we want to keep the commit history of our projects clean, in order to make it easy to navigate, to track and understand changes.
+On the master branch, each commit should correspond to a single PR, and within each PR, ideally each commit should correspond to a single change, in a way that reviewing a PR commit-by-commit should make sense.</p>
+<p>This is not simple however, since it means that if you go ahead and code huge amounts at once, you will then need to either:</p>
+<ul>
+<li>Create multiple commits from these changes, by <a href="#interactive-add">interactively adding</a> the specific parts that belong together into one commit for each feature/component of the changes.</li>
+<li>Create one huge commit for now, and <a href="#amending-commit-history">split it later on</a> by using <code>git rebase</code> and amending the commit history.</li>
+</ul>
+<h3 id="interactive-add">Interactive Add</h3>
+<p>When using <code>git add -i</code>, you have access to an interface that lets you go through the changes on your local branch and choose whether to add them to staging or not, block-by-block.
+This means you do not need to add a whole file to your next commit, but instead can add only the parts of it that are relevant to that commit.</p>
+<h3 id="amending-commit-history">Amending Commit History</h3>
+<p>The other solution is to use <code>git rebase -i &lt;base branch&gt;</code> to amend the commit history.
+In order to split a commit into multiple parts, you need to specify the <code>edit</code> directive for that commit.
+Once you get to that point in the rebasing process, running <code>git status</code> will show you all the changes from that commit.
+You can then use <code>git restore --staged &lt;file names&gt;</code> to remove them from staging.
+You are now free to run <code>git add -i</code> or use your IDE to create the relevant commits from those changes, and to create new commits.
+When you are done, simply run <code>git rebase --continue</code> to continue the rebasing process where we left it.</p>
                 
               
               
