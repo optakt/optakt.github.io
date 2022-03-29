@@ -6,6 +6,13 @@ Untested code is fragile, difficult to maintain and becomes questionable as soon
 
 This guide assumes that you are already familiar with Go testing.
 
+!!! warning "External projects"
+
+    This guide assumes that you are dealing with an Optakt project.
+    When working on projects for clients, they might have different testing practices.
+    In such a case, first make sure to keep your tests consistent with their own, and if you have any doubts please voice them on Slack.
+    If the tests of the original project are really problematic, we can discuss refactoring them and changing the way their tests are written in the future to improve code quality and reduce technical debt.
+
 ## Unit Tests
 
 This section outlines a few of the rules we try to follow when it comes to Go unit tests.
@@ -24,8 +31,36 @@ The best way to go about it is to follow the [official guidelines of the Go `tes
 >   func TestT_M() { ... }
 > ```
 
-When it comes to subtests, the names of individual subtests should be lowercased and concise.
-The tests usually start with a subtest called `nominal case` which verifies that the tested component behaves as expected in a baseline situation, where no failures occur and no edge cases are handled.
+You might sometimes want to have multiple test functions for a single method, in which case the tests should be prefixed as defined above, and followed with the purpose of the test:
+
+```go
+func TestMyType_MethodDoesSomethingWhenX(t *testing.T) { ... }
+func TestMyType_MethodDoesHandleXFailure(t *testing.T) { ... }
+// And so on.
+```
+
+When it comes to subtests, the names of individual subtests should be lowercased and concise. The tests usually start
+with a subtest called `nominal case` which verifies that the tested component behaves as expected in a baseline
+situation, where no failures occur and no edge cases are handled. Subsequent tests should follow the paths through which
+the function can flow from top to bottom.
+
+With the following example:
+
+```go
+{!function_example.md!}
+```
+
+There are three possible paths through which this function can be traversed:
+
+* The nominal case, where `s.validate.Struct` and `s.index.HeightForBlock` return no errors and the function returns a valid response.
+* The case where `s.validate.Struct` returns an error.
+* The case where `s.index.HeightForBlock` returns an error.
+
+And here is what the tests should look like:
+
+```go
+{!function_example_tests.md!}
+```
 
 ### Internal Unit Tests
 
@@ -49,9 +84,14 @@ Using those mocks is as simple as instantiating a baseline version of the mock a
 {!mock_test_example.md!}
 ```
 
+#### Mocks Package
+
+When the same mock needs to be used within multiple packages, it can make sense to create a package to store common mocks.
+This package should be located at `./testing/mocks` from the root of the repository, and each file within it should define a single mock.
+
 ### Pseudorandom Generic Values
 
-When using test data for unit tests, it is always a good idea to use random generated data as the inputs.
+When using test data for unit tests, it is often a good idea to use random generated data as the inputs.
 This avoids the bias where a test passes because it is given a valid set of inputs while some other inputs might have highlighted a flaw in the logic, by using an _unconstrained_ data set.
 
 In order for the tests to be repeatable and for results to be consistent though, the given inputs should not be completely random, but instead they should be pseudorandom, with the same initial seed, to ensure the same sequence of "random" tests.
@@ -65,6 +105,11 @@ Here is an example of such a value being generated.
 !!! warning
 
     While randomly generating valid inputs makes sense, randomly generating invalid inputs does not. In the case of invalid inputs, it is much better to have an exhaustive list of all types of cases that are expected to be invalid and always test each one of them.
+
+#### Generic Values Package
+
+When the same generic value need to be used within multiple packages, it can make sense to create a package to store common generic values.
+This package should be located at `./testing/mocks` from the root of the repository, and values should be in a file called `generic.go`.
 
 ### Parallelization
 
@@ -103,6 +148,21 @@ This can be very useful, as it enables creating a hierarchical structure within 
     ```go
 {!index_internal_test.md!}
     ```
+
+##### Structure
+
+In those tests, usually the structure is composed of:
+
+* At the top-level, the common testing variables that are used in multiple subtests.
+    * This can be a logger that discards logs, some test input that can be reused, expected return values shared between tests, and so on.
+* In each sub-test:
+    * The test is defined as parallelized;
+    * The inputs and outputs are defined in variables;
+    * The mocks are defined and their methods overridden when necessary;
+    * If test is for a method, the method's struct (the subject of the test) is created and given the mocks;
+    * The tested method is called on the subject, its return values are often stored in `got` and `err`: `got, err := mything.Do(input)`;
+	* If the test should not error, `require.NoError` is called on the error return;
+    * Assertions are made on the returned value.
 
 #### Table-Driven Tests
 
@@ -179,3 +239,7 @@ If this is missing, examples will not be executed and therefore not included in 
 
 When a package exposes a performance-critical piece of code, it should be benchmarked, and benchmark tests must be available for anyone to reproduce the benchmark using their hardware.
 Writing benchmark results in a markdown file without providing a way to reproduce them is irrelevant.
+
+```go
+{!benchmark_example.md!}
+```
