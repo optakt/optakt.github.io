@@ -160,7 +160,7 @@ In those tests, usually the structure is composed of:
     * The test is defined as parallelized;
     * The inputs and outputs are defined in variables;
     * The mocks are defined and their methods overridden when necessary;
-    * The test subject is created and given the mocks;
+    * If test is for a method, the method's struct (the subject of the test) is created and given the mocks;
     * The tested method is called on the subject, its return values are often stored in `got` and `err`: `got, err := mything.Do(input)`;
     * Assertions are made on the returned values.
 
