@@ -84,6 +84,13 @@ Using those mocks is as simple as instantiating a baseline version of the mock a
 {!mock_test_example.md!}
 ```
 
+When the functions you mock take parameters that are consistent based on inputs, you should, in the nominal case tests, make assertions on those values as well.
+For error tests, simply ignore those values in the mock.
+
+```go
+{!mock_assert_example.md!}
+```
+
 #### Mocks Package
 
 When the same mock needs to be used within multiple packages, it can make sense to create a package to store common mocks.
@@ -161,7 +168,7 @@ In those tests, usually the structure is composed of:
     * The mocks are defined and their methods overridden when necessary;
     * If test is for a method, the method's struct (the subject of the test) is created and given the mocks;
     * The tested method is called on the subject, its return values are often stored in `got` and `err`: `got, err := mything.Do(input)`;
-	* If the test should not error, `require.NoError` is called on the error return;
+    * If the test should not error, `require.NoError` is called on the error return;
     * Assertions are made on the returned value.
 
 #### Table-Driven Tests
