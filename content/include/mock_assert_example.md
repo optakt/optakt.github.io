@@ -17,7 +17,7 @@
         assert.NotNil(t, got)
         // Assertions...
     })
-    t.Run("handles failure to load checkpoint", func(t *testing.T) {
+    t.Run("handles failure to make request", func(t *testing.T) {
         t.Parallel()
 
         mock := mocks.BaselineTransport(t)
@@ -27,7 +27,7 @@
 
         subject := NewServer()
 
-        _, err := tr.BootstrapState(st)
+        got, err := subject.Call()
         assert.Error(t, err)
     })
     // ...
