@@ -10,7 +10,7 @@
             return testResponse, nil
         }
 
-        subject := NewServer()
+        subject := NewServer(mock)
 
         got, err := subject.Call()
         require.NoError(t, err)
