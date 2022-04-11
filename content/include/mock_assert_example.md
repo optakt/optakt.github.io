@@ -25,7 +25,7 @@
             return nil, mocks.GenericError()
         }
 
-        subject := NewServer()
+        subject := NewServer(mock)
 
         got, err := subject.Call()
         assert.Error(t, err)
