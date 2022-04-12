@@ -1157,6 +1157,42 @@ The Go language makes it easy to do so elegantly by creating structures that imp
 <span class="w">    </span><span class="p">})</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// ...</span><span class="w"></span>
 </code></pre></div>
+<p>When the functions you mock take parameters that are consistent based on inputs, you should, in the nominal case tests, make assertions on those values as well.
+For error tests, simply ignore those values in the mock.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c1">// ...</span><span class="w"></span>
+<span class="w">    </span><span class="nx">t</span><span class="p">.</span><span class="nx">Run</span><span class="p">(</span><span class="s">&quot;nominal case&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nx">t</span><span class="p">.</span><span class="nx">Parallel</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="nx">mock</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">mocks</span><span class="p">.</span><span class="nx">BaselineTransport</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="nx">mock</span><span class="p">.</span><span class="nx">Request</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">method</span><span class="p">,</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Response</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nx">assert</span><span class="p">.</span><span class="nx">Equal</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">MethodPost</span><span class="p">,</span><span class="w"> </span><span class="nx">method</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="nx">assert</span><span class="p">.</span><span class="nx">Equal</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;https://google.com&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">url</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">testResponse</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="nx">subject</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">NewServer</span><span class="p">(</span><span class="nx">mock</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="nx">got</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">subject</span><span class="p">.</span><span class="nx">Call</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="nx">require</span><span class="p">.</span><span class="nx">NoError</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="nx">assert</span><span class="p">.</span><span class="nx">NotNil</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="w"> </span><span class="nx">got</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Assertions...</span><span class="w"></span>
+<span class="w">    </span><span class="p">})</span><span class="w"></span>
+<span class="w">    </span><span class="nx">t</span><span class="p">.</span><span class="nx">Run</span><span class="p">(</span><span class="s">&quot;handles failure to make request&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nx">t</span><span class="p">.</span><span class="nx">Parallel</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="nx">mock</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">mocks</span><span class="p">.</span><span class="nx">BaselineTransport</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="nx">mock</span><span class="p">.</span><span class="nx">Request</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Response</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">mocks</span><span class="p">.</span><span class="nx">GenericError</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="nx">subject</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">NewServer</span><span class="p">(</span><span class="nx">mock</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="nx">got</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">subject</span><span class="p">.</span><span class="nx">Call</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="nx">assert</span><span class="p">.</span><span class="nx">Error</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">})</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ...</span><span class="w"></span>
+</code></pre></div>
 <h4 id="mocks-package">Mocks Package</h4>
 <p>When the same mock needs to be used within multiple packages, it can make sense to create a package to store common mocks.
 This package should be located at <code>./testing/mocks</code> from the root of the repository, and each file within it should define a single mock.</p>
